@@ -42,10 +42,10 @@ public class CucumberStepsDefinitions {
     }
 
     @Then("i have an error message {string}")
-    public void i_have_an_error_message(String string) {
+    public void i_have_an_error_message(String message) {
         assertThat(exception)
                 .isInstanceOf(BusinessExceptionResponse.class)
-                .hasMessage("TODO");
+                .hasMessage(message);
     }
 
 }

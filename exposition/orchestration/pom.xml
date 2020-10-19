@@ -11,5 +11,19 @@
 
     <artifactId>orchestration</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>fr.geromeavecung</groupId>
+            <artifactId>users</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>fr.geromeavecung</groupId>
+            <artifactId>books</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
 </project>

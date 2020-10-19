@@ -8,4 +8,8 @@ public class CreateBookRequest {
         this.title = title;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
 }

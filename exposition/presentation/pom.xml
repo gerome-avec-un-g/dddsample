@@ -26,7 +26,7 @@
         </dependency>
         <dependency>
             <groupId>fr.geromeavecung</groupId>
-            <artifactId>users</artifactId>
+            <artifactId>orchestration</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>
@@ -34,6 +34,25 @@
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
             <version>3.6.2</version>
+            <scope>test</scope>
+        </dependency>
+        <!--        FIXME transitive dependency on orchestration -->
+        <dependency>
+            <groupId>fr.geromeavecung</groupId>
+            <artifactId>books</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>fr.geromeavecung</groupId>
+            <artifactId>shared</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>fr.geromeavecung</groupId>
+            <artifactId>users</artifactId>
+            <version>1.0-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

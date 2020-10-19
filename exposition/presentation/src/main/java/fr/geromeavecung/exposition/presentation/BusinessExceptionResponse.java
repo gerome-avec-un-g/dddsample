@@ -1,4 +1,11 @@
 package fr.geromeavecung.exposition.presentation;
 
-public class BusinessExceptionResponse {
+import java.util.List;
+
+public class BusinessExceptionResponse extends RuntimeException {
+
+    public BusinessExceptionResponse(String exceptionName, List<String> parameters) {
+        super(exceptionName + " " + parameters);
+    }
+
 }
