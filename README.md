@@ -1,1 +1,1 @@
-# dddsample
+# Domain Driven Design sample project

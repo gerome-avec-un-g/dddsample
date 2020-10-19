@@ -1,13 +1,11 @@
+package fr.geromeavecung.exposition.presentation;
+
 import fr.geromeavecung.businessdomain.users.User;
-import fr.geromeavecung.exposition.presentation.BooksPresentationService;
-import fr.geromeavecung.exposition.presentation.BusinessExceptionResponse;
-import fr.geromeavecung.exposition.presentation.CreateBookRequest;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -17,11 +15,9 @@ public class CucumberStepsDefinitions {
 
     private User user;
 
-    private List<CreateBookRequest> createBookRequests = new ArrayList<CreateBookRequest>();
+    private Exception actualException;
 
-    private Exception exception;
-
-    private BooksPresentationService booksPresentationService = new BooksPresentationService();
+    private final BooksPresentationService booksPresentationService = new BooksPresentationService();
 
     @Given("a librarian")
     public void a_librarian() {
@@ -37,13 +33,13 @@ public class CucumberStepsDefinitions {
                 booksPresentationService.createBook(new CreateBookRequest(columns.get("title")));
             }
         } catch (Exception exception) {
-            this.exception = exception;
+            this.actualException = exception;
         }
     }
 
     @Then("i have an error message {string}")
     public void i_have_an_error_message(String message) {
-        assertThat(exception)
+        assertThat(actualException)
                 .isInstanceOf(BusinessExceptionResponse.class)
                 .hasMessage(message);
     }
