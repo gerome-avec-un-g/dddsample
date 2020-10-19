@@ -10,6 +10,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>exposition</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>rest</module>
+        <module>template</module>
+        <module>application-spring-boot</module>
+    </modules>
 
 
 </project>
