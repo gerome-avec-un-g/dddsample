@@ -23,12 +23,10 @@ Feature: add a book
       | 012345678901234567890 |
     Then i have an error message "FieldMaximumLength [title, 012345678901234567890, 20]"
 
-#  @important
-#  @title
-#  @wip
-#  Scenario: check author : author is mandatory
-#    Given a librarian
-#    When the user adds a book
-#      | title |
-#      |       |
-#    Then i have an error message "FieldRequired [author]"
+  @inProgress
+  Scenario: check author : author is mandatory
+    Given a librarian
+    When the user adds a book
+      | title |
+      |       |
+    Then i have an error message "FieldRequired [author]"
