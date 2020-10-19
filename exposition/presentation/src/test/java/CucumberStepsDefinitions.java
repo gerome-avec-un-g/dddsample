@@ -1,33 +1,51 @@
+import fr.geromeavecung.businessdomain.users.User;
+import fr.geromeavecung.exposition.presentation.BooksPresentationService;
+import fr.geromeavecung.exposition.presentation.BusinessExceptionResponse;
+import fr.geromeavecung.exposition.presentation.CreateBookRequest;
 import io.cucumber.datatable.DataTable;
-import io.cucumber.java.PendingException;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class CucumberStepsDefinitions {
+
+    private User user;
+
+    private List<CreateBookRequest> createBookRequests = new ArrayList<CreateBookRequest>();
+
+    private Exception exception;
+
+    private BooksPresentationService booksPresentationService = new BooksPresentationService();
 
     @Given("a librarian")
     public void a_librarian() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+        user = new User("123");
     }
 
     @When("the user adds a book")
     public void the_user_adds_a_book(DataTable dataTable) {
-        // Write code here that turns the phrase above into concrete actions
-        // For automatic transformation, change DataTable to one of
-        // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
-        // Map<K, List<V>>. E,K,V must be a String, Integer, Float,
-        // Double, Byte, Short, Long, BigInteger or BigDecimal.
-        //
-        // For other transformations you can register a DataTableType.
-        throw new PendingException();
+        List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
+
+        try {
+            for (Map<String, String> columns : rows) {
+                booksPresentationService.createBook(new CreateBookRequest(columns.get("title")));
+            }
+        } catch (Exception exception) {
+            this.exception = exception;
+        }
     }
 
     @Then("i have an error message {string}")
     public void i_have_an_error_message(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+        assertThat(exception)
+                .isInstanceOf(BusinessExceptionResponse.class)
+                .hasMessage("TODO");
     }
 
 }
