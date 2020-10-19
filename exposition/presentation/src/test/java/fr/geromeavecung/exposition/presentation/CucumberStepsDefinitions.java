@@ -2,6 +2,7 @@ package fr.geromeavecung.exposition.presentation;
 
 import fr.geromeavecung.businessdomain.users.User;
 import io.cucumber.datatable.DataTable;
+import io.cucumber.java.DataTableType;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -25,8 +26,8 @@ public class CucumberStepsDefinitions {
     }
 
     @When("the user adds a book")
-    public void the_user_adds_a_book(DataTable dataTable) {
-        List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
+    public void the_user_adds_a_book(DataTable table) {
+        List<Map<String, String>> rows = table.asMaps(String.class, String.class);
 
         try {
             for (Map<String, String> columns : rows) {
@@ -42,6 +43,11 @@ public class CucumberStepsDefinitions {
         assertThat(actualException)
                 .isInstanceOf(BusinessExceptionResponse.class)
                 .hasMessage(message);
+    }
+
+    @DataTableType(replaceWithEmptyString = "[blank]")
+    public String stringType(String cell) {
+        return cell;
     }
 
 }

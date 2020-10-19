@@ -13,8 +13,11 @@ public class FieldValidator {
         return fieldValue;
     }
 
-    public static String maximumLength(String fieldName, String fieldValue, int maximumLength) {
+    public static String length(String fieldName, String fieldValue, int minimumLength, int maximumLength) {
         required(fieldName, fieldValue);
+        if (fieldValue.length() < minimumLength) {
+            throw new FieldMinimumLength(fieldName, fieldValue, minimumLength);
+        }
         if (fieldValue.length() > maximumLength) {
             throw new FieldMaximumLength(fieldName, fieldValue, maximumLength);
         }
