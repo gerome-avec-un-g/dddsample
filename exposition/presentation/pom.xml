@@ -12,7 +12,7 @@
     <artifactId>presentation</artifactId>
 
     <properties>
-        <sonar.coverage.jacoco.xmlReportPaths>${basedir}/../${aggregate.report.dir}</sonar.coverage.jacoco.xmlReportPaths>
+        <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}../exposition/presentation/target/site/jacoco-aggregate/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
     </properties>
 
     <dependencies>
@@ -79,6 +79,7 @@
                     </execution>
                 </executions>
             </plugin>
+            <!-- FIXME should have an IT module ? -->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
