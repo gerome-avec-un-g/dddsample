@@ -2,9 +2,13 @@ package fr.geromeavecung.exposition.presentation;
 
 public class CreateBookRequest {
 
-    private final String title;
+    private String title;
 
-    private final String author;
+    private String author;
+
+    public CreateBookRequest() {
+
+    }
 
     public CreateBookRequest(String title, String author) {
         this.title = title;
@@ -15,8 +19,16 @@ public class CreateBookRequest {
         return title;
     }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public String getAuthor() {
         return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     @Override

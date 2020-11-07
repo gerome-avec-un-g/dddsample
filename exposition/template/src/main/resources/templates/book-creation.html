@@ -1,0 +1,29 @@
+<!-- Required styles for Material Web -->
+<link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+
+<form action="#" th:action="@{/book-creation}" th:object="${createBookRequest}" method="post">
+<!--    <label class="mdc-text-field mdc-text-field&#45;&#45;filled">-->
+<!--        <span class="mdc-text-field__ripple"></span>-->
+<!--        <span class="mdc-floating-label" id="title-id">Title</span>-->
+<!--        <input class="mdc-text-field__input" type="text" aria-labelledby="title-id" th:field="*{title}">-->
+<!--        <span class="mdc-line-ripple"></span>-->
+<!--    </label>-->
+
+<!--    <label class="mdc-text-field mdc-text-field&#45;&#45;filled">-->
+<!--        <span class="mdc-text-field__ripple"></span>-->
+<!--        <span class="mdc-floating-label" id="author-id">Author</span>-->
+<!--        <input class="mdc-text-field__input" type="text" aria-labelledby="author-id" th:field="*{author}">-->
+<!--        <span class="mdc-line-ripple"></span>-->
+<!--    </label>-->
+    <input type="text" th:field="*{title}" />
+    <input type="text" th:field="*{author}" />
+    <input type="submit" value="Submit" />
+</form>
+
+<!-- Required Material Web JavaScript library -->
+<script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+<!-- Instantiate single textfield component rendered in the document -->
+<script>
+  mdc.textField.MDCTextField.attachTo(document.querySelector('.mdc-text-field'));
+
+</script>
