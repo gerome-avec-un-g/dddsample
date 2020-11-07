@@ -6,9 +6,12 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="reset-mdc.css">
 
     <!--/*  Each token will be replaced by their respective titles in the resulting page. */-->
     <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">MyLibraryApp</title>
+
 </head>
 <body>
 
@@ -31,17 +34,23 @@
     </div>
 </header>
 
-<div layout:fragment="content">
-    <h1>Static content for prototyping purposes only</h1>
-    <p>
-        This content is only used for static prototyping purposes (natural templates)
-        and is therefore entirely optional, as this markup fragment will be included
-        from "fragments/header.html" at runtime.
-    </p>
-</div>
-
+<main>
+    <div layout:fragment="content">
+        <h1>Static content for prototyping purposes only</h1>
+        <p>
+            This content is only used for static prototyping purposes (natural templates)
+            and is therefore entirely optional, as this markup fragment will be included
+            from "fragments/header.html" at runtime.
+        </p>
+    </div>
+</main>
 <!-- Required Material Web JavaScript library -->
 <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
 <script layout:fragment="script"></script>
+<script>
+    const topAppBarElement = document.querySelector('.mdc-top-app-bar');
+    const topAppBar = new MDCTopAppBar(topAppBarElement);
+
+</script>
 </body>
 </html>
