@@ -36,9 +36,7 @@ public class BooksController {
     @PostMapping("/book-creation")
     public ModelAndView bookCreationPost(@ModelAttribute CreateBookRequest createBookRequest) {
         booksPresentationService.createBook(createBookRequest);
-        ModelAndView modelAndView = new ModelAndView("book-creation");
-        modelAndView.addObject("createBookRequest", new CreateBookRequest());
-        return modelAndView;
+        return new ModelAndView("redirect:book-creation");
     }
 
 }
