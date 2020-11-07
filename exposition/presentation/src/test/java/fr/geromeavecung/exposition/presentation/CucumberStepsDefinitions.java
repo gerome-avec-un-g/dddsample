@@ -28,12 +28,17 @@ public class CucumberStepsDefinitions {
 
     private User user;
 
+    @DataTableType(replaceWithEmptyString = "[blank]")
+    public String stringType(String cell) {
+        return cell;
+    }
+
     @Given("a librarian")
     public void a_librarian() {
         user = new User("123");
     }
 
-    @When("the user adds a book")
+    @When("the user tries to add a book")
     public void the_user_adds_a_book(DataTable table) {
         List<Map<String, String>> rows = table.asMaps(String.class, String.class);
 
@@ -53,18 +58,12 @@ public class CucumberStepsDefinitions {
                 .hasMessage(message);
     }
 
-    @DataTableType(replaceWithEmptyString = "[blank]")
-    public String stringType(String cell) {
-        return cell;
-    }
-
     @Then("the book is added")
     public void theBookIsAdded(DataTable table) {
         List<Map<String, String>> rows = table.asMaps(String.class, String.class);
 
         try {
             for (Map<String, String> columns : rows) {
-                booksPresentationService.createBook(new CreateBookRequest(columns.get("title"), columns.get("author")));
                 assertThat(books.all()).contains(Book.create(Title.create(columns.get("title")), Author.create(columns.get("author"))));
             }
         } catch (Exception exception) {

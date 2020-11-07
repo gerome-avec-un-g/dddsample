@@ -9,6 +9,9 @@ public class BooksService {
     }
 
     public void add(Book book) {
+        if (books.all().contains(book)) {
+            throw new BookAlreadyExists(book);
+        }
         books.add(book);
     }
 }
