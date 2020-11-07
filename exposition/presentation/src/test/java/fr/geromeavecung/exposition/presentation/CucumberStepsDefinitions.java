@@ -31,7 +31,7 @@ public class CucumberStepsDefinitions {
 
         try {
             for (Map<String, String> columns : rows) {
-                booksPresentationService.createBook(new CreateBookRequest(columns.get("title")));
+                booksPresentationService.createBook(new CreateBookRequest(columns.get("title"), columns.get("author")));
             }
         } catch (Exception exception) {
             this.actualException = exception;

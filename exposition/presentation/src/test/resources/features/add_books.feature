@@ -6,33 +6,57 @@ Feature: add a book
   #Rule: authorization checks
 
   #Rule: title validation
-    Scenario: title is mandatory
-      Given a librarian
-      When the user adds a book
-        | title |
-        |       |
-      Then i have an error message "FieldRequired [title]"
+  Scenario: title is mandatory
+    Given a librarian
+    When the user adds a book
+      | title |
+      |       |
+    Then i have an error message "FieldRequired [title]"
 
-  Scenario: title size is more than 1 characters
-      Given a librarian
-      When the user adds a book
-        | title   |
-        | [blank] |
-      Then i have an error message "FieldMinimumLength [title, , 1]"
+  Scenario: title has at least 1 characters
+    Given a librarian
+    When the user adds a book
+      | title   |
+      | [blank] |
+    Then i have an error message "FieldMinimumLength [title, , 1]"
 
-  Scenario: title size is less than 20 characters
-      Given a librarian
-      When the user adds a book
-        | title                 |
-        | 012345678901234567890 |
-      Then i have an error message "FieldMaximumLength [title, 012345678901234567890, 20]"
+  Scenario: title has less than 21 characters
+    Given a librarian
+    When the user adds a book
+      | title                 |
+      | 012345678901234567890 |
+    Then i have an error message "FieldMaximumLength [title, 012345678901234567890, 20]"
     # TODO better spec for error messages
 
+  @inProgress
+  Scenario: title is not just spaces
+    Given a librarian
+    When the user adds a book
+      | title    |
+      | [spaces] |
+    Then i have an error message "FieldIsEmpty [title]"
+
   #Rule: author validation
-    @inProgress
-    Scenario: check author : author is mandatory
-      Given a librarian
-      When the user adds a book
-        | title |
-        |       |
-      Then i have an error message "FieldRequired [author]"
+  Scenario: author is mandatory
+    Given a librarian
+    When the user adds a book
+      | title      | author |
+      | Foundation |        |
+    Then i have an error message "FieldRequired [author]"
+
+  Scenario: author has at least 1 characters
+    Given a librarian
+    When the user adds a book
+      | title      | author  |
+      | Foundation | [blank] |
+    Then i have an error message "FieldMinimumLength [author, , 1]"
+
+  Scenario: author has less than 16 characters
+    Given a librarian
+    When the user adds a book
+      | title      | author |
+      | Foundation | AsimovAsimovAsim       |
+    Then i have an error message "FieldMaximumLength [author, AsimovAsimovAsim, 15]"
+  #Rule: can't add a second book with same title and author
+
+  #Rule: working case
