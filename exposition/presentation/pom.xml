@@ -18,6 +18,13 @@
 
     <dependencies>
         <dependency>
+            <groupId>fr.geromeavecung</groupId>
+            <artifactId>orchestration</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!-- test dependencies -->
+        <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
             <version>${cucumber.version}</version>
@@ -29,32 +36,7 @@
             <version>${cucumber.version}</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>fr.geromeavecung</groupId>
-            <artifactId>orchestration</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>test</scope>
-        </dependency>
 
-        <!--        FIXME transitive dependency on orchestration -->
-        <dependency>
-            <groupId>fr.geromeavecung</groupId>
-            <artifactId>books</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>fr.geromeavecung</groupId>
-            <artifactId>shared</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>fr.geromeavecung</groupId>
-            <artifactId>users</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 
     <build>

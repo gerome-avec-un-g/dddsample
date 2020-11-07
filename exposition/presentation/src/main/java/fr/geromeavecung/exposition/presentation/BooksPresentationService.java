@@ -4,8 +4,15 @@ import fr.geromeavecung.businessdomain.books.Author;
 import fr.geromeavecung.businessdomain.books.Book;
 import fr.geromeavecung.businessdomain.books.Title;
 import fr.geromeavecung.businessdomain.shared.BusinessException;
+import fr.geromeavecung.exposition.orchestration.BooksOrchestrationService;
 
 public class BooksPresentationService {
+
+    private final BooksOrchestrationService booksOrchestrationService;
+
+    public BooksPresentationService(BooksOrchestrationService booksOrchestrationService) {
+        this.booksOrchestrationService = booksOrchestrationService;
+    }
 
     public void createBook(CreateBookRequest createBookRequest) {
         try {

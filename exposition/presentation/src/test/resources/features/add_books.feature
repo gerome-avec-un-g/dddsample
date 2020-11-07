@@ -54,9 +54,17 @@ Feature: add a book
   Scenario: author has less than 16 characters
     Given a librarian
     When the user adds a book
-      | title      | author |
-      | Foundation | AsimovAsimovAsim       |
+      | title      | author           |
+      | Foundation | AsimovAsimovAsim |
     Then i have an error message "FieldMaximumLength [author, AsimovAsimovAsim, 15]"
   #Rule: can't add a second book with same title and author
 
   #Rule: working case
+  Scenario: a librarian can add a book
+    Given a librarian
+    When the user adds a book
+      | title      | author |
+      | Foundation | Isaac Asimov |
+    Then the book is added
+      | title      | author |
+      | Foundation | Isaac Asimov |

@@ -12,11 +12,11 @@
     <artifactId>exposition</artifactId>
     <packaging>pom</packaging>
     <modules>
+        <module>presentation</module>
+        <module>orchestration</module>
         <module>rest</module>
         <module>template</module>
         <module>application-spring-boot</module>
-        <module>orchestration</module>
-        <module>presentation</module>
     </modules>
 
 
