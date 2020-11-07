@@ -1,32 +1,38 @@
 Feature: add a book
   a librarian can add a book
 
-  @important
-  Scenario: check title : title is mandatory
-    Given a librarian
-    When the user adds a book
-      | title |
-      |       |
-    Then i have an error message "FieldRequired [title]"
+  # check Ghrekin 6 implementation for @Rule
 
-  Scenario: check title : title size is more than 1 characters
-    Given a librarian
-    When the user adds a book
-      | title   |
-      | [blank] |
-    Then i have an error message "FieldMinimumLength [title, , 1]"
+  #Rule: authorization checks
 
-  Scenario: check title : title size is less than 20 characters
-    Given a librarian
-    When the user adds a book
-      | title                 |
-      | 012345678901234567890 |
-    Then i have an error message "FieldMaximumLength [title, 012345678901234567890, 20]"
+  #Rule: title validation
+    Scenario: title is mandatory
+      Given a librarian
+      When the user adds a book
+        | title |
+        |       |
+      Then i have an error message "FieldRequired [title]"
 
-  @inProgress
-  Scenario: check author : author is mandatory
-    Given a librarian
-    When the user adds a book
-      | title |
-      |       |
-    Then i have an error message "FieldRequired [author]"
+  Scenario: title size is more than 1 characters
+      Given a librarian
+      When the user adds a book
+        | title   |
+        | [blank] |
+      Then i have an error message "FieldMinimumLength [title, , 1]"
+
+  Scenario: title size is less than 20 characters
+      Given a librarian
+      When the user adds a book
+        | title                 |
+        | 012345678901234567890 |
+      Then i have an error message "FieldMaximumLength [title, 012345678901234567890, 20]"
+    # TODO better spec for error messages
+
+  #Rule: author validation
+    @inProgress
+    Scenario: check author : author is mandatory
+      Given a librarian
+      When the user adds a book
+        | title |
+        |       |
+      Then i have an error message "FieldRequired [author]"
