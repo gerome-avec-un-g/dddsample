@@ -7,9 +7,6 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class SimpleController {
 
-    //@Value("${spring.application.name}")
-    //String appName;
-
     @GetMapping("/appName")
     public ModelAndView homePage() {
         ModelAndView modelAndView = new ModelAndView("home");

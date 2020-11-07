@@ -1,26 +1,42 @@
 <!-- Required styles for Material Web -->
 <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
+<div class="mdc-card">
+    <div class="mdc-card__content">
 
-<div class="mdc-data-table">
-    <div class="mdc-data-table__table-container">
-        <table class="mdc-data-table__table" aria-label="Dessert calories">
-            <thead>
-            <tr class="mdc-data-table__header-row">
-                <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Title</th>
-                <th class="mdc-data-table__header-cell mdc-data-table__header-cell--numeric" role="columnheader"
-                    scope="col">Author
-                </th>
-            </tr>
-            </thead>
-            <tbody class="mdc-data-table__content">
-            <tr class="mdc-data-table__row" th:each="book: ${books}">
-                <!--<th class="mdc-data-table__cell" scope="row" th:text="${book.title}"></th>-->
-                <td class="mdc-data-table__cell mdc-data-table__cell--numeric" th:text="${book.title}"></td>
-                <td class="mdc-data-table__cell mdc-data-table__cell--numeric" th:text="${book.author}"></td>
-            </tr>
-            </tbody>
-        </table>
+        <h2 class="demo-card__title mdc-typography mdc-typography--headline6">Books</h2>
+
+        <div class="mdc-touch-target-wrapper">
+            <a href="/book-creation" class="mdc-fab mdc-fab--mini mdc-fab--touch">
+                <div class="mdc-fab__ripple"></div>
+                <span class="material-icons mdc-fab__icon">add</span>
+                <div class="mdc-fab__touch"></div>
+            </a>
+        </div>
+
+        <div class="mdc-data-table">
+            <div class="mdc-data-table__table-container">
+                <table class="mdc-data-table__table" aria-label="Dessert calories">
+                    <thead>
+                    <tr class="mdc-data-table__header-row">
+                        <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Title</th>
+                        <th class="mdc-data-table__header-cell mdc-data-table__header-cell--numeric" role="columnheader"
+                            scope="col">Author
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody class="mdc-data-table__content">
+                    <tr class="mdc-data-table__row" th:each="book: ${books}">
+                        <!--<th class="mdc-data-table__cell" scope="row" th:text="${book.title}"></th>-->
+                        <td class="mdc-data-table__cell mdc-data-table__cell--numeric" th:text="${book.title}"></td>
+                        <td class="mdc-data-table__cell mdc-data-table__cell--numeric" th:text="${book.author}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
     </div>
 </div>
 
@@ -29,4 +45,7 @@
 <!-- Instantiate single textfield component rendered in the document -->
 <script>
   mdc.textField.MDCTextField.attachTo(document.querySelector('.mdc-text-field'));
+
+
+
 </script>
