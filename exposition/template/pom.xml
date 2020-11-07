@@ -16,11 +16,17 @@
     </properties>
 
     <dependencies>
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-thymeleaf</artifactId>-->
-<!--            <version>2.2.2.RELEASE</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>fr.geromeavecung</groupId>
+            <artifactId>presentation</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>fr.geromeavecung</groupId>
+            <artifactId>persistence-in-memory</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>

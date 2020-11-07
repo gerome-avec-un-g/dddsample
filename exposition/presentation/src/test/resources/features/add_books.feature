@@ -51,12 +51,12 @@ Feature: add a book
       | Foundation | [blank] |
     Then i have an error message "FieldMinimumLength [author, , 1]"
 
-  Scenario: author has less than 16 characters
+  Scenario: author has less than 26 characters
     Given a librarian
     When the user tries to add a book
       | title      | author           |
-      | Foundation | AsimovAsimovAsim |
-    Then i have an error message "FieldMaximumLength [author, AsimovAsimovAsim, 15]"
+      | Foundation | AsimovAsimovAsimovAsimovAs |
+    Then i have an error message "FieldMaximumLength [author, AsimovAsimovAsimovAsimovAs, 25]"
 
   #Rule: can't add a second book with same title and author
   Scenario: a book can't be added twice

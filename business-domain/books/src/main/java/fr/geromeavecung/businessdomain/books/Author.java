@@ -13,7 +13,7 @@ public class Author {
     }
 
     public Author(String value) {
-        this.value = FieldValidator.length("author", value, 1, 15);
+        this.value = FieldValidator.length("author", value, 1, 25);
     }
 
     public String getValue() {
