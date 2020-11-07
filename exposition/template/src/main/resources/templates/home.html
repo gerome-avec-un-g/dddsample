@@ -1,1 +1,12 @@
-hello <span th:text="${appName}" />
+<!DOCTYPE html>
+<html  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout}">
+<head>
+    <title>Task List</title>
+</head>
+<body>
+<!-- /* Content of this page will be decorated by the elements of layout.html (task/layout) */ -->
+<div layout:fragment="content">
+    Welcome!
+</div>
+</body>
+</html>
