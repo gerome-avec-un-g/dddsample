@@ -2,18 +2,11 @@ package fr.geromeavecung.exposition.presentation;
 
 public class CreateBookRequest {
 
+    // default constructor + setters for thymeleaf
+
     private String title;
 
     private String author;
-
-    public CreateBookRequest() {
-
-    }
-
-    public CreateBookRequest(String title, String author) {
-        this.title = title;
-        this.author = author;
-    }
 
     public String getTitle() {
         return title;
@@ -35,4 +28,5 @@ public class CreateBookRequest {
     public String toString() {
         return "CreateBookRequest{" + "title='" + title + '\'' + ", author='" + author + '\'' + '}';
     }
+
 }

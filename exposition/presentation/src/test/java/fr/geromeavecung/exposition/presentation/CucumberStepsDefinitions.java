@@ -5,6 +5,7 @@ import fr.geromeavecung.businessdomain.books.Book;
 import fr.geromeavecung.businessdomain.books.Books;
 import fr.geromeavecung.businessdomain.books.BooksService;
 import fr.geromeavecung.businessdomain.books.Title;
+import fr.geromeavecung.businessdomain.shared.BusinessException;
 import fr.geromeavecung.businessdomain.users.User;
 import fr.geromeavecung.exposition.orchestration.BooksOrchestrationService;
 import io.cucumber.datatable.DataTable;
@@ -43,18 +44,22 @@ public class CucumberStepsDefinitions {
     public void the_user_adds_a_book(DataTable table) {
         try {
             for (Map<String, String> columns : table.<String, String>asMaps(String.class, String.class)) {
-                booksPresentationService.createBook(new CreateBookRequest(columns.get("title"), columns.get("author")));
+                CreateBookRequest createBookRequest = new CreateBookRequest();
+                createBookRequest.setTitle(columns.get("title"));
+                createBookRequest.setAuthor(columns.get("author"));
+                booksPresentationService.createBook(createBookRequest);
             }
         } catch (Exception exception) {
             this.actualException = exception;
         }
     }
 
-    @Then("i have an error message {string}")
-    public void i_have_an_error_message(String message) {
+    @Then("i have an error {string} with message {string}")
+    public void i_have_an_error_message(String className, String message) throws ClassNotFoundException {
         assertThat(actualException)
-                .isInstanceOf(BusinessExceptionResponse.class)
+                .isInstanceOf(BusinessException.class)
                 .hasMessage(message);
+        assertThat(actualException.getClass().getSimpleName()).isEqualTo(className);
     }
 
     @Then("the book is added")
@@ -75,7 +80,10 @@ public class CucumberStepsDefinitions {
     public void aLibraryWithBooks(DataTable table) {
         try {
             for (Map<String, String> columns : table.<String, String>asMaps(String.class, String.class)) {
-                booksPresentationService.createBook(new CreateBookRequest(columns.get("title"), columns.get("author")));
+                CreateBookRequest createBookRequest = new CreateBookRequest();
+                createBookRequest.setTitle(columns.get("title"));
+                createBookRequest.setAuthor(columns.get("author"));
+                booksPresentationService.createBook(createBookRequest);
             }
         } catch (Exception exception) {
             this.actualException = exception;
