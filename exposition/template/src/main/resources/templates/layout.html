@@ -1,33 +1,47 @@
 <!DOCTYPE html>
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
+    <meta charset="utf-8">
+    <!-- Required styles for Material Web -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
     <!--/*  Each token will be replaced by their respective titles in the resulting page. */-->
-    <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">Task List</title>
+    <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">MyLibraryApp</title>
 </head>
 <body>
-<!--/* Standard layout can be mixed with Layout Dialect */-->
-<!--<div th:replace="fragments/header :: header">-->
-<div>
-    fake header
-</div>
-<div class="container">
-    <div layout:fragment="content">
-        <!-- ============================================================================ -->
-        <!-- This content is only used for static prototyping purposes (natural templates)-->
-        <!-- and is therefore entirely optional, as this markup fragment will be included -->
-        <!-- from "fragments/header.html" at runtime.                                     -->
-        <!-- ============================================================================ -->
-        <h1>Static content for prototyping purposes only</h1>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Praesent scelerisque neque neque, ac elementum quam dignissim interdum.
-            Phasellus et placerat elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Praesent scelerisque neque neque, ac elementum quam dignissim interdum.
-            Phasellus et placerat elit.
-        </p>
+
+<header class="mdc-top-app-bar">
+    <div class="mdc-top-app-bar__row">
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+            <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button"
+                    aria-label="Open navigation menu">menu
+            </button>
+            <span class="mdc-top-app-bar__title">Page title</span>
+        </section>
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+            <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Favorite">favorite
+            </button>
+            <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Search">search
+            </button>
+            <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Options">more_vert
+            </button>
+        </section>
     </div>
-    <!--    <div th:replace="fragments/footer :: footer">&copy; 2014 The Static Templates</div>-->
-    <div>&copy; 2014 The Static Templates</div>
+</header>
+
+<div layout:fragment="content">
+    <h1>Static content for prototyping purposes only</h1>
+    <p>
+        This content is only used for static prototyping purposes (natural templates)
+        and is therefore entirely optional, as this markup fragment will be included
+        from "fragments/header.html" at runtime.
+    </p>
 </div>
+
+<!-- Required Material Web JavaScript library -->
+<script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+<script layout:fragment="script"></script>
 </body>
 </html>

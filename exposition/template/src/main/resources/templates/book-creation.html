@@ -1,7 +1,17 @@
-<!-- Required styles for Material Web -->
-<link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{layout}">
+<head>
+    <!-- Required styles for Material Web -->
+    <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-<div class="mdc-card">
+    <title>Add a book</title>
+</head>
+<body>
+
+<div class="mdc-card" layout:fragment="content">
 
     <form action="#" th:action="@{/book-creation}" th:object="${createBookRequest}" method="post">
 
@@ -9,39 +19,36 @@
 
             <h2 class="demo-card__title mdc-typography mdc-typography--headline6">Add a book</h2>
 
-            <label class="mdc-text-field mdc-text-field--filled">
-                <span class="mdc-text-field__ripple"></span>
-                <span class="mdc-floating-label" id="title">Title</span>
-                <input class="mdc-text-field__input" type="text" aria-labelledby="title" th:field="*{title}">
-                <span class="mdc-line-ripple"></span>
+            <label class="mdc-text-field mdc-text-field--outlined">
+                  <span class="mdc-notched-outline">
+                    <span class="mdc-notched-outline__leading"></span>
+                    <span class="mdc-notched-outline__notch">
+                      <span class="mdc-floating-label" id="title">Title</span>
+                    </span>
+                    <span class="mdc-notched-outline__trailing"></span>
+                  </span>
+                <input type="text" class="mdc-text-field__input" aria-labelledby="title" th:field="*{title}">
             </label>
 
-            <label class="mdc-text-field mdc-text-field--filled">
-                <span class="mdc-text-field__ripple"></span>
-                <span class="mdc-floating-label" id="author">Author</span>
-                <input class="mdc-text-field__input" type="text" aria-labelledby="author" th:field="*{author}">
-                <span class="mdc-line-ripple"></span>
+            <label class="mdc-text-field mdc-text-field--outlined">
+                  <span class="mdc-notched-outline">
+                    <span class="mdc-notched-outline__leading"></span>
+                    <span class="mdc-notched-outline__notch">
+                      <span class="mdc-floating-label" id="my-label-id">author</span>
+                    </span>
+                    <span class="mdc-notched-outline__trailing"></span>
+                  </span>
+                <input type="text" class="mdc-text-field__input" aria-labelledby="author" th:field="*{author}">
             </label>
 
-            <!--            <input type="submit" value="Submit"/>-->
         </div>
 
         <div class="mdc-card__actions">
-
-            <!--            <button class="mdc-button mdc-card__action mdc-card__action&#45;&#45;button">-->
-            <!--                <div class="mdc-button__ripple"></div>-->
-            <!--                <span class="mdc-button__label">Cancel</span>-->
-            <!--            </button>-->
             <a href="/book-creation" class="mdc-button mdc-card__action mdc-card__action--button">
                 <div class="mdc-button__ripple"></div>
                 <span class="mdc-button__label">Cancel</span>
             </a>
             <input type="submit" value="Submit" class="mdc-button mdc-card__action mdc-card__action--button"/>
-
-            <!--            <button class="mdc-button mdc-card__action mdc-card__action&#45;&#45;button">-->
-            <!--                <div class="mdc-button__ripple"></div>-->
-            <!--                <span class="mdc-button__label">Create</span>-->
-            <!--            </button>-->
         </div>
 
     </form>
@@ -49,9 +56,15 @@
 
 </div>
 
-<!-- Required Material Web JavaScript library -->
-<script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
-<!-- Instantiate single textfield component rendered in the document -->
-<script>
-  mdc.textField.MDCTextField.attachTo(document.querySelector('.mdc-text-field'));
+</body>
+
+<script layout:fragment="script">
+const textFields = [].map.call(document.querySelectorAll('.mdc-text-field'), function(el) {
+    mdc.textField.MDCTextField.attachTo(el);
+});
+
+
 </script>
+
+</html>
+

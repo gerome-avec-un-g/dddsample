@@ -1,8 +1,16 @@
-<!-- Required styles for Material Web -->
-<link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{layout}">
+<head>
+    <!-- Required styles for Material Web -->
+    <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-<div class="mdc-card">
+    <title>Books</title>
+</head>
+<body>
+<div class="mdc-card" layout:fragment="content">
     <div class="mdc-card__content">
 
         <h2 class="demo-card__title mdc-typography mdc-typography--headline6">Books</h2>
@@ -40,12 +48,5 @@
     </div>
 </div>
 
-<!-- Required Material Web JavaScript library -->
-<script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
-<!-- Instantiate single textfield component rendered in the document -->
-<script>
-  mdc.textField.MDCTextField.attachTo(document.querySelector('.mdc-text-field'));
-
-
-
-</script>
+</body>
+</html>
