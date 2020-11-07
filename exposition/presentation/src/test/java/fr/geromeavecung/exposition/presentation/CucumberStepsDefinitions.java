@@ -1,6 +1,10 @@
 package fr.geromeavecung.exposition.presentation;
 
+import fr.geromeavecung.businessdomain.books.Author;
+import fr.geromeavecung.businessdomain.books.Book;
+import fr.geromeavecung.businessdomain.books.Books;
 import fr.geromeavecung.businessdomain.books.BooksService;
+import fr.geromeavecung.businessdomain.books.Title;
 import fr.geromeavecung.businessdomain.users.User;
 import fr.geromeavecung.exposition.orchestration.BooksOrchestrationService;
 import io.cucumber.datatable.DataTable;
@@ -16,7 +20,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class CucumberStepsDefinitions {
 
-    private final BooksPresentationService booksPresentationService = new BooksPresentationService(new BooksOrchestrationService(new BooksService(new BooksInMemory())));
+    private final Books books = new BooksInMemory();
+
+    private final BooksPresentationService booksPresentationService = new BooksPresentationService(new BooksOrchestrationService(new BooksService(books)));
 
     private Exception actualException;
 
@@ -59,6 +65,7 @@ public class CucumberStepsDefinitions {
         try {
             for (Map<String, String> columns : rows) {
                 booksPresentationService.createBook(new CreateBookRequest(columns.get("title"), columns.get("author")));
+                assertThat(books.all()).contains(Book.create(Title.create(columns.get("title")), Author.create(columns.get("author"))));
             }
         } catch (Exception exception) {
             this.actualException = exception;

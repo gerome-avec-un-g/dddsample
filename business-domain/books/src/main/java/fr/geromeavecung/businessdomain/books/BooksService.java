@@ -8,4 +8,7 @@ public class BooksService {
         this.books = books;
     }
 
+    public void add(Book book) {
+        books.add(book);
+    }
 }

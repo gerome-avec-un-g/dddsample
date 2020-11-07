@@ -18,7 +18,8 @@ public class BooksPresentationService {
         try {
             Title title = Title.create(createBookRequest.getTitle());
             Author author = Author.create(createBookRequest.getAuthor());
-            Book.create(title, author);
+            Book book = Book.create(title, author);
+            booksOrchestrationService.add(book);
         } catch (BusinessException businessException) {
             throw new BusinessExceptionResponse(businessException.getClass().getSimpleName(), businessException.getParameters());
         }
