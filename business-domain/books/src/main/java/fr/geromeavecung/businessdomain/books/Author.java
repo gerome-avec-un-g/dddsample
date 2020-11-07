@@ -16,6 +16,10 @@ public class Author {
         this.value = FieldValidator.length("author", value, 1, 15);
     }
 
+    public String getValue() {
+        return value;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

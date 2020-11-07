@@ -21,6 +21,14 @@ public class Book {
         this.author = FieldValidator.required("author", author);
     }
 
+    public Title getTitle() {
+        return title;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

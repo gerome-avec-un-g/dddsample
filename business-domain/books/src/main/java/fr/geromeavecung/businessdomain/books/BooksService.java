@@ -1,5 +1,7 @@
 package fr.geromeavecung.businessdomain.books;
 
+import java.util.Set;
+
 public class BooksService {
 
     private final Books books;
@@ -13,5 +15,9 @@ public class BooksService {
             throw new BookAlreadyExists(book);
         }
         books.add(book);
+    }
+
+    public Set<Book> displayBooks() {
+        return books.all();
     }
 }

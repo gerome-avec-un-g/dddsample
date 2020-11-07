@@ -1,4 +1,4 @@
-package fr.geromeavecung.exposition.presentation;
+package fr.geromeavecung.dddsample.infrastructure.persistenceinmemory;
 
 import fr.geromeavecung.businessdomain.books.Book;
 import fr.geromeavecung.businessdomain.books.Books;
@@ -8,7 +8,7 @@ import java.util.Set;
 
 public class BooksInMemory implements Books {
 
-    private Set<Book> books = new HashSet<>();
+    private final Set<Book> books = new HashSet<>();
 
     @Override
     public Set<Book> all() {

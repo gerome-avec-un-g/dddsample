@@ -6,6 +6,9 @@ import fr.geromeavecung.businessdomain.books.Title;
 import fr.geromeavecung.businessdomain.shared.BusinessException;
 import fr.geromeavecung.exposition.orchestration.BooksOrchestrationService;
 
+import java.util.Set;
+import java.util.stream.Collectors;
+
 public class BooksPresentationService {
 
     private final BooksOrchestrationService booksOrchestrationService;
@@ -23,6 +26,10 @@ public class BooksPresentationService {
         } catch (BusinessException businessException) {
             throw new BusinessExceptionResponse(businessException.getClass().getSimpleName(), businessException.getParameters());
         }
+    }
+
+    public Set<BookSummary> displayBooks() {
+        return booksOrchestrationService.displayBooks().stream().map(BookSummary::new).collect(Collectors.toSet());
     }
 
 }

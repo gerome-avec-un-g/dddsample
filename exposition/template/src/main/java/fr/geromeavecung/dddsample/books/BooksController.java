@@ -5,15 +5,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class SimpleController {
+public class BooksController {
 
-    //@Value("${spring.application.name}")
-    //String appName;
-
-    @GetMapping("/appName")
+    @GetMapping("/books")
     public ModelAndView homePage() {
-        ModelAndView modelAndView = new ModelAndView("home");
-        modelAndView.addObject("appName", "awesome library mvc");
+        ModelAndView modelAndView = new ModelAndView("books");
+        modelAndView.addObject("books", "awesome library mvc");
         return modelAndView;
     }
+
 }

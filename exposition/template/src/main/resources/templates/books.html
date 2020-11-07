@@ -1,0 +1,9 @@
+books:
+<table>
+    <tbody>
+    <tr th:each="book: ${books}">
+        <td th:text="${book.title}" />
+        <td th:text="${book.author}" />
+    </tr>
+    </tbody>
+</table>

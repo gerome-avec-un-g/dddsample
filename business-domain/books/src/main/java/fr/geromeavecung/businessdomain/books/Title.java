@@ -16,6 +16,10 @@ public class Title {
         this.value = FieldValidator.length("title", value, 1, 20);
     }
 
+    public String getValue() {
+        return value;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

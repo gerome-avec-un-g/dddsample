@@ -13,14 +13,15 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-import java.util.List;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CucumberStepsDefinitions {
 
-    private final Books books = new BooksInMemory();
+    private final Books books = new BooksInMemoryForTests();
 
     private final BooksPresentationService booksPresentationService = new BooksPresentationService(new BooksOrchestrationService(new BooksService(books)));
 
@@ -40,10 +41,8 @@ public class CucumberStepsDefinitions {
 
     @When("the user tries to add a book")
     public void the_user_adds_a_book(DataTable table) {
-        List<Map<String, String>> rows = table.asMaps(String.class, String.class);
-
         try {
-            for (Map<String, String> columns : rows) {
+            for (Map<String, String> columns : table.<String, String>asMaps(String.class, String.class)) {
                 booksPresentationService.createBook(new CreateBookRequest(columns.get("title"), columns.get("author")));
             }
         } catch (Exception exception) {
@@ -60,17 +59,51 @@ public class CucumberStepsDefinitions {
 
     @Then("the book is added")
     public void theBookIsAdded(DataTable table) {
-        List<Map<String, String>> rows = table.asMaps(String.class, String.class);
-
         try {
-            for (Map<String, String> columns : rows) {
+            for (Map<String, String> columns : table.<String, String>asMaps(String.class, String.class)) {
                 assertThat(books.all()).contains(Book.create(Title.create(columns.get("title")), Author.create(columns.get("author"))));
             }
         } catch (Exception exception) {
             this.actualException = exception;
         }
 
-        // for passing cases we should always check that no exceptions are thrown
+        noExceptionIsThrownForPassingCase();
+    }
+
+
+    @Given("a library with books")
+    public void aLibraryWithBooks(DataTable table) {
+        try {
+            for (Map<String, String> columns : table.<String, String>asMaps(String.class, String.class)) {
+                booksPresentationService.createBook(new CreateBookRequest(columns.get("title"), columns.get("author")));
+            }
+        } catch (Exception exception) {
+            this.actualException = exception;
+        }
+    }
+
+    private Set<BookSummary> bookSummaries;
+
+    @When("the user tries to display all books")
+    public void theUserTriesToDisplayAllBooks() {
+        try {
+            bookSummaries = booksPresentationService.displayBooks();
+        } catch (Exception exception) {
+            this.actualException = exception;
+        }
+    }
+
+    @Then("the books are displayed")
+    public void theBooksAreDisplayed(DataTable table) {
+        noExceptionIsThrownForPassingCase();
+        Set<BookSummary> expected = new HashSet<>();
+        for (Map<String, String> columns : table.<String, String>asMaps(String.class, String.class)) {
+            expected.add(new BookSummary(columns.get("title"), columns.get("author")));
+        }
+        assertThat(bookSummaries).isEqualTo(expected);
+    }
+
+    private void noExceptionIsThrownForPassingCase() {
         assertThat(actualException).isNull();
     }
 }
