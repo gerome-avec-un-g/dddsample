@@ -1,4 +1,4 @@
-package fr.geromeavecung.dddsample.books;
+package fr.geromeavecung.dddsample;
 
 import fr.geromeavecung.businessdomain.books.BooksService;
 import fr.geromeavecung.dddsample.infrastructure.persistenceinmemory.BooksInMemory;
@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class HelloWorldConfig {
+public class ApplicationConfiguration {
 
    @Bean
    public BooksPresentationService booksPresentationService(){
