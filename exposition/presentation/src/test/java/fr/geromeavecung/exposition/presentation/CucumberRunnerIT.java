@@ -8,6 +8,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         //strict = true,
         plugin = {"json:target/cucumber.json"},
+        glue="fr.geromeavecung.exposition.presentation",
         features = {"src/test/resources/features"},
         // to just run one feature features = {"src/test/resources/features/add_books.feature"},
         tags = "not @inProgress"
