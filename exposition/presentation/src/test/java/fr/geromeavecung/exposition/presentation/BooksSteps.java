@@ -20,7 +20,7 @@ import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class CucumberStepsDefinitions {
+public class BooksSteps {
 
 
     private final BooksInMemory booksInMemory;
@@ -35,7 +35,7 @@ public class CucumberStepsDefinitions {
 //    private User user;
 
     @Autowired
-    public CucumberStepsDefinitions(BooksInMemory booksInMemory, CucumberState cucumberState) {
+    public BooksSteps(BooksInMemory booksInMemory, CucumberState cucumberState) {
         this.booksInMemory = booksInMemory;
         booksPresentationService = new BooksPresentationService(new BooksOrchestrationService(new BooksService(booksInMemory)));
         this.cucumberState = cucumberState;
