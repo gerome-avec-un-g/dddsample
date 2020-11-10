@@ -9,11 +9,11 @@ Feature: display books
 
   #Rule: authorization checks
 
-  #Rule: working case
-  Scenario: a librarian can display all books
-    Given a librarian
-    When the user tries to display all books
-    Then the books are displayed
-      | title      | author        |
-      | Foundation | Isaac Asimov  |
-      | Clean Code | Robert Martin |
+  Rule: working case
+    Example: a librarian can display all books
+      Given a librarian
+      When the user tries to display all books
+      Then the books are displayed
+        | title      | author        |
+        | Foundation | Isaac Asimov  |
+        | Clean Code | Robert Martin |
