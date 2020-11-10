@@ -1,7 +1,7 @@
 Feature: add a book
   a librarian can add a book
 
-  # check Ghrekin 6 implementation for @Rule
+  # check Gherkin 6 implementation for @Rule
 
   #Rule: authorization checks
 

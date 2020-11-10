@@ -54,7 +54,7 @@ public class BooksSteps {
     }
 
     @Then("i have an error {string} with message {string}")
-    public void i_have_an_error_message(String className, String message) throws ClassNotFoundException {
+    public void i_have_an_error_message(String className, String message) {
         assertThat(cucumberState.actualException)
                 .isInstanceOf(BusinessException.class)
                 .hasMessage(message);

@@ -1,6 +1,6 @@
 # Domain Driven Design sample project
 
-not using lombok because (at least in domain):
+not using lombok because (at least in the domain):
 * can be poorly used
 * plays poorly with coverage
 
