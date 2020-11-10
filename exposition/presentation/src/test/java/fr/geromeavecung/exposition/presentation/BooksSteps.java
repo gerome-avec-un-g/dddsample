@@ -5,7 +5,6 @@ import fr.geromeavecung.businessdomain.books.Book;
 import fr.geromeavecung.businessdomain.books.BooksService;
 import fr.geromeavecung.businessdomain.books.Title;
 import fr.geromeavecung.businessdomain.shared.BusinessException;
-import fr.geromeavecung.businessdomain.users.User;
 import fr.geromeavecung.exposition.orchestration.BooksOrchestrationService;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.DataTableType;
@@ -22,17 +21,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class BooksSteps {
 
-
     private final BooksInMemory booksInMemory;
 
     private final BooksPresentationService booksPresentationService;
 
     private final CucumberState cucumberState;
-
-
-//    private Exception actualException;
-//
-//    private User user;
 
     @Autowired
     public BooksSteps(BooksInMemory booksInMemory, CucumberState cucumberState) {
@@ -45,11 +38,6 @@ public class BooksSteps {
     public String stringType(String cell) {
         return cell;
     }
-
-//    @Given("a librarian")
-//    public void a_librarian() {
-//        cucumberState.user = new User("123");
-//    }
 
     @When("the user tries to add a book")
     public void the_user_adds_a_book(DataTable table) {

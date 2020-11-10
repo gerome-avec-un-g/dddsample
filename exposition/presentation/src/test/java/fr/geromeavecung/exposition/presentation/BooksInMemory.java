@@ -14,10 +14,6 @@ public class BooksInMemory implements Books {
 
     private final Set<Book> books = new HashSet<>();
 
-    public BooksInMemory() {
-        System.out.println("BooksInMemory created");
-    }
-
     @Override
     public Set<Book> all() {
         return books;
@@ -25,7 +21,6 @@ public class BooksInMemory implements Books {
 
     @Override
     public void add(Book book) {
-        System.out.println("BooksInMemory added to" + books.size());
         books.add(book);
     }
 
