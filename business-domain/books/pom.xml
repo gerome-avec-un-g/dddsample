@@ -20,7 +20,7 @@
     </dependencies>
 
     <properties>
-        <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}../exposition/presentation/target/site/jacoco-aggregate/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+        <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/../../${aggregate.tests.report.directory}</sonar.coverage.jacoco.xmlReportPaths>
     </properties>
 
 </project>

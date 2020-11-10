@@ -13,7 +13,7 @@
 
     <properties>
         <cucumber.version>6.8.2</cucumber.version>
-        <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}../exposition/presentation/target/site/jacoco-aggregate/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+        <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/../../${aggregate.tests.report.directory}</sonar.coverage.jacoco.xmlReportPaths>
     </properties>
 
     <dependencies>
@@ -58,6 +58,7 @@
 
     <build>
         <plugins>
+            <!-- TODO profile -->
             <plugin>
                 <groupId>com.github.cukedoctor</groupId>
                 <artifactId>cukedoctor-maven-plugin</artifactId>
@@ -74,20 +75,6 @@
                     <execution>
                         <goals>
                             <goal>execute</goal>
-                        </goals>
-                        <phase>verify</phase>
-                    </execution>
-                </executions>
-            </plugin>
-            <!-- FIXME should have an IT module ? -->
-            <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>report</id>
-                        <goals>
-                            <goal>report-aggregate</goal>
                         </goals>
                         <phase>verify</phase>
                     </execution>

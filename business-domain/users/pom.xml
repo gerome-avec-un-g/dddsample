@@ -11,5 +11,8 @@
 
     <artifactId>users</artifactId>
 
+    <properties>
+        <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/../../${aggregate.tests.report.directory}</sonar.coverage.jacoco.xmlReportPaths>
+    </properties>
 
 </project>

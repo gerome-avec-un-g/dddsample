@@ -12,13 +12,15 @@
         <module>exposition</module>
         <module>business-domain</module>
         <module>infrastructure</module>
+        <module>tests-report</module>
     </modules>
 
     <properties>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.source>1.8</maven.compiler.source>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}../exposition/presentation/target/site/jacoco-aggregate/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+        <aggregate.tests.report.directory>tests-report/target/site/jacoco-aggregate/jacoco.xml</aggregate.tests.report.directory>
+        <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/${aggregate.tests.report.directory}</sonar.coverage.jacoco.xmlReportPaths>
     </properties>
 
     <dependencyManagement>
@@ -123,12 +125,12 @@
                             <goal>prepare-agent</goal>
                         </goals>
                     </execution>
-                    <execution>
-                        <id>report</id>
-                        <goals>
-                            <goal>report</goal>
-                        </goals>
-                    </execution>
+<!--                    <execution>-->
+<!--                        <id>report</id>-->
+<!--                        <goals>-->
+<!--                            <goal>report</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
                 </executions>
             </plugin>
         </plugins>
