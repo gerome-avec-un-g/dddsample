@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>exposition</artifactId>
+        <groupId>fr.geromeavecung</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>presentation</artifactId>
+
+    <properties>
+        <cucumber.version>6.8.2</cucumber.version>
+        <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/../../${aggregate.tests.report.directory}</sonar.coverage.jacoco.xmlReportPaths>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>fr.geromeavecung</groupId>
+            <artifactId>orchestration</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!-- test dependencies -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>${cucumber.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <version>${cucumber.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-spring</artifactId>
+            <version>${cucumber.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>5.2.7.RELEASE</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>5.2.7.RELEASE</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- TODO profile -->
+            <plugin>
+                <groupId>com.github.cukedoctor</groupId>
+                <artifactId>cukedoctor-maven-plugin</artifactId>
+                <version>3.3</version>
+                <configuration>
+                    <outputFileName>documentation</outputFileName>
+                    <outputDir>documents</outputDir>
+                    <format>pdf</format>
+                    <toc>left</toc>
+                    <numbered>true</numbered>
+                    <docVersion>${project.version}</docVersion>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>execute</goal>
+                        </goals>
+                        <phase>verify</phase>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

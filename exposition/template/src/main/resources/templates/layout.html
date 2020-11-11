@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="utf-8">
+    <!-- Required styles for Material Web -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="reset-mdc.css">
+
+    <!--/*  Each token will be replaced by their respective titles in the resulting page. */-->
+    <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">MyLibraryApp</title>
+
+</head>
+<body>
+
+<header class="mdc-top-app-bar">
+    <div class="mdc-top-app-bar__row">
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+            <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button"
+                    aria-label="Open navigation menu">menu
+            </button>
+            <span class="mdc-top-app-bar__title">MyLibraryApp</span>
+        </section>
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+            <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Favorite">favorite
+            </button>
+            <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Search">search
+            </button>
+            <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Options">more_vert
+            </button>
+        </section>
+    </div>
+</header>
+
+<main>
+    <div layout:fragment="content">
+        <h1>Static content for prototyping purposes only</h1>
+        <p>
+            This content is only used for static prototyping purposes (natural templates)
+            and is therefore entirely optional, as this markup fragment will be included
+            from "fragments/header.html" at runtime.
+        </p>
+    </div>
+</main>
+<!-- Required Material Web JavaScript library -->
+<script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+<script layout:fragment="script"></script>
+<script>
+    const topAppBarElement = document.querySelector('.mdc-top-app-bar');
+    const topAppBar = new MDCTopAppBar(topAppBarElement);
+
+</script>
+</body>
+</html>
