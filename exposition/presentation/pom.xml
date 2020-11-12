@@ -13,7 +13,8 @@
 
     <properties>
         <cucumber.version>6.8.2</cucumber.version>
-        <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/../../${aggregate.tests.report.directory}</sonar.coverage.jacoco.xmlReportPaths>
+        <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/../../${aggregate.tests.report.directory}
+        </sonar.coverage.jacoco.xmlReportPaths>
     </properties>
 
     <dependencies>
@@ -56,31 +57,38 @@
 
     </dependencies>
 
-    <build>
-        <plugins>
-            <!-- TODO profile -->
-            <plugin>
-                <groupId>com.github.cukedoctor</groupId>
-                <artifactId>cukedoctor-maven-plugin</artifactId>
-                <version>3.3</version>
-                <configuration>
-                    <outputFileName>documentation</outputFileName>
-                    <outputDir>documents</outputDir>
-                    <format>pdf</format>
-                    <toc>left</toc>
-                    <numbered>true</numbered>
-                    <docVersion>${project.version}</docVersion>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>execute</goal>
-                        </goals>
-                        <phase>verify</phase>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
+    <profiles>
+        <profile>
+            <id>living-documentation-generation</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.github.cukedoctor</groupId>
+                        <artifactId>cukedoctor-maven-plugin</artifactId>
+                        <version>3.3</version>
+                        <configuration>
+                            <outputFileName>documentation</outputFileName>
+                            <outputDir>documents</outputDir>
+                            <format>pdf</format>
+                            <toc>left</toc>
+                            <numbered>true</numbered>
+                            <docVersion>${project.version}</docVersion>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>execute</goal>
+                                </goals>
+                                <phase>verify</phase>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>
