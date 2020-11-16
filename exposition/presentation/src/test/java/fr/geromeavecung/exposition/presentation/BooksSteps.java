@@ -43,10 +43,10 @@ public class BooksSteps {
     public void the_user_adds_a_book(DataTable table) {
         try {
             for (Map<String, String> columns : table.<String, String>asMaps(String.class, String.class)) {
-                CreateBookRequest createBookRequest = new CreateBookRequest();
-                createBookRequest.setTitle(columns.get("title"));
-                createBookRequest.setAuthor(columns.get("author"));
-                booksPresentationService.createBook(createBookRequest);
+                CreateBookForm createBookForm = new CreateBookForm();
+                createBookForm.setTitle(columns.get("title"));
+                createBookForm.setAuthor(columns.get("author"));
+                booksPresentationService.createBook(createBookForm);
             }
         } catch (Exception exception) {
             cucumberState.actualException = exception;
@@ -79,10 +79,10 @@ public class BooksSteps {
     public void aLibraryWithBooks(DataTable table) {
         try {
             for (Map<String, String> columns : table.<String, String>asMaps(String.class, String.class)) {
-                CreateBookRequest createBookRequest = new CreateBookRequest();
-                createBookRequest.setTitle(columns.get("title"));
-                createBookRequest.setAuthor(columns.get("author"));
-                booksPresentationService.createBook(createBookRequest);
+                CreateBookForm createBookForm = new CreateBookForm();
+                createBookForm.setTitle(columns.get("title"));
+                createBookForm.setAuthor(columns.get("author"));
+                booksPresentationService.createBook(createBookForm);
             }
         } catch (Exception exception) {
             cucumberState.actualException = exception;

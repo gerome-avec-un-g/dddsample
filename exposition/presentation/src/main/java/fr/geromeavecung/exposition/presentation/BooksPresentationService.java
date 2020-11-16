@@ -16,9 +16,9 @@ public class BooksPresentationService {
         this.booksOrchestrationService = booksOrchestrationService;
     }
 
-    public void createBook(CreateBookRequest createBookRequest) {
-        Title title = Title.create(createBookRequest.getTitle());
-        Author author = Author.create(createBookRequest.getAuthor());
+    public void createBook(CreateBookForm createBookForm) {
+        Title title = Title.create(createBookForm.getTitle());
+        Author author = Author.create(createBookForm.getAuthor());
         Book book = Book.create(title, author);
         booksOrchestrationService.add(book);
     }

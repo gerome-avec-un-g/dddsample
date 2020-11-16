@@ -1,7 +1,7 @@
 package fr.geromeavecung.dddsample.books;
 
 import fr.geromeavecung.exposition.presentation.BooksPresentationService;
-import fr.geromeavecung.exposition.presentation.CreateBookRequest;
+import fr.geromeavecung.exposition.presentation.CreateBookForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,13 +29,13 @@ public class BooksController {
     @GetMapping("/book-creation")
     public ModelAndView bookCreationGet() {
         ModelAndView modelAndView = new ModelAndView("book-creation");
-        modelAndView.addObject("createBookRequest", new CreateBookRequest());
+        modelAndView.addObject("createBookForm", new CreateBookForm());
         return modelAndView;
     }
 
     @PostMapping("/book-creation")
-    public ModelAndView bookCreationPost(@ModelAttribute CreateBookRequest createBookRequest) {
-        booksPresentationService.createBook(createBookRequest);
+    public ModelAndView bookCreationPost(@ModelAttribute CreateBookForm createBookForm) {
+        booksPresentationService.createBook(createBookForm);
         return new ModelAndView("redirect:book-creation");
     }
 

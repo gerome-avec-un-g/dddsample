@@ -1,6 +1,6 @@
 package fr.geromeavecung.exposition.presentation;
 
-public class CreateBookRequest {
+public class CreateBookForm {
 
     // default constructor + setters for thymeleaf
 
@@ -26,7 +26,7 @@ public class CreateBookRequest {
 
     @Override
     public String toString() {
-        return "CreateBookRequest{" + "title='" + title + '\'' + ", author='" + author + '\'' + '}';
+        return "CreateBookForm{" + "title='" + title + '\'' + ", author='" + author + '\'' + '}';
     }
 
 }
