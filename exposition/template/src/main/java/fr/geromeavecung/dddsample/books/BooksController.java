@@ -3,6 +3,8 @@ package fr.geromeavecung.dddsample.books;
 import fr.geromeavecung.businessdomain.shared.BusinessException;
 import fr.geromeavecung.exposition.presentation.BooksPresentationService;
 import fr.geromeavecung.exposition.presentation.CreateBookForm;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class BooksController {
+
+    Logger logger = LoggerFactory.getLogger(BooksController.class);
 
     private final BooksPresentationService booksPresentationService;
 
@@ -40,9 +44,10 @@ public class BooksController {
             booksPresentationService.createBook(createBookForm);
             return new ModelAndView("redirect:book-creation");
         } catch (BusinessException businessException) {
+            logger.warn("", businessException);
             ModelAndView modelAndView = new ModelAndView("book-creation");
             modelAndView.addObject("createBookForm", createBookForm);
-            modelAndView.addObject("error", businessException.getClass().getSimpleName());
+            modelAndView.addObject("error", businessException);
             return modelAndView;
         }
     }

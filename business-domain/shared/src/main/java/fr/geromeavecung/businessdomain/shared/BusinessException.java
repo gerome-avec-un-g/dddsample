@@ -12,6 +12,10 @@ public abstract class BusinessException extends RuntimeException {
         this.parameters = Arrays.asList(parameters);
     }
 
+    public String getKey() {
+        return this.getClass().getSimpleName();
+    }
+
     public List<String> getParameters() {
         return parameters;
     }
