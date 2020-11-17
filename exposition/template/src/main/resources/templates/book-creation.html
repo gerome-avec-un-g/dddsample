@@ -9,6 +9,8 @@
 
 <div class="mdc-card" layout:fragment="content">
 
+    <span th:if="${error}" th:text="${error}"></span>
+
     <form action="#" th:action="@{/book-creation}" th:object="${createBookForm}" method="post">
 
         <div class="mdc-card__content">

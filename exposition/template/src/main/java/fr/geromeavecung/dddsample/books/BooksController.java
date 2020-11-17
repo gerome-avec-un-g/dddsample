@@ -1,5 +1,6 @@
 package fr.geromeavecung.dddsample.books;
 
+import fr.geromeavecung.businessdomain.shared.BusinessException;
 import fr.geromeavecung.exposition.presentation.BooksPresentationService;
 import fr.geromeavecung.exposition.presentation.CreateBookForm;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,8 +36,15 @@ public class BooksController {
 
     @PostMapping("/book-creation")
     public ModelAndView bookCreationPost(@ModelAttribute CreateBookForm createBookForm) {
-        booksPresentationService.createBook(createBookForm);
-        return new ModelAndView("redirect:book-creation");
+        try {
+            booksPresentationService.createBook(createBookForm);
+            return new ModelAndView("redirect:book-creation");
+        } catch (BusinessException businessException) {
+            ModelAndView modelAndView = new ModelAndView("book-creation");
+            modelAndView.addObject("createBookForm", createBookForm);
+            modelAndView.addObject("error", businessException.getClass().getSimpleName());
+            return modelAndView;
+        }
     }
 
 }
