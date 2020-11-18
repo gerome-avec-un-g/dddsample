@@ -42,9 +42,12 @@ public class BooksController {
     public ModelAndView bookCreationPost(@ModelAttribute CreateBookForm createBookForm) {
         try {
             booksPresentationService.createBook(createBookForm);
-            return new ModelAndView("redirect:book-creation");
+            ModelAndView modelAndView = new ModelAndView("redirect:book-creation");
+            // TODO forward seems to forward to POST not GET
+            modelAndView.addObject("success", true);
+            return modelAndView;
         } catch (BusinessException businessException) {
-            logger.warn("", businessException);
+            logger.warn("TODO", businessException);
             ModelAndView modelAndView = new ModelAndView("book-creation");
             modelAndView.addObject("createBookForm", createBookForm);
             modelAndView.addObject("error", businessException);
