@@ -18,7 +18,7 @@ import org.springframework.web.servlet.view.RedirectView;
 @Controller
 public class BooksController {
 
-    private final Logger logger = LoggerFactory.getLogger(BooksController.class);
+    private final Logger LOGGER = LoggerFactory.getLogger(BooksController.class);
 
     private final BooksPresentationService booksPresentationService;
 
@@ -29,33 +29,43 @@ public class BooksController {
 
     @GetMapping("/books")
     public ModelAndView books() {
+        long start = System.currentTimeMillis();
+        // TODO generic spring request logging + duration ?
+        LOGGER.info("GET /books");
         ModelAndView modelAndView = new ModelAndView("books");
         modelAndView.addObject("books", booksPresentationService.displayBooks());
+        LOGGER.info("Completed GET /books in {} ms", System.currentTimeMillis() - start);
         return modelAndView;
     }
 
     @GetMapping("/book-creation")
     public ModelAndView bookCreationGet(Model model) {
+        long start = System.currentTimeMillis();
+        LOGGER.info("GET /book-creation");
         ModelAndView modelAndView = new ModelAndView("book-creation");
         modelAndView.addAllObjects(model.asMap());
         if (!modelAndView.getModelMap().containsAttribute("createBookForm")) {
             modelAndView.addObject("createBookForm", new CreateBookForm());
         }
+        LOGGER.info("Completed GET /book-creation in {} ms", System.currentTimeMillis() - start);
         return modelAndView;
     }
 
     @PostMapping("/book-creation")
     public RedirectView bookCreationPost(@ModelAttribute CreateBookForm createBookForm, RedirectAttributes redirectAttributes) {
+        long start = System.currentTimeMillis();
+        LOGGER.info("POST /book-creation");
         try {
             booksPresentationService.createBook(createBookForm);
             redirectAttributes.addFlashAttribute("success", true);
-            return new RedirectView("/book-creation", true);
         } catch (BusinessException businessException) {
-            logger.warn("TODO", businessException);
+            LOGGER.warn("TODO", businessException);
             redirectAttributes.addFlashAttribute("createBookForm", createBookForm);
             redirectAttributes.addFlashAttribute("error", businessException);
-            return new RedirectView("/book-creation", true);
         }
+        RedirectView redirectView = new RedirectView("/book-creation", true);
+        LOGGER.info("Completed POST /book-creation in {} ms", System.currentTimeMillis() - start);
+        return redirectView;
     }
 
 }
