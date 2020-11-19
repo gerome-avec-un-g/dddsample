@@ -18,7 +18,7 @@ import org.springframework.web.servlet.view.RedirectView;
 @Controller
 public class BooksController {
 
-    Logger logger = LoggerFactory.getLogger(BooksController.class);
+    private final Logger logger = LoggerFactory.getLogger(BooksController.class);
 
     private final BooksPresentationService booksPresentationService;
 
