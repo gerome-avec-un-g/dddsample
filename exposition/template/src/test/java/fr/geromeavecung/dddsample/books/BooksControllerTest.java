@@ -4,6 +4,7 @@ import fr.geromeavecung.exposition.presentation.BookSummary;
 import fr.geromeavecung.exposition.presentation.BooksPresentationService;
 import fr.geromeavecung.exposition.presentation.CreateBookForm;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -17,8 +18,10 @@ import java.util.Set;
 import org.hamcrest.Matcher;
 
 import static org.hamcrest.CoreMatchers.nullValue;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -56,6 +59,26 @@ class BooksControllerTest {
                 .andExpect(model().attribute("createBookForm", new CreateBookForm()))
                 .andExpect(model().attribute("success", nullValue()))
                 .andExpect(model().attribute("error", nullValue()));
+    }
+
+    @Test
+    @Disabled
+    void bookCreationPost_success() throws Exception {
+        CreateBookForm createBookForm = new CreateBookForm();
+        createBookForm.setAuthor("abc");
+        createBookForm.setTitle("def");
+        CreateBookForm expectedCreateBookForm = new CreateBookForm();
+        expectedCreateBookForm.setAuthor("abc");
+        expectedCreateBookForm.setTitle("def");
+
+        mockMvc.perform(post("/book-creation").flashAttr("createBookForm", createBookForm))
+                .andExpect(status().isPermanentRedirect())
+                .andExpect(view().name("book-creation"))
+                .andExpect(model().attribute("createBookForm", new CreateBookForm()))
+                .andExpect(model().attribute("success", true))
+                .andExpect(model().attribute("error", nullValue()));
+
+        verify(booksPresentationService).createBook(expectedCreateBookForm);
     }
 
 }
