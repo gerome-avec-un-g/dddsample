@@ -2,6 +2,7 @@ package fr.geromeavecung.dddsample.books;
 
 import fr.geromeavecung.exposition.presentation.BookSummary;
 import fr.geromeavecung.exposition.presentation.BooksPresentationService;
+import fr.geromeavecung.exposition.presentation.CreateBookForm;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -14,6 +15,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.hamcrest.Matcher;
+
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -43,6 +46,16 @@ class BooksControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name("books"))
                 .andExpect(model().attribute("books", expectedBooks));
+    }
+
+    @Test
+    void bookCreationGet_first_time() throws Exception {
+        mockMvc.perform(get("/book-creation"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("book-creation"))
+                .andExpect(model().attribute("createBookForm", new CreateBookForm()))
+                .andExpect(model().attribute("success", nullValue()))
+                .andExpect(model().attribute("error", nullValue()));
     }
 
 }

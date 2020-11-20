@@ -1,5 +1,7 @@
 package fr.geromeavecung.exposition.presentation;
 
+import java.util.Objects;
+
 public class CreateBookForm {
 
     // default constructor + setters for thymeleaf
@@ -22,6 +24,20 @@ public class CreateBookForm {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CreateBookForm that = (CreateBookForm) o;
+        return Objects.equals(title, that.title) &&
+                Objects.equals(author, that.author);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(title, author);
     }
 
     @Override
