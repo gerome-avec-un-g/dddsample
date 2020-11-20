@@ -58,6 +58,8 @@ public class BooksController {
         return modelAndView;
     }
 
+    // TODO post should be on /books or /books/create ? page urls vs rest urls ?
+    // @ModelAttribute not mandatory ?
     @PostMapping("/create")
     public RedirectView bookCreationPost(@ModelAttribute CreateBookForm createBookForm, RedirectAttributes redirectAttributes) {
         long start = System.currentTimeMillis();
@@ -74,5 +76,7 @@ public class BooksController {
         LOGGER.info("Completed POST /books/create in {} ms", System.currentTimeMillis() - start);
         return redirectView;
     }
+
+    // TODO some spring validation to test chapter 2.3 (can it be i18n ?)
 
 }
