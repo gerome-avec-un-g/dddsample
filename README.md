@@ -9,4 +9,9 @@ global test strategy
 * junit + spring + mockito for exposition
 * junit + spring + mockito for infra
 * junit to test non-business cases for equals, hashcode, toString
-* cucumber for collaborative business testing from orchestration/presentation to domain/repositories (with in memory implementations) 
+* cucumber for collaborative business testing from orchestration/presentation to domain/repositories (with in memory implementations)
+
+
+
+TODO  
+maven mvnw ? 
