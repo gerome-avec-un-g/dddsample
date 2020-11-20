@@ -1,4 +1,4 @@
-package fr.geromeavecung.dddsample.books;
+package fr.geromeavecung.dddsample;
 
 import org.springframework.web.servlet.view.AbstractUrlBasedView;
 import org.springframework.web.servlet.view.InternalResourceView;
@@ -14,7 +14,7 @@ public class NoCircularViewPathTestViewResolver extends InternalResourceViewReso
     protected AbstractUrlBasedView buildView(final String viewName) throws Exception {
         final InternalResourceView view = (InternalResourceView) super.buildView(viewName);
 
-        view.setPreventDispatchLoop(false);
+        //view.setPreventDispatchLoop(false);
         return view;
     }
 }

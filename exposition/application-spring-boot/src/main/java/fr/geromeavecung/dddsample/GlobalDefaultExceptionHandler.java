@@ -1,4 +1,4 @@
-package fr.geromeavecung.dddsample.books;
+package fr.geromeavecung.dddsample;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

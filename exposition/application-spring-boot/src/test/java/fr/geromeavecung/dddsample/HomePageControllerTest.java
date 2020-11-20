@@ -1,4 +1,4 @@
-package fr.geromeavecung.dddsample.books;
+package fr.geromeavecung.dddsample;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -14,21 +14,20 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
-//@ExtendWith(SpringExtension.class)
-//@WebMvcTest(HomePageController.class)
-@Disabled("requires spring-boot")
+@ExtendWith(SpringExtension.class)
+@WebMvcTest(HomePageController.class)
 class HomePageControllerTest {
 
-//    @Autowired
-//    private MockMvc mockMvc;
-//
-//    @Test
-//    public void testHomePage() throws Exception {
-//        mockMvc.perform(get("/"))
-//                .andExpect(status().isOk())
-//                .andExpect(view().name("home"))
-//                .andExpect(content().string(
-//                        containsString("Welcome to...")));
-//    }
+    @Autowired
+    private MockMvc mockMvc;
+
+    @Test
+    public void testHomePage() throws Exception {
+        mockMvc.perform(get("/"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("home"))
+                .andExpect(content().string(
+                        containsString("Bienvenue")));
+    }
 
 }

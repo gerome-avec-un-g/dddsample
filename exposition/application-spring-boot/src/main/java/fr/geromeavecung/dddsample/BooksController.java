@@ -1,4 +1,4 @@
-package fr.geromeavecung.dddsample.books;
+package fr.geromeavecung.dddsample;
 
 import fr.geromeavecung.businessdomain.shared.BusinessException;
 import fr.geromeavecung.exposition.presentation.BooksPresentationService;

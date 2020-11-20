@@ -1,4 +1,4 @@
-package fr.geromeavecung.dddsample.books;
+package fr.geromeavecung.dddsample;
 
 import fr.geromeavecung.businessdomain.books.Author;
 import fr.geromeavecung.businessdomain.books.Book;
@@ -8,43 +8,40 @@ import fr.geromeavecung.businessdomain.shared.BusinessException;
 import fr.geromeavecung.exposition.presentation.BookSummary;
 import fr.geromeavecung.exposition.presentation.BooksPresentationService;
 import fr.geromeavecung.exposition.presentation.CreateBookForm;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.HashSet;
 import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.Matchers.containsString;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.flash;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
-@ExtendWith(MockitoExtension.class)
+@ExtendWith(SpringExtension.class)
+@WebMvcTest(BooksController.class)
 class BooksControllerTest {
 
+    @Autowired
     private MockMvc mockMvc;
 
-    @Mock
+    @MockBean
     private BooksPresentationService booksPresentationService;
-
-    @BeforeEach
-    void setup() {
-        this.mockMvc = MockMvcBuilders.standaloneSetup(new BooksController(booksPresentationService))
-                .setViewResolvers(new NoCircularViewPathTestViewResolver())
-                .build();
-    }
 
     @Test
     void books() throws Exception {
@@ -75,9 +72,8 @@ class BooksControllerTest {
                 .andExpect(view().name("book-creation"))
                 .andExpect(model().attribute("createBookForm", new CreateBookForm()))
                 .andExpect(model().attribute("success", true))
-                .andExpect(model().attribute("error", nullValue()));
-        // spring-boot required to test generated template ?
-        //      .andExpect(content().string(containsString("Bienvenue")));
+                .andExpect(model().attribute("error", nullValue()))
+                .andExpect(content().string(containsString("Le livre est cr")));
     }
 
     @Test
@@ -95,7 +91,10 @@ class BooksControllerTest {
                 .andExpect(view().name("book-creation"))
                 .andExpect(model().attribute("createBookForm", createBookForm))
                 .andExpect(model().attribute("success", nullValue()))
-                .andExpect(model().attribute("error", businessException));
+                .andExpect(model().attribute("error", businessException))
+                .andExpect(content().string(containsString("Le livre abc de def existe d")))
+                .andExpect(content().string(containsString("value=\"abc\"")))
+                .andExpect(content().string(containsString("value=\"def\"")));
     }
 
     @Test
