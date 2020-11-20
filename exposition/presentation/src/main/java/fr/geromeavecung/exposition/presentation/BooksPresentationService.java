@@ -19,7 +19,7 @@ public class BooksPresentationService {
     public void createBook(CreateBookForm createBookForm) {
         Title title = Title.create(createBookForm.getTitle());
         Author author = Author.create(createBookForm.getAuthor());
-        Book book = Book.create(title, author);
+        Book book = Book.create(title, author, createBookForm.getType());
         booksOrchestrationService.add(book);
     }
 

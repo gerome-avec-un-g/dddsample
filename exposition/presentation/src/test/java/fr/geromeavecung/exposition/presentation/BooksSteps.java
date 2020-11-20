@@ -46,6 +46,7 @@ public class BooksSteps {
                 CreateBookForm createBookForm = new CreateBookForm();
                 createBookForm.setTitle(columns.get("title"));
                 createBookForm.setAuthor(columns.get("author"));
+                createBookForm.setType(Book.Type.valueOf(columns.get("type")));
                 booksPresentationService.createBook(createBookForm);
             }
         } catch (Exception exception) {
@@ -65,7 +66,7 @@ public class BooksSteps {
     public void theBookIsAdded(DataTable table) {
         try {
             for (Map<String, String> columns : table.<String, String>asMaps(String.class, String.class)) {
-                assertThat(booksInMemory.all()).contains(Book.create(Title.create(columns.get("title")), Author.create(columns.get("author"))));
+                assertThat(booksInMemory.all()).contains(Book.create(Title.create(columns.get("title")), Author.create(columns.get("author")), Book.Type.valueOf(columns.get("type"))));
             }
         } catch (Exception exception) {
             cucumberState.actualException = exception;
@@ -82,6 +83,7 @@ public class BooksSteps {
                 CreateBookForm createBookForm = new CreateBookForm();
                 createBookForm.setTitle(columns.get("title"));
                 createBookForm.setAuthor(columns.get("author"));
+                createBookForm.setType(Book.Type.valueOf(columns.get("type")));
                 booksPresentationService.createBook(createBookForm);
             }
         } catch (Exception exception) {

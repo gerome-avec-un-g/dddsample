@@ -1,5 +1,7 @@
 package fr.geromeavecung.exposition.presentation;
 
+import fr.geromeavecung.businessdomain.books.Book;
+
 import java.util.Objects;
 
 public class CreateBookForm {
@@ -9,6 +11,8 @@ public class CreateBookForm {
     private String title;
 
     private String author;
+
+    private Book.Type type;
 
     public String getTitle() {
         return title;
@@ -24,6 +28,14 @@ public class CreateBookForm {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public Book.Type getType() {
+        return type;
+    }
+
+    public void setType(Book.Type type) {
+        this.type = type;
     }
 
     @Override
@@ -42,7 +54,10 @@ public class CreateBookForm {
 
     @Override
     public String toString() {
-        return "CreateBookForm{" + "title='" + title + '\'' + ", author='" + author + '\'' + '}';
+        return "CreateBookForm{" +
+                "title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", type=" + type +
+                '}';
     }
-
 }

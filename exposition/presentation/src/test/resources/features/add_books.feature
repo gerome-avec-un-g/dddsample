@@ -7,22 +7,22 @@ Feature: add a book
     Example: title is mandatory
       Given a librarian
       When the user tries to add a book
-        | title |
-        |       |
+        | title | author       | type    |
+        |       | Isaac Asimov | FICTION |
       Then i have an error "FieldRequired" with message "[title]"
 
     Example: title has at least 1 characters
       Given a librarian
       When the user tries to add a book
-        | title   |
-        | [blank] |
+        | title   | author | type    |
+        | [blank] |        | FICTION |
       Then i have an error "FieldMinimumLength" with message "[title, , 1]"
 
     Example: title has less than 21 characters
       Given a librarian
       When the user tries to add a book
-        | title                 |
-        | 012345678901234567890 |
+        | title                 | author | type    |
+        | 012345678901234567890 |        | FICTION |
       Then i have an error "FieldMaximumLength" with message "[title, 012345678901234567890, 20]"
     # TODO better spec for error messages
 
@@ -30,47 +30,56 @@ Feature: add a book
     Example: title is not just spaces
       Given a librarian
       When the user tries to add a book
-        | title    |
-        | [spaces] |
+        | title    | author | type    |
+        | [spaces] |        | FICTION |
       Then i have an error "FieldIsEmpty" with message "[title]"
 
   Rule: author validation
     Example: author is mandatory
       Given a librarian
       When the user tries to add a book
-        | title      | author |
-        | Foundation |        |
+        | title      | author | type    |
+        | Foundation |        | FICTION |
       Then i have an error "FieldRequired" with message "[author]"
 
     Example: author has at least 1 characters
       Given a librarian
       When the user tries to add a book
-        | title      | author  |
-        | Foundation | [blank] |
+        | title      | author  | type    |
+        | Foundation | [blank] | FICTION |
       Then i have an error "FieldMinimumLength" with message "[author, , 1]"
 
     Example: author has less than 26 characters
       Given a librarian
       When the user tries to add a book
-        | title      | author                     |
-        | Foundation | AsimovAsimovAsimovAsimovAs |
+        | title      | author                     | type    |
+        | Foundation | AsimovAsimovAsimovAsimovAs | FICTION |
       Then i have an error "FieldMaximumLength" with message "[author, AsimovAsimovAsimovAsimovAs, 25]"
 
-  Rule: can't add a second book with same title and author
-    Example: a book can't be added twice
+  Rule: a book can't be added twice
+    Example: a book with same name and author can't be added twice
       Given a librarian
       When the user tries to add a book
-        | title      | author       |
-        | Foundation | Isaac Asimov |
-        | Foundation | Isaac Asimov |
+        | title      | author       | type    |
+        | Foundation | Isaac Asimov | FICTION |
+        | Foundation | Isaac Asimov | FICTION |
       Then i have an error "BookAlreadyExists" with message "[Book{title=Title{value='Foundation'}, author=Author{value='Isaac Asimov'}}]"
+
+    Example: a book with same name and author can't be added twice even if type is different
+      Given a librarian
+      When the user tries to add a book
+        | title      | author       | type       |
+        | Foundation | Isaac Asimov | FICTION    |
+        | Foundation | Isaac Asimov | TECHNOLOGY |
+      Then i have an error "BookAlreadyExists" with message "[Book{title=Title{value='Foundation'}, author=Author{value='Isaac Asimov'}}]"
+
 
   Rule: working case
     Example: a book can be added
       Given a librarian
       When the user tries to add a book
-        | title      | author       |
-        | Foundation | Isaac Asimov |
+        | title      | author       | type    |
+        | Foundation | Isaac Asimov | FICTION |
       Then the book is added
-        | title      | author       |
-        | Foundation | Isaac Asimov |
+        | title      | author       | type    |
+        | Foundation | Isaac Asimov | FICTION |

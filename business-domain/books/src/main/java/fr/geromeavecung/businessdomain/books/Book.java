@@ -6,19 +6,26 @@ import java.util.Objects;
 
 public class Book {
 
+    public enum Type {
+        FICTION, TECHNOLOGY
+    }
+
     private final Title title;
 
     private final Author author;
 
+    private final Type type;
+
     // publishing year, edition...
 
-    public static Book create(Title title, Author author) {
-        return new Book(title, author);
+    public static Book create(Title title, Author author, Type type) {
+        return new Book(title, author, type);
     }
 
-    public Book(Title title, Author author) {
+    public Book(Title title, Author author, Type type) {
         this.title = FieldValidator.required("title", title);
         this.author = FieldValidator.required("author", author);
+        this.type = FieldValidator.required("type", type);
     }
 
     public Title getTitle() {

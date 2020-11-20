@@ -14,6 +14,6 @@ import org.junit.runner.RunWith;
         tags = "not @inProgress"
         // to just run a few tests in debug tags = "@only"
 )
-public class CucumberRunnerIT {
+public class CucumberRunnerTest {
 
 }

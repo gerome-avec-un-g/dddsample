@@ -13,7 +13,7 @@ public class BooksInMemory implements Books {
     private final Set<Book> books = new HashSet<>();
 
     public BooksInMemory() {
-        books.add(Book.create(Title.create("Red Mars"), Author.create("Kim Stanley Robinson")));
+        books.add(Book.create(Title.create("Red Mars"), Author.create("Kim Stanley Robinson"), Book.Type.FICTION));
     }
 
     @Override

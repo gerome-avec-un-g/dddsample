@@ -81,7 +81,7 @@ class BooksControllerTest {
         CreateBookForm createBookForm = new CreateBookForm();
         createBookForm.setAuthor("abc");
         createBookForm.setTitle("def");
-        Book book = Book.create(Title.create("abc"), Author.create("def"));
+        Book book = Book.create(Title.create("abc"), Author.create("def"), Book.Type.FICTION);
         BusinessException businessException = new BookAlreadyExists(book);
 
         mockMvc.perform(get("/book-creation")
@@ -120,7 +120,7 @@ class BooksControllerTest {
         expectedCreateBookForm.setAuthor("abc");
         expectedCreateBookForm.setTitle("def");
 
-        Book book = Book.create(Title.create("abc"), Author.create("def"));
+        Book book = Book.create(Title.create("abc"), Author.create("def"), Book.Type.FICTION);
         BookAlreadyExists bookAlreadyExists = new BookAlreadyExists(book);
         doThrow(bookAlreadyExists).when(booksPresentationService).createBook(expectedCreateBookForm);
 
