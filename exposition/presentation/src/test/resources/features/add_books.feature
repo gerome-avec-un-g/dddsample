@@ -63,7 +63,7 @@ Feature: add a book
         | title      | author       | type    |
         | Foundation | Isaac Asimov | FICTION |
         | Foundation | Isaac Asimov | FICTION |
-      Then i have an error "BookAlreadyExists" with message "[Book{title=Title{value='Foundation'}, author=Author{value='Isaac Asimov'}}]"
+      Then i have an error "BookAlreadyExists" with message "[Book{title=Title{value='Foundation'}, author=Author{value='Isaac Asimov'}, type=FICTION}]"
 
     Example: a book with same name and author can't be added twice even if type is different
       Given a librarian
@@ -71,7 +71,7 @@ Feature: add a book
         | title      | author       | type       |
         | Foundation | Isaac Asimov | FICTION    |
         | Foundation | Isaac Asimov | TECHNOLOGY |
-      Then i have an error "BookAlreadyExists" with message "[Book{title=Title{value='Foundation'}, author=Author{value='Isaac Asimov'}}]"
+      Then i have an error "BookAlreadyExists" with message "[Book{title=Title{value='Foundation'}, author=Author{value='Isaac Asimov'}, type=TECHNOLOGY}]"
 
 
   Rule: working case

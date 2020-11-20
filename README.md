@@ -15,3 +15,4 @@ global test strategy
 
 TODO  
 maven mvnw ? 
+thymeleaf th:text placeholder good practice ?

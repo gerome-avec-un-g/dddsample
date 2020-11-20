@@ -17,8 +17,10 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.Matchers.containsString;
@@ -47,27 +49,29 @@ class BooksControllerTest {
     @Test
     void books() throws Exception {
         Set<BookSummary> expectedBooks = new HashSet<>();
-        expectedBooks.add(new BookSummary("abc", "def"));
+        expectedBooks.add(new BookSummary("abc", "def", "FICTION"));
         when(booksPresentationService.displayBooks()).thenReturn(expectedBooks);
 
         mockMvc.perform(get("/books"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("books"))
-                .andExpect(model().attribute("books", expectedBooks));
+                .andExpect(model().attribute("books", expectedBooks))
+                .andExpect(content().string(containsString("href=\"/books/create\"")));
     }
 
     @Test
-    void bookCreationGet_first_time() throws Exception {
+    void booksCreateGet_first_time() throws Exception {
         mockMvc.perform(get("/books/create"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("book-creation"))
                 .andExpect(model().attribute("createBookForm", new CreateBookForm()))
+                .andExpect(model().attribute("types", Arrays.stream(Book.Type.values()).collect(Collectors.toSet())))
                 .andExpect(model().attribute("success", nullValue()))
                 .andExpect(model().attribute("error", nullValue()));
     }
 
     @Test
-    void bookCreationGet_redirect_after_success() throws Exception {
+    void booksCreateGet_redirect_after_success() throws Exception {
         mockMvc.perform(get("/books/create").flashAttr("success", true))
                 .andExpect(status().isOk())
                 .andExpect(view().name("book-creation"))
@@ -78,7 +82,7 @@ class BooksControllerTest {
     }
 
     @Test
-    void bookCreationGet_redirect_after_error() throws Exception {
+    void booksCreateGet_redirect_after_error() throws Exception {
         CreateBookForm createBookForm = new CreateBookForm();
         createBookForm.setAuthor("abc");
         createBookForm.setTitle("def");
@@ -100,7 +104,7 @@ class BooksControllerTest {
     }
 
     @Test
-    void bookCreationPost_success() throws Exception {
+    void booksCreatePost_success() throws Exception {
         CreateBookForm createBookForm = new CreateBookForm();
         createBookForm.setAuthor("abc");
         createBookForm.setTitle("def");
@@ -115,7 +119,7 @@ class BooksControllerTest {
     }
 
     @Test
-    void bookCreationPost_error() throws Exception {
+    void booksCreatePost_error() throws Exception {
         CreateBookForm createBookForm = new CreateBookForm();
         createBookForm.setAuthor("abc");
         createBookForm.setTitle("def");

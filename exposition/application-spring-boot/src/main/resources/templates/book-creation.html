@@ -9,10 +9,10 @@
 
 <div class="mdc-card" layout:fragment="content">
 
-    <span th:if="${error}" th:text="${#messages.msgWithParams(error.key, error.parameters)}"></span>
-    <span th:if="${success}" th:text="#{bookCreationSuccess}"></span>
+    <span th:if="${error}" th:text="${#messages.msgWithParams(error.key, error.parameters)}">placeholder error</span>
+    <span th:if="${success}" th:text="#{bookCreationSuccess}">placeholder success</span>
 
-    <form action="#" th:action="@{/book-creation}" th:object="${createBookForm}" method="post">
+    <form action="#" th:action="@{/books/create}" th:object="${createBookForm}" method="post">
 
         <div class="mdc-card__content">
 
@@ -52,10 +52,16 @@
                 </div>
             </div>
 
+            <div>
+                <select th:field="*{type}">
+                    <option th:each="type : ${types}" th:value="${type}" th:text="#{${type}}"></option>
+                </select>
+            </div>
+
         </div>
 
         <div class="mdc-card__actions">
-            <a href="/book-creation" class="mdc-button mdc-card__action mdc-card__action--button">
+            <a href="/books/create" class="mdc-button mdc-card__action mdc-card__action--button">
                 <div class="mdc-button__ripple"></div>
                 <span class="mdc-button__label">Cancel</span>
             </a>

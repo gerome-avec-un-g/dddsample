@@ -107,7 +107,7 @@ public class BooksSteps {
         noExceptionIsThrownForPassingCase();
         Set<BookSummary> expected = new HashSet<>();
         for (Map<String, String> columns : table.<String, String>asMaps(String.class, String.class)) {
-            expected.add(new BookSummary(columns.get("title"), columns.get("author")));
+            expected.add(new BookSummary(columns.get("title"), columns.get("author"), columns.get("type")));
         }
         assertThat(bookSummaries).isEqualTo(expected);
     }

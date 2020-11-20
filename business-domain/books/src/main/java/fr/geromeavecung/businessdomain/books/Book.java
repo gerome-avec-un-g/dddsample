@@ -36,6 +36,10 @@ public class Book {
         return author;
     }
 
+    public Type getType() {
+        return type;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -51,7 +55,11 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Book{" + "title=" + title + ", author=" + author + '}';
+        return "Book{" +
+                "title=" + title +
+                ", author=" + author +
+                ", type=" + type +
+                '}';
     }
 
 }

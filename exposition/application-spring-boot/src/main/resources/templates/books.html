@@ -12,7 +12,7 @@
         <h2 class="demo-card__title mdc-typography mdc-typography--headline6">Books</h2>
 
         <div class="mdc-touch-target-wrapper">
-            <a href="/book-creation" class="mdc-fab mdc-fab--mini mdc-fab--touch">
+            <a href="/books/create" class="mdc-fab mdc-fab--mini mdc-fab--touch">
                 <div class="mdc-fab__ripple"></div>
                 <span class="material-icons mdc-fab__icon">add</span>
                 <div class="mdc-fab__touch"></div>
@@ -35,6 +35,7 @@
                         <!--<th class="mdc-data-table__cell" scope="row" th:text="${book.title}"></th>-->
                         <td class="mdc-data-table__cell mdc-data-table__cell--numeric" th:text="${book.title}"></td>
                         <td class="mdc-data-table__cell mdc-data-table__cell--numeric" th:text="${book.author}"></td>
+                        <td class="mdc-data-table__cell mdc-data-table__cell--numeric" th:text="#{${book.type}}"></td>
                     </tr>
                     </tbody>
                 </table>
