@@ -43,7 +43,7 @@
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
         </dependency>
-        <!-- for hot swapping -->
+        <!-- for hot swapping but still limited to resources and spring app/controllers, not dependencies -->
         <!-- 1) File –> Setting –> Build, Execution, Deployment –> Compiler –> check this Build project automatically -->
         <!-- 2) Press SHIFT+CTRL+A (Win/*nix) to open a pop-up windows, type registry -->
         <!-- 3) Find and enabled this option compiler.automake.allow.when.app.running -->
