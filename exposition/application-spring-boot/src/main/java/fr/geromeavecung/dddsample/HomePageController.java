@@ -10,7 +10,7 @@ public class HomePageController {
     @GetMapping("/")
     public ModelAndView homePage() {
         ModelAndView modelAndView = new ModelAndView("home");
-        modelAndView.addObject("appName", "awesome library mvc");
+        modelAndView.addObject("appName", "awesome library mvc hot swap");
         return modelAndView;
     }
 }

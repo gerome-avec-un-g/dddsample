@@ -43,7 +43,11 @@
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
         </dependency>
-        <!-- for hot reload TODO does not work with community ? -->
+        <!-- for hot swapping -->
+        <!-- 1) File –> Setting –> Build, Execution, Deployment –> Compiler –> check this Build project automatically -->
+        <!-- 2) Press SHIFT+CTRL+A (Win/*nix) to open a pop-up windows, type registry -->
+        <!-- 3) Find and enabled this option compiler.automake.allow.when.app.running -->
+        <!-- https://mkyong.com/spring-boot/intellij-idea-spring-boot-template-reload-is-not-working/ -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
