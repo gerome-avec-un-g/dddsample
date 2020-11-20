@@ -17,6 +17,7 @@ public class LibraryApplicationTest {
     @Test
     @Disabled
     public void contextLoads() {
+        // TODO
         // empty but fails if there is an issue to start application
 
         // had following exception :
