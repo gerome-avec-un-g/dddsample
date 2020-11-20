@@ -1,13 +1,16 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <!-- Required styles for Material Web -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="reset-mdc.css">
+    <link rel="stylesheet" th:href="@{/styles/reset.css}" />
+    <link rel="stylesheet" th:href="@{/styles/reset-mdc.css}" />
+
+
 
     <!--/*  Each token will be replaced by their respective titles in the resulting page. */-->
     <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">MyLibraryApp</title>
@@ -48,8 +51,8 @@
 <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
 <script layout:fragment="script"></script>
 <script>
-    const topAppBarElement = document.querySelector('.mdc-top-app-bar');
-    const topAppBar = new MDCTopAppBar(topAppBarElement);
+    //const topAppBarElement = document.querySelector('.mdc-top-app-bar');
+    //const topAppBar = new MDCTopAppBar(topAppBarElement);
 
 </script>
 </body>
