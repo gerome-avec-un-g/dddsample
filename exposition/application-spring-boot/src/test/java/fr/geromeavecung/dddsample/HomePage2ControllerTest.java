@@ -18,15 +18,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * only works in same module as spring-boot
  */
 @ExtendWith(SpringExtension.class)
-@WebMvcTest(HomePageController.class)
-class HomePageControllerTest {
+@WebMvcTest(HomePage2Controller.class)
+class HomePage2ControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @Test
     public void testHomePage() throws Exception {
-        mockMvc.perform(get("/"))
+        mockMvc.perform(get("/home2"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("home"))
                 .andExpect(content().string(containsString("Bienvenue")));
