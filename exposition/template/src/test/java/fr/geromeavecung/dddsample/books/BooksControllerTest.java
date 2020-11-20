@@ -97,7 +97,9 @@ class BooksControllerTest {
         createBookForm.setTitle("def");
 
         mockMvc.perform(post("/book-creation").flashAttr("createBookForm", createBookForm))
-                .andExpect(status().is3xxRedirection());
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/book-creation"))
+                .andExpect(flash().attribute("success", true));
 
         verify(booksPresentationService).createBook(createBookForm);
     }
@@ -112,10 +114,14 @@ class BooksControllerTest {
         expectedCreateBookForm.setTitle("def");
 
         Book book = Book.create(Title.create("abc"), Author.create("def"));
-        doThrow(new BookAlreadyExists(book)).when(booksPresentationService).createBook(expectedCreateBookForm);
+        BookAlreadyExists bookAlreadyExists = new BookAlreadyExists(book);
+        doThrow(bookAlreadyExists).when(booksPresentationService).createBook(expectedCreateBookForm);
 
         mockMvc.perform(post("/book-creation").flashAttr("createBookForm", createBookForm))
-                .andExpect(status().is3xxRedirection());
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/book-creation"))
+                .andExpect(flash().attribute("error", bookAlreadyExists))
+                .andExpect(flash().attribute("createBookForm", createBookForm));
     }
 
 }

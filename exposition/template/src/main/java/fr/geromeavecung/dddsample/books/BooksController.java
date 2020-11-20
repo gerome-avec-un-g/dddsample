@@ -59,7 +59,7 @@ public class BooksController {
             booksPresentationService.createBook(createBookForm);
             redirectAttributes.addFlashAttribute("success", true);
         } catch (BusinessException businessException) {
-            LOGGER.warn("TODO", businessException);
+            LOGGER.error("TODO", businessException);
             redirectAttributes.addFlashAttribute("createBookForm", createBookForm);
             redirectAttributes.addFlashAttribute("error", businessException);
         }
