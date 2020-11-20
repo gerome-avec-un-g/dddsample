@@ -1,5 +1,6 @@
 package fr.geromeavecung.dddsample.books;
 
+import fr.geromeavecung.exposition.presentation.BookSummary;
 import fr.geromeavecung.exposition.presentation.BooksPresentationService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,8 +10,13 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import org.hamcrest.Matcher;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @ExtendWith(MockitoExtension.class)
 class BooksControllerTest {
@@ -29,7 +35,14 @@ class BooksControllerTest {
 
     @Test
     void books() throws Exception {
-        mockMvc.perform(get("/books")).andExpect(status().isOk());
+        Set<BookSummary> expectedBooks = new HashSet<>();
+        expectedBooks.add(new BookSummary("abc", "def"));
+        when(booksPresentationService.displayBooks()).thenReturn(expectedBooks);
+
+        mockMvc.perform(get("/books"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("books"))
+                .andExpect(model().attribute("books", expectedBooks));
     }
 
 }
