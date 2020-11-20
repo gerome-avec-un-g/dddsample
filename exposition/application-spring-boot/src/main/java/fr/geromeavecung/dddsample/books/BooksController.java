@@ -1,4 +1,4 @@
-package fr.geromeavecung.dddsample;
+package fr.geromeavecung.dddsample.books;
 
 import fr.geromeavecung.businessdomain.shared.BusinessException;
 import fr.geromeavecung.exposition.presentation.BooksPresentationService;
@@ -11,14 +11,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
+@RequestMapping("/books")
 public class BooksController {
 
-    private final Logger LOGGER = LoggerFactory.getLogger(BooksController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(BooksController.class);
 
     private final BooksPresentationService booksPresentationService;
 
@@ -27,7 +29,7 @@ public class BooksController {
         this.booksPresentationService = booksPresentationService;
     }
 
-    @GetMapping("/books")
+    @GetMapping
     public ModelAndView books() {
         long start = System.currentTimeMillis();
         // TODO generic spring request logging + duration ?
@@ -38,7 +40,7 @@ public class BooksController {
         return modelAndView;
     }
 
-    @GetMapping("/book-creation")
+    @GetMapping("/create")
     public ModelAndView bookCreationGet(Model model) {
         long start = System.currentTimeMillis();
         LOGGER.info("GET /book-creation");
@@ -51,7 +53,7 @@ public class BooksController {
         return modelAndView;
     }
 
-    @PostMapping("/book-creation")
+    @PostMapping("/create")
     public RedirectView bookCreationPost(@ModelAttribute CreateBookForm createBookForm, RedirectAttributes redirectAttributes) {
         long start = System.currentTimeMillis();
         LOGGER.info("POST /book-creation");
@@ -63,7 +65,7 @@ public class BooksController {
             redirectAttributes.addFlashAttribute("createBookForm", createBookForm);
             redirectAttributes.addFlashAttribute("error", businessException);
         }
-        RedirectView redirectView = new RedirectView("/book-creation", true);
+        RedirectView redirectView = new RedirectView("/books/create", true);
         LOGGER.info("Completed POST /book-creation in {} ms", System.currentTimeMillis() - start);
         return redirectView;
     }
