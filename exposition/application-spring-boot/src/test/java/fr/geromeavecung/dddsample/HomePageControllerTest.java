@@ -15,7 +15,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 @ExtendWith(SpringExtension.class)
-@WebMvcTest(HomePageController.class)
+@WebMvcTest(WebMvcConfiguration.class)
 class HomePageControllerTest {
 
     @Autowired

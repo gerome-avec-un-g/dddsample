@@ -77,6 +77,4 @@ public class BooksController {
         return redirectView;
     }
 
-    // TODO some spring validation to test chapter 2.3 (can it be i18n ?)
-
 }
