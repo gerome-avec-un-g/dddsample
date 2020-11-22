@@ -4,8 +4,10 @@ import java.util.Set;
 
 public interface Books {
 
-    Set<Book> all();
+    Set<Book> findAll();
 
-    void add(Book book);
+    //findOne ?
+
+    void save(Book book);
 
 }

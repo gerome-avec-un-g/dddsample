@@ -11,13 +11,13 @@ public class BooksService {
     }
 
     public void add(Book book) {
-        if (books.all().contains(book)) {
+        if (books.findAll().contains(book)) {
             throw new BookAlreadyExists(book);
         }
-        books.add(book);
+        books.save(book);
     }
 
     public Set<Book> displayBooks() {
-        return books.all();
+        return books.findAll();
     }
 }

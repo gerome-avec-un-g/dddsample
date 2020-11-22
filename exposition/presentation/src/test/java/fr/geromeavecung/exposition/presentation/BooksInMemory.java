@@ -15,12 +15,12 @@ public class BooksInMemory implements Books {
     private final Set<Book> books = new HashSet<>();
 
     @Override
-    public Set<Book> all() {
+    public Set<Book> findAll() {
         return books;
     }
 
     @Override
-    public void add(Book book) {
+    public void save(Book book) {
         books.add(book);
     }
 

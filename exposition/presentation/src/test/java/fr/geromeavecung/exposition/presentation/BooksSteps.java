@@ -66,7 +66,7 @@ public class BooksSteps {
     public void theBookIsAdded(DataTable table) {
         try {
             for (Map<String, String> columns : table.<String, String>asMaps(String.class, String.class)) {
-                assertThat(booksInMemory.all()).contains(Book.create(Title.create(columns.get("title")), Author.create(columns.get("author")), Book.Type.valueOf(columns.get("type"))));
+                assertThat(booksInMemory.findAll()).contains(Book.create(Title.create(columns.get("title")), Author.create(columns.get("author")), Book.Type.valueOf(columns.get("type"))));
             }
         } catch (Exception exception) {
             cucumberState.actualException = exception;

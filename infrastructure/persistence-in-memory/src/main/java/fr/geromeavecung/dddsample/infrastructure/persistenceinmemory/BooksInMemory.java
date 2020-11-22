@@ -8,7 +8,13 @@ import fr.geromeavecung.businessdomain.books.Title;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.springframework.stereotype.Repository;
+
+@Repository
 public class BooksInMemory implements Books {
+
+    // TODO rename package for "production" database
+    // TODO move this class in cucumber package
 
     private final Set<Book> books = new HashSet<>();
 
@@ -17,12 +23,12 @@ public class BooksInMemory implements Books {
     }
 
     @Override
-    public Set<Book> all() {
+    public Set<Book> findAll() {
         return books;
     }
 
     @Override
-    public void add(Book book) {
+    public void save(Book book) {
         books.add(book);
     }
 
