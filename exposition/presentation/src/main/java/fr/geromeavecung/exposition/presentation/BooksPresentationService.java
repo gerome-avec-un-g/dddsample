@@ -34,6 +34,5 @@ public class BooksPresentationService {
         if (idsAction1.stream().anyMatch(idsAction2::contains)) {
             throw new CantDoTwoActionsAtOnce(idsAction1, idsAction2);
         }
-
     }
 }

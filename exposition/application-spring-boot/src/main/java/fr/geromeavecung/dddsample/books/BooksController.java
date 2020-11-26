@@ -35,13 +35,16 @@ public class BooksController {
     }
 
     @GetMapping
-    public ModelAndView books() {
+    public ModelAndView books(Model model) {
         long start = System.currentTimeMillis();
         // TODO generic spring request logging + duration ?
         LOGGER.info("GET /books");
         ModelAndView modelAndView = new ModelAndView("books");
         modelAndView.addObject("books", booksPresentationService.displayBooks());
-        modelAndView.addObject("booksActionForm", new BooksActionForm());
+        modelAndView.addAllObjects(model.asMap());
+        if (!modelAndView.getModelMap().containsAttribute("booksActionForm")) {
+            modelAndView.addObject("booksActionForm", new BooksActionForm());
+        }
         LOGGER.info("Completed GET /books in {} ms", System.currentTimeMillis() - start);
         return modelAndView;
     }
