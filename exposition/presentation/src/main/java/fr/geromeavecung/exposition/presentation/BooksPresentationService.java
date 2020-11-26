@@ -27,4 +27,10 @@ public class BooksPresentationService {
         return booksOrchestrationService.displayBooks().stream().map(BookSummary::new).collect(Collectors.toSet());
     }
 
+    public void booksAction(BooksActionForm booksActionForm) {
+        System.out.println(booksActionForm.toString());
+//        if() {
+//
+//        }
+    }
 }

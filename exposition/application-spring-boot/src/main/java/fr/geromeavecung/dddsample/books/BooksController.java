@@ -2,6 +2,7 @@ package fr.geromeavecung.dddsample.books;
 
 import fr.geromeavecung.businessdomain.books.Book;
 import fr.geromeavecung.businessdomain.shared.BusinessException;
+import fr.geromeavecung.exposition.presentation.BooksActionForm;
 import fr.geromeavecung.exposition.presentation.BooksPresentationService;
 import fr.geromeavecung.exposition.presentation.CreateBookForm;
 import org.slf4j.Logger;
@@ -40,6 +41,7 @@ public class BooksController {
         LOGGER.info("GET /books");
         ModelAndView modelAndView = new ModelAndView("books");
         modelAndView.addObject("books", booksPresentationService.displayBooks());
+        modelAndView.addObject("booksActionForm", new BooksActionForm());
         LOGGER.info("Completed GET /books in {} ms", System.currentTimeMillis() - start);
         return modelAndView;
     }
@@ -68,12 +70,29 @@ public class BooksController {
             booksPresentationService.createBook(createBookForm);
             redirectAttributes.addFlashAttribute("success", true);
         } catch (BusinessException businessException) {
-            LOGGER.error("TODO", businessException);
+            LOGGER.error("/books/create", businessException);
             redirectAttributes.addFlashAttribute("createBookForm", createBookForm);
             redirectAttributes.addFlashAttribute("error", businessException);
         }
         RedirectView redirectView = new RedirectView("/books/create", true);
         LOGGER.info("Completed POST /books/create in {} ms", System.currentTimeMillis() - start);
+        return redirectView;
+    }
+
+    @PostMapping("/actions")
+    public RedirectView bookCreationPost(@ModelAttribute BooksActionForm booksActionForm, RedirectAttributes redirectAttributes) {
+        long start = System.currentTimeMillis();
+        LOGGER.info("POST /books/actions");
+        try {
+            booksPresentationService.booksAction(booksActionForm);
+            redirectAttributes.addFlashAttribute("success", true);
+        } catch (BusinessException businessException) {
+            LOGGER.error("/books/actions: ", businessException);
+            redirectAttributes.addFlashAttribute("createBookForm", booksActionForm);
+            redirectAttributes.addFlashAttribute("error", businessException);
+        }
+        RedirectView redirectView = new RedirectView("/books", true);
+        LOGGER.info("Completed POST /books/actions in {} ms", System.currentTimeMillis() - start);
         return redirectView;
     }
 
