@@ -5,7 +5,7 @@ import java.util.Set;
 
 public class BooksActionForm {
 
-    Set<String> actions = new HashSet<>();
+    private Set<String> actions = new HashSet<>();
 
     public Set<String> getActions() {
         return actions;

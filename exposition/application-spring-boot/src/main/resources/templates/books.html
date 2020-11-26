@@ -48,11 +48,11 @@
                             <td class="mdc-data-table__cell mdc-data-table__cell--numeric"
                                 th:text="#{${book.type}}"></td>
                             <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
-                                <input type="checkbox" th:field="*{actions}" th:value="${book.author}"/>
+                                <input type="checkbox" th:field="*{actions}" th:value="${book.author} + '-' + ${book.title} + '-action1'"/>
                                 <!--                                <label th:for="${#ids.prev('actions')}" th:text="#{${'seedstarter.feature.' + feat}}"></label>-->
                             </td>
                             <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
-                                <input type="checkbox" th:field="*{actions}" th:value="${book.author}"/>
+                                <input type="checkbox" th:field="*{actions}" th:value="${book.author} + '-' + ${book.title} + '-action2'"/>
                                 <!--                                <label th:for="${#ids.prev('actions')}" th:text="#{${'seedstarter.feature.' + feat}}"></label>-->
                             </td>
                         </tr>

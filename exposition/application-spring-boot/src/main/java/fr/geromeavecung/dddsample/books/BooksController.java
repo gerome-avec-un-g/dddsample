@@ -88,7 +88,7 @@ public class BooksController {
             redirectAttributes.addFlashAttribute("success", true);
         } catch (BusinessException businessException) {
             LOGGER.error("/books/actions: ", businessException);
-            redirectAttributes.addFlashAttribute("createBookForm", booksActionForm);
+            redirectAttributes.addFlashAttribute("booksActionForm", booksActionForm);
             redirectAttributes.addFlashAttribute("error", businessException);
         }
         RedirectView redirectView = new RedirectView("/books", true);
