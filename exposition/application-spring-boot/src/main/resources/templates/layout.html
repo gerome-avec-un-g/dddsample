@@ -49,6 +49,20 @@
         </div>
     </header>
 
+    <div class="mdc-snackbar">
+        <div class="mdc-snackbar__surface" role="status" aria-relevant="additions">
+            <div class="mdc-snackbar__label" aria-atomic="false">
+                Can't send photo. Retry in 5 seconds.
+            </div>
+            <div class="mdc-snackbar__actions" aria-atomic="true">
+                <button type="button" class="mdc-button mdc-snackbar__action">
+                    <div class="mdc-button__ripple"></div>
+                    <span class="mdc-button__label">Retry</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <main class="main-content" id="main-content">
         <div class="mdc-top-app-bar--fixed-adjust">
                 <div layout:fragment="content">
@@ -69,7 +83,8 @@
 <script>
     const drawer = mdc.drawer.MDCDrawer.attachTo(document.querySelector('.mdc-drawer'));
     const topAppBar = mdc.topAppBar.MDCTopAppBar.attachTo(document.querySelector('.mdc-top-app-bar'));
-
+    const snackbar = mdc.snackbar.MDCSnackbar.attachTo(document.querySelector('.mdc-snackbar'));
+    snackbar.open();
     topAppBar.setScrollTarget(document.getElementById('main-content'));
     topAppBar.listen('MDCTopAppBar:nav', () => {
       drawer.open = !drawer.open;
