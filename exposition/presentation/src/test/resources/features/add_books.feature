@@ -18,12 +18,12 @@ Feature: add a book
         | [blank] |        | FICTION |
       Then i have an error "FieldMinimumLength" with message "[title, , 1]"
 
-    Example: title has less than 21 characters
+    Example: title has less than 41 characters
       Given a librarian
       When the user tries to add a book
         | title                 | author | type    |
-        | 012345678901234567890 |        | FICTION |
-      Then i have an error "FieldMaximumLength" with message "[title, 012345678901234567890, 20]"
+        | 01234567890123456789012345678901234567890 |        | FICTION |
+      Then i have an error "FieldMaximumLength" with message "[title, 01234567890123456789012345678901234567890, 40]"
     # TODO better spec for error messages
 
     @inProgress

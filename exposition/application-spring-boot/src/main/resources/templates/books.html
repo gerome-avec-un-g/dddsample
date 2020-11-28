@@ -43,16 +43,14 @@
                         <tbody class="mdc-data-table__content">
                         <tr class="mdc-data-table__row" th:each="book: ${books}">
                             <!--<th class="mdc-data-table__cell" scope="row" th:text="${book.title}"></th>-->
-                            <td class="mdc-data-table__cell mdc-data-table__cell--numeric" th:text="${book.title}"></td>
-                            <td class="mdc-data-table__cell mdc-data-table__cell--numeric"
-                                th:text="${book.author}"></td>
-                            <td class="mdc-data-table__cell mdc-data-table__cell--numeric"
-                                th:text="#{${book.type}}"></td>
-                            <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
+                            <td class="mdc-data-table__cell" th:text="${book.title}"></td>
+                            <td class="mdc-data-table__cell" th:text="${book.author}"></td>
+                            <td class="mdc-data-table__cell" th:text="#{${book.type}}"></td>
+                            <td class="mdc-data-table__cell">
                                 <input type="checkbox" th:field="*{actions}" th:value="${book.author} + '-' + ${book.title} + '-action1'"/>
                                 <!--                                <label th:for="${#ids.prev('actions')}" th:text="#{${'seedstarter.feature.' + feat}}"></label>-->
                             </td>
-                            <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
+                            <td class="mdc-data-table__cell">
                                 <input type="checkbox" th:field="*{actions}" th:value="${book.author} + '-' + ${book.title} + '-action2'"/>
                                 <!--                                <label th:for="${#ids.prev('actions')}" th:text="#{${'seedstarter.feature.' + feat}}"></label>-->
                             </td>

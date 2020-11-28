@@ -13,7 +13,7 @@ public class Title {
     }
 
     public Title(String value) {
-        this.value = FieldValidator.length("title", value, 1, 20);
+        this.value = FieldValidator.length("title", value, 1, 40);
     }
 
     public String getValue() {
