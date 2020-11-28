@@ -29,7 +29,8 @@ public class BooksInH2 implements Books {
 
     @Override
     public Set<Book> findAll() {
-        return Collections.emptySet();
+        throw new IllegalArgumentException("fake");
+        //return Collections.emptySet();
 //        return StreamSupport.stream(booksJpaRepository.findAll().spliterator(), false)
 //                .map(BookJPA::toDomain)
 //                .filter(Optional::isPresent)

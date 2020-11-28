@@ -1,5 +1,7 @@
 package fr.geromeavecung.dddsample;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
@@ -7,14 +9,16 @@ import org.springframework.web.servlet.ModelAndView;
 @ControllerAdvice
 class GlobalDefaultExceptionHandler {
 
-//    @ExceptionHandler(Exception.class)
-//    public ModelAndView globalExceptionHandler(Exception exception) {
-//        ModelAndView modelAndView = new ModelAndView("error");
-//        modelAndView.addObject("exception", exception);
-//        return modelAndView;
-//    }
+    private static final Logger LOGGER = LoggerFactory.getLogger(GlobalDefaultExceptionHandler.class);
+
+    @ExceptionHandler(Exception.class)
+    public ModelAndView globalExceptionHandler(Exception exception) {
+        LOGGER.error("Global exception caught: ", exception);
+        ModelAndView modelAndView = new ModelAndView("error");
+        modelAndView.addObject("exception", exception);
+        return modelAndView;
+    }
 
     // TODO global 404
-    // TODO global 500
 
 }
