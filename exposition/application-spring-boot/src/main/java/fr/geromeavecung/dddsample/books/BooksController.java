@@ -71,7 +71,7 @@ public class BooksController {
         LOGGER.info("POST /books/create");
         try {
             booksPresentationService.createBook(createBookForm);
-            redirectAttributes.addFlashAttribute("success", true);
+            redirectAttributes.addFlashAttribute("success", "bookCreationSuccess");
         } catch (BusinessException businessException) {
             LOGGER.error("/books/create", businessException);
             redirectAttributes.addFlashAttribute("createBookForm", createBookForm);
@@ -83,12 +83,12 @@ public class BooksController {
     }
 
     @PostMapping("/actions")
-    public RedirectView bookCreationPost(@ModelAttribute BooksActionForm booksActionForm, RedirectAttributes redirectAttributes) {
+    public RedirectView bookActionPost(@ModelAttribute BooksActionForm booksActionForm, RedirectAttributes redirectAttributes) {
         long start = System.currentTimeMillis();
         LOGGER.info("POST /books/actions");
         try {
             booksPresentationService.booksAction(booksActionForm);
-            redirectAttributes.addFlashAttribute("success", true);
+            redirectAttributes.addFlashAttribute("success", "booksActionSuccess");
         } catch (BusinessException businessException) {
             LOGGER.error("/books/actions: ", businessException);
             redirectAttributes.addFlashAttribute("booksActionForm", booksActionForm);

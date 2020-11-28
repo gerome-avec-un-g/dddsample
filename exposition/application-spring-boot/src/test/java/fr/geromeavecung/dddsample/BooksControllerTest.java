@@ -72,13 +72,13 @@ class BooksControllerTest {
 
     @Test
     void booksCreateGet_redirect_after_success() throws Exception {
-        mockMvc.perform(get("/books/create").flashAttr("success", true))
+        mockMvc.perform(get("/books/create").flashAttr("success", "bookCreationSuccess"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("book-creation"))
                 .andExpect(model().attribute("createBookForm", new CreateBookForm()))
-                .andExpect(model().attribute("success", true))
+                .andExpect(model().attribute("success", "bookCreationSuccess"))
                 .andExpect(model().attribute("error", nullValue()))
-                .andExpect(content().string(containsString("Le livre est cr")));
+                .andExpect(content().string(containsString("Le livre est créé")));
     }
 
     @Test
@@ -98,7 +98,7 @@ class BooksControllerTest {
                 .andExpect(model().attribute("createBookForm", createBookForm))
                 .andExpect(model().attribute("success", nullValue()))
                 .andExpect(model().attribute("error", businessException))
-                .andExpect(content().string(containsString("Le livre abc de def existe d")))
+                .andExpect(content().string(containsString("Le livre abc de def existe déjà")))
                 .andExpect(content().string(containsString("value=\"abc\"")))
                 .andExpect(content().string(containsString("value=\"def\"")));
     }
@@ -113,7 +113,7 @@ class BooksControllerTest {
         mockMvc.perform(post("/books/create").flashAttr("createBookForm", createBookForm))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/books/create"))
-                .andExpect(flash().attribute("success", true));
+                .andExpect(flash().attribute("success", "bookCreationSuccess"));
 
         verify(booksPresentationService).createBook(createBookForm);
     }
