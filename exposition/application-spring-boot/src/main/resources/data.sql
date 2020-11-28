@@ -1,5 +1,6 @@
 -- DO NOT USE FOR PRODUCTION
 -- automatically executed at spring-boot start
+-- but must be in src/main/resources and spring.jpa.hibernate.ddl-auto=none
 
 insert into Books (title, author, type)  values ('Isaac Asimov', 'Foundation', 'FICTION');
 insert into Books (title, author, type)  values ('Isaac Asimov', 'Foundation and Empire', 'FICTION');
