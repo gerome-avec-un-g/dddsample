@@ -49,20 +49,6 @@
         </div>
     </header>
 
-    <div class="mdc-snackbar">
-        <div class="mdc-snackbar__surface" role="status" aria-relevant="additions">
-            <div class="mdc-snackbar__label" aria-atomic="false">
-                placeholder message
-            </div>
-            <div class="mdc-snackbar__actions" aria-atomic="true">
-                <button type="button" class="mdc-button mdc-snackbar__action">
-                    <div class="mdc-button__ripple"></div>
-                    <span class="mdc-button__label">Retry</span>
-                </button>
-            </div>
-        </div>
-    </div>
-
     <main class="main-content" id="main-content">
         <div class="mdc-top-app-bar--fixed-adjust">
                 <div layout:fragment="content">
@@ -75,6 +61,17 @@
                 </div>
         </div>
     </main>
+
+    <div class="mdc-snackbar">
+        <div class="mdc-snackbar__surface" role="status" aria-relevant="additions">
+            <div class="mdc-snackbar__label" aria-atomic="false">
+                placeholder message
+            </div>
+            <div class="mdc-snackbar__actions" aria-atomic="true">
+                <button class="mdc-icon-button mdc-snackbar__dismiss material-icons">clear</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- Required Material Web JavaScript library -->
@@ -100,7 +97,6 @@
     document.body.addEventListener('MDCDrawer:closed', () => {
       mainContentEl.querySelector('input, button').focus();
     });
-
 </script>
 <script th:if="${success}">
         snackbar.open();
