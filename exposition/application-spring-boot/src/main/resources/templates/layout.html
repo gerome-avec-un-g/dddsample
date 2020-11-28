@@ -88,7 +88,7 @@
     //if ([[${error}]] !== null) {
     if (true) {
         snackbar.open();
-        snackbar.labelText = '[[${error}]]';
+        snackbar.labelText = '[[${#messages.msgWithParams(error.key, error.parameters)}]]';
     }
 
     topAppBar.setScrollTarget(document.getElementById('main-content'));
