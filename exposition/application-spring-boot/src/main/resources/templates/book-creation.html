@@ -9,9 +9,6 @@
 
 <div class="mdc-card" layout:fragment="content">
 
-    <span th:if="${error}" th:text="${#messages.msgWithParams(error.key, error.parameters)}">placeholder error</span>
-    <span th:if="${success}" th:text="#{bookCreationSuccess}">placeholder success</span>
-
     <form action="#" th:action="@{/books/create}" th:object="${createBookForm}" method="post">
 
         <div class="mdc-card__content">

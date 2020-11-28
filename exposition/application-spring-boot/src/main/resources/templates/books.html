@@ -8,9 +8,6 @@
 <body>
 <div class="mdc-card" layout:fragment="content">
 
-    <span th:if="${error}" th:text="${#messages.msgWithParams(error.key, error.parameters)}">placeholder error</span>
-    <span th:if="${success}" th:text="#{booksActionSuccess}">placeholder success</span>
-
     <div class="mdc-card__content">
 
         <h2 class="demo-card__title mdc-typography mdc-typography--headline6" th:text="#{books}">placeholder title</h2>
