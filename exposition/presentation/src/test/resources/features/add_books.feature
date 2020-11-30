@@ -18,7 +18,7 @@ Feature: add a book
         | [blank] |        | FICTION |
       Then i have an error "FieldMinimumLength" with message "[title, , 1]"
 
-    Example: title has less than 41 characters
+    Example: title has at most 40 characters
       Given a librarian
       When the user tries to add a book
         | title                 | author | type    |
@@ -49,7 +49,7 @@ Feature: add a book
         | Foundation | [blank] | FICTION |
       Then i have an error "FieldMinimumLength" with message "[author, , 1]"
 
-    Example: author has less than 26 characters
+    Example: author has at most 25 characters
       Given a librarian
       When the user tries to add a book
         | title      | author                     | type    |
@@ -72,7 +72,6 @@ Feature: add a book
         | Foundation | Isaac Asimov | FICTION    |
         | Foundation | Isaac Asimov | TECHNOLOGY |
       Then i have an error "BookAlreadyExists" with message "[Book{title=Title{value='Foundation'}, author=Author{value='Isaac Asimov'}, type=TECHNOLOGY}]"
-
 
   Rule: working case
     Example: a book can be added
