@@ -3,7 +3,9 @@ package fr.geromeavecung.businessdomain.shared;
 public class FieldValidator {
 
     private FieldValidator() {
-        // utility class
+        /*
+         * utility class
+         */
     }
 
     public static <T> T required(String fieldName, T fieldValue) {

@@ -13,8 +13,9 @@ import java.util.stream.StreamSupport;
 @Repository
 public class BooksInH2 implements Books {
 
-    // with spring-dev-tools we can access H2:
-    // http://localhost:8080/h2-console
+    /*
+     * with spring-dev-tools we can access H2 at http://localhost:8080/h2-console
+     */
 
     private final BooksJpaRepository booksJpaRepository;
 

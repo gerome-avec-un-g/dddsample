@@ -6,8 +6,6 @@ import java.util.Objects;
 
 public class CreateBookForm {
 
-    // default constructor + setters for thymeleaf
-
     private String title;
 
     private String author;

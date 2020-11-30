@@ -3,7 +3,10 @@ package fr.geromeavecung.dddsample;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication // is an alias for 3 more annotations
+@SpringBootApplication
+/*
+ * @SpringBootApplication is an alias for 3 more annotations
+ */
 public class LibraryApplication {
 
     /**

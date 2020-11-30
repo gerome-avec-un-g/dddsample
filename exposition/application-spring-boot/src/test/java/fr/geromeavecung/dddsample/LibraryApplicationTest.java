@@ -14,14 +14,17 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class LibraryApplicationTest {
 
-    @Test
-    @Disabled
-    public void contextLoads() {
-        // TODO
-        // empty but fails if there is an issue to start application
+    /*
+     * even without tests, still load application context
+     * and fails if there is an error in context
+     */
 
-        // had following exception :
-        //java.lang.NoClassDefFoundError: Could not initialize class org.codehaus.groovy.vmplugin.v7.Java7
+    @Test
+    @Disabled("see below")
+    public void contextLoads() {
+
+        // TODO have following exception :
+        // java.lang.NoClassDefFoundError: Could not initialize class org.codehaus.groovy.vmplugin.v7.Java7
 
     }
 

@@ -16,7 +16,8 @@ public class Book {
 
     private final Type type;
 
-    // publishing year, edition...
+    // TODO publishing year, edition...
+    // TODO some kind of status
 
     public static Book create(Title title, Author author, Type type) {
         return new Book(title, author, type);

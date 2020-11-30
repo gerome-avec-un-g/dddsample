@@ -25,7 +25,9 @@ class BookJPA {
     private String type;
 
     private BookJPA() {
-        // for JPA
+        /*
+         * for JPA
+         */
     }
 
     BookJPA(Book book) {
