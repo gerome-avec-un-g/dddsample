@@ -73,7 +73,6 @@
         </div>
     </div>
 </div>
-
 <!-- Required Material Web JavaScript library -->
 <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
 <script layout:fragment="script"></script>
@@ -102,9 +101,9 @@
         snackbar.open();
         snackbar.labelText = '[[#{${success}}]]';
 </script>
-<script th:if="${error}">
+<script th:if="${businessError}">
         snackbar.open();
-        snackbar.labelText = '[[${#messages.msgWithParams(error.key, error.parameters)}]]';
+        snackbar.labelText = '[[${#messages.msgWithParams(businessError.key, businessError.parameters)}]]';
 </script>
 </body>
 </html>

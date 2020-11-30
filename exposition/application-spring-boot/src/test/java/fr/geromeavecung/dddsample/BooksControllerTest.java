@@ -67,7 +67,7 @@ class BooksControllerTest {
                 .andExpect(model().attribute("createBookForm", new CreateBookForm()))
                 .andExpect(model().attribute("types", Arrays.stream(Book.Type.values()).collect(Collectors.toSet())))
                 .andExpect(model().attribute("success", nullValue()))
-                .andExpect(model().attribute("error", nullValue()));
+                .andExpect(model().attribute("businessError", nullValue()));
     }
 
     @Test
@@ -77,7 +77,7 @@ class BooksControllerTest {
                 .andExpect(view().name("book-creation"))
                 .andExpect(model().attribute("createBookForm", new CreateBookForm()))
                 .andExpect(model().attribute("success", "bookCreationSuccess"))
-                .andExpect(model().attribute("error", nullValue()))
+                .andExpect(model().attribute("businessError", nullValue()))
                 .andExpect(content().string(containsString("Le livre est créé")));
     }
 
@@ -92,12 +92,12 @@ class BooksControllerTest {
 
         mockMvc.perform(get("/books/create")
                 .flashAttr("createBookForm", createBookForm)
-                .flashAttr("error", businessException))
+                .flashAttr("businessError", businessException))
                 .andExpect(status().isOk())
                 .andExpect(view().name("book-creation"))
                 .andExpect(model().attribute("createBookForm", createBookForm))
                 .andExpect(model().attribute("success", nullValue()))
-                .andExpect(model().attribute("error", businessException))
+                .andExpect(model().attribute("businessError", businessException))
                 .andExpect(content().string(containsString("Le livre abc de def existe déjà")))
                 .andExpect(content().string(containsString("value=\"abc\"")))
                 .andExpect(content().string(containsString("value=\"def\"")));
@@ -136,7 +136,7 @@ class BooksControllerTest {
         mockMvc.perform(post("/books/create").flashAttr("createBookForm", createBookForm))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/books/create"))
-                .andExpect(flash().attribute("error", bookAlreadyExists))
+                .andExpect(flash().attribute("businessError", bookAlreadyExists))
                 .andExpect(flash().attribute("createBookForm", createBookForm));
     }
 

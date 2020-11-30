@@ -13,8 +13,7 @@ public class NoCircularViewPathTestViewResolver extends InternalResourceViewReso
     @Override
     protected AbstractUrlBasedView buildView(final String viewName) throws Exception {
         final InternalResourceView view = (InternalResourceView) super.buildView(viewName);
-
-        //view.setPreventDispatchLoop(false);
+        view.setPreventDispatchLoop(false);
         return view;
     }
 }

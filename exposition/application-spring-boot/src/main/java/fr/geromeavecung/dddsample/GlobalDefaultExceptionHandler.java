@@ -15,10 +15,10 @@ class GlobalDefaultExceptionHandler {
     public ModelAndView globalExceptionHandler(Exception exception) {
         LOGGER.error("Global exception caught: ", exception);
         ModelAndView modelAndView = new ModelAndView("error");
-        modelAndView.addObject("exception", exception);
+        //modelAndView.addObject("error", exception);
         return modelAndView;
     }
 
-    // TODO global 404
+    // TODO global 404 + manage error Not Found vs exceptions
 
 }

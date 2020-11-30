@@ -38,28 +38,28 @@ public class BooksController {
     public ModelAndView books(Model model) {
         long start = System.currentTimeMillis();
         // TODO generic spring request logging + duration ?
-        LOGGER.info("GET /books");
+        //LOGGER.info("GET /books");
         ModelAndView modelAndView = new ModelAndView("books");
         modelAndView.addObject("books", booksPresentationService.displayBooks());
         modelAndView.addAllObjects(model.asMap());
         if (!modelAndView.getModelMap().containsAttribute("booksActionForm")) {
             modelAndView.addObject("booksActionForm", new BooksActionForm());
         }
-        LOGGER.info("Completed GET /books in {} ms", System.currentTimeMillis() - start);
+        //LOGGER.info("Completed GET /books in {} ms", System.currentTimeMillis() - start);
         return modelAndView;
     }
 
     @GetMapping("/create")
     public ModelAndView bookCreationGet(Model model) {
         long start = System.currentTimeMillis();
-        LOGGER.info("GET /books/create");
+        //LOGGER.info("GET /books/create");
         ModelAndView modelAndView = new ModelAndView("book-creation");
         modelAndView.addAllObjects(model.asMap());
         if (!modelAndView.getModelMap().containsAttribute("createBookForm")) {
             modelAndView.addObject("createBookForm", new CreateBookForm());
         }
         modelAndView.addObject("types", Arrays.stream(Book.Type.values()).collect(Collectors.toSet()));
-        LOGGER.info("Completed GET /books/create in {} ms", System.currentTimeMillis() - start);
+        //LOGGER.info("Completed GET /books/create in {} ms", System.currentTimeMillis() - start);
         return modelAndView;
     }
 
@@ -68,34 +68,34 @@ public class BooksController {
     @PostMapping("/create")
     public RedirectView bookCreationPost(@ModelAttribute CreateBookForm createBookForm, RedirectAttributes redirectAttributes) {
         long start = System.currentTimeMillis();
-        LOGGER.info("POST /books/create");
+        //LOGGER.info("POST /books/create");
         try {
             booksPresentationService.createBook(createBookForm);
             redirectAttributes.addFlashAttribute("success", "bookCreationSuccess");
         } catch (BusinessException businessException) {
             LOGGER.error("/books/create", businessException);
             redirectAttributes.addFlashAttribute("createBookForm", createBookForm);
-            redirectAttributes.addFlashAttribute("error", businessException);
+            redirectAttributes.addFlashAttribute("businessError", businessException);
         }
         RedirectView redirectView = new RedirectView("/books/create", true);
-        LOGGER.info("Completed POST /books/create in {} ms", System.currentTimeMillis() - start);
+        //LOGGER.info("Completed POST /books/create in {} ms", System.currentTimeMillis() - start);
         return redirectView;
     }
 
     @PostMapping("/actions")
     public RedirectView bookActionPost(@ModelAttribute BooksActionForm booksActionForm, RedirectAttributes redirectAttributes) {
         long start = System.currentTimeMillis();
-        LOGGER.info("POST /books/actions");
+        //LOGGER.info("POST /books/actions");
         try {
             booksPresentationService.booksAction(booksActionForm);
             redirectAttributes.addFlashAttribute("success", "booksActionSuccess");
         } catch (BusinessException businessException) {
             LOGGER.error("/books/actions: ", businessException);
             redirectAttributes.addFlashAttribute("booksActionForm", booksActionForm);
-            redirectAttributes.addFlashAttribute("error", businessException);
+            redirectAttributes.addFlashAttribute("businessError", businessException);
         }
         RedirectView redirectView = new RedirectView("/books", true);
-        LOGGER.info("Completed POST /books/actions in {} ms", System.currentTimeMillis() - start);
+        //LOGGER.info("Completed POST /books/actions in {} ms", System.currentTimeMillis() - start);
         return redirectView;
     }
 
