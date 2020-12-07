@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -46,7 +47,14 @@ public class SecurityConfigurationInMemory extends WebSecurityConfigurerAdapter 
                 .formLogin()
                 .loginPage("/login")
                 .permitAll()
-                .defaultSuccessUrl("/");
+                .defaultSuccessUrl("/")
+                .and().logout()
+                // use get url instead of post
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/login")
+                // TODO .invalidateHttpSession(true)
+                // TODO .deleteCookies("JSESSIONID")
+        ;
 
     }
 
