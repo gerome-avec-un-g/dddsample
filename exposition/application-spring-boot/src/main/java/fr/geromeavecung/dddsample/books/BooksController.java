@@ -2,6 +2,7 @@ package fr.geromeavecung.dddsample.books;
 
 import fr.geromeavecung.businessdomain.books.Book;
 import fr.geromeavecung.businessdomain.shared.BusinessException;
+import fr.geromeavecung.dddsample.LibraryApplicationPropertiesConfiguration;
 import fr.geromeavecung.exposition.presentation.BooksActionForm;
 import fr.geromeavecung.exposition.presentation.BooksPresentationService;
 import fr.geromeavecung.exposition.presentation.CreateBookForm;
@@ -31,15 +32,18 @@ public class BooksController {
 
     private final BooksPresentationService booksPresentationService;
 
+    private final LibraryApplicationPropertiesConfiguration libraryApplicationPropertiesConfiguration;
+
     @Autowired
-    public BooksController(BooksPresentationService booksPresentationService) {
+    public BooksController(BooksPresentationService booksPresentationService, LibraryApplicationPropertiesConfiguration libraryApplicationPropertiesConfiguration) {
         this.booksPresentationService = booksPresentationService;
+        this.libraryApplicationPropertiesConfiguration = libraryApplicationPropertiesConfiguration;
     }
 
     @GetMapping
     public ModelAndView books(Model model, @AuthenticationPrincipal UserDetails userDetails) {
         ModelAndView modelAndView = new ModelAndView("books");
-        System.out.println(userDetails);
+        System.out.println(libraryApplicationPropertiesConfiguration.getVersion() + userDetails);
         modelAndView.addObject("books", booksPresentationService.displayBooks());
         modelAndView.addAllObjects(model.asMap());
         if (!modelAndView.getModelMap().containsAttribute("booksActionForm")) {

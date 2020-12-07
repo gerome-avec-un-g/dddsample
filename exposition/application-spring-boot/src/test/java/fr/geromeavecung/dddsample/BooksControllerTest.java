@@ -47,6 +47,9 @@ class BooksControllerTest {
     @MockBean
     private BooksPresentationService booksPresentationService;
 
+    @MockBean
+    private LibraryApplicationPropertiesConfiguration libraryApplicationPropertiesConfiguration;
+
     @WithMockUser(value = "buzz")
     @Test
     void books() throws Exception {
