@@ -14,6 +14,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -46,6 +47,7 @@ class BooksControllerTest {
     @MockBean
     private BooksPresentationService booksPresentationService;
 
+    @WithMockUser(value = "buzz")
     @Test
     void books() throws Exception {
         Set<BookSummary> expectedBooks = new HashSet<>();
@@ -59,6 +61,7 @@ class BooksControllerTest {
                 .andExpect(content().string(containsString("href=\"/books/create\"")));
     }
 
+    @WithMockUser(value = "buzz")
     @Test
     void booksCreateGet_first_time() throws Exception {
         mockMvc.perform(get("/books/create"))
@@ -70,6 +73,7 @@ class BooksControllerTest {
                 .andExpect(model().attribute("businessError", nullValue()));
     }
 
+    @WithMockUser(value = "buzz")
     @Test
     void booksCreateGet_redirect_after_success() throws Exception {
         mockMvc.perform(get("/books/create").flashAttr("success", "bookCreationSuccess"))
@@ -81,6 +85,7 @@ class BooksControllerTest {
                 .andExpect(content().string(containsString("Le livre est créé")));
     }
 
+    @WithMockUser(value = "buzz")
     @Test
     void booksCreateGet_redirect_after_error() throws Exception {
         CreateBookForm createBookForm = new CreateBookForm();
@@ -103,6 +108,7 @@ class BooksControllerTest {
                 .andExpect(content().string(containsString("value=\"def\"")));
     }
 
+    @WithMockUser(value = "buzz")
     @Test
     void booksCreatePost_success() throws Exception {
         CreateBookForm createBookForm = new CreateBookForm();
@@ -118,6 +124,7 @@ class BooksControllerTest {
         verify(booksPresentationService).createBook(createBookForm);
     }
 
+    @WithMockUser(value = "buzz")
     @Test
     void booksCreatePost_error() throws Exception {
         CreateBookForm createBookForm = new CreateBookForm();
@@ -139,5 +146,7 @@ class BooksControllerTest {
                 .andExpect(flash().attribute("businessError", bookAlreadyExists))
                 .andExpect(flash().attribute("createBookForm", createBookForm));
     }
+
+    // TODO more test for security/roles
 
 }

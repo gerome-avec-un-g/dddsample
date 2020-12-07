@@ -35,27 +35,35 @@ public class SecurityConfigurationInMemory extends WebSecurityConfigurerAdapter 
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        configureAuthorizations(http);
+        configureCustomLoginPage(http);
+        configureLogout(http);
+    }
+
+    private void configureAuthorizations(HttpSecurity http) throws Exception {
         // TODO in controller ?
         // TODO weird mix of role and authority ?
         http.authorizeRequests()
-                // resources should be permitted to all
+                // static resources should be permitted to all
                 // because successful login redirects to last restricted url
                 .antMatchers("/styles/**", "/images/**").permitAll()
-                .antMatchers("/**").hasAuthority("ROLE_USER")
-                // for custom login page
-                .and()
-                .formLogin()
+                .antMatchers("/**").hasAuthority("ROLE_USER");
+    }
+
+    private void configureCustomLoginPage(HttpSecurity http) throws Exception {
+        http.formLogin()
                 .loginPage("/login")
                 .permitAll()
-                .defaultSuccessUrl("/")
-                .and().logout()
+                .defaultSuccessUrl("/");
+    }
+
+    private void configureLogout(HttpSecurity http) throws Exception {
+        // TODO .invalidateHttpSession(true)
+        // TODO .deleteCookies("JSESSIONID")
+        http.logout()
                 // use get url instead of post
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login")
-                // TODO .invalidateHttpSession(true)
-                // TODO .deleteCookies("JSESSIONID")
-        ;
-
+                .logoutSuccessUrl("/login");
     }
 
 
