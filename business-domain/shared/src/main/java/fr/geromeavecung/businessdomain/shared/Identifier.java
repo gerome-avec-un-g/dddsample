@@ -1,6 +1,5 @@
 package fr.geromeavecung.businessdomain.shared;
 
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class Identifier {

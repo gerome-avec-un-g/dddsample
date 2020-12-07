@@ -71,8 +71,7 @@ public class BooksController {
             redirectAttributes.addFlashAttribute("createBookForm", createBookForm);
             redirectAttributes.addFlashAttribute("businessError", businessException);
         }
-        RedirectView redirectView = new RedirectView("/books/create", true);
-        return redirectView;
+        return new RedirectView("/books/create", true);
     }
 
     @PostMapping("/actions")
@@ -85,8 +84,7 @@ public class BooksController {
             redirectAttributes.addFlashAttribute("booksActionForm", booksActionForm);
             redirectAttributes.addFlashAttribute("businessError", businessException);
         }
-        RedirectView redirectView = new RedirectView("/books", true);
-        return redirectView;
+        return new RedirectView("/books", true);
     }
 
 }
