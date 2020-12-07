@@ -6,6 +6,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
@@ -24,12 +25,12 @@ public class SecurityConfigurationInMemory extends WebSecurityConfigurerAdapter 
     }
 
     @Bean
-    public static NoOpPasswordEncoder passwordEncoder() {
+    public static PasswordEncoder passwordEncoder() {
         // fixing exception There is no PasswordEncoder mapped for the id "null"
-        // WARNING : unsafe
+        // WARNING : unsafe use BCryptPasswordEncoder instead
         // adding .password("{noop}password") to auth.inMemoryAuthentication()
         // in previous method doesn't work
-        return (NoOpPasswordEncoder) NoOpPasswordEncoder.getInstance();
+        return NoOpPasswordEncoder.getInstance();
     }
 
 
