@@ -1,0 +1,10 @@
+{
+  "properties": [
+    {
+      "name": "my.library.version",
+      "type": "java.lang.String",
+      "description": "The version of the project TODO does not work ?"
+    }
+  ]
+}
+
