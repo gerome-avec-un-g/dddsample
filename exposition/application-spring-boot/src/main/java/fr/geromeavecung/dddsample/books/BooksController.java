@@ -8,6 +8,8 @@ import fr.geromeavecung.exposition.presentation.CreateBookForm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,8 +37,9 @@ public class BooksController {
     }
 
     @GetMapping
-    public ModelAndView books(Model model) {
+    public ModelAndView books(Model model, @AuthenticationPrincipal UserDetails userDetails) {
         ModelAndView modelAndView = new ModelAndView("books");
+        System.out.println(userDetails);
         modelAndView.addObject("books", booksPresentationService.displayBooks());
         modelAndView.addAllObjects(model.asMap());
         if (!modelAndView.getModelMap().containsAttribute("booksActionForm")) {
