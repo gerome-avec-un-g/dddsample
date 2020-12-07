@@ -14,5 +14,13 @@ global test strategy
 
 
 TODO  
-maven mvnw ? 
+maven mvnw ?  
 thymeleaf th:text placeholder good practice ?
+
+
+spring à revoir  
+3.1 jdbc  
+4.2 security et datasource  
+4.3.4 csrf à faire chaque form ?  
+5.1.2 jdbc configuration
+5.1.3 server config (specially ssl)
