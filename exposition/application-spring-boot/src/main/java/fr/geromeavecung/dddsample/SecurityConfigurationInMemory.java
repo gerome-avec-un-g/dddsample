@@ -27,14 +27,26 @@ public class SecurityConfigurationInMemory extends WebSecurityConfigurerAdapter 
 
     @Bean
     public static PasswordEncoder passwordEncoder() {
-        // fixing exception There is no PasswordEncoder mapped for the id "null"
+        // required to fix exception There is no PasswordEncoder mapped for the id "null"
         // WARNING : unsafe use BCryptPasswordEncoder instead
-        // adding .password("{noop}password") to auth.inMemoryAuthentication()
-        // in previous method doesn't work
         return NoOpPasswordEncoder.getInstance();
     }
 
-    @Override protected void configure(HttpSecurity http) throws Exception {
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        // TODO in controller ?
+        // TODO weird mix of role and authority ?
+        http.authorizeRequests()
+                // resources should be permitted to all
+                // because successful login redirects to last restricted url
+                .antMatchers("/styles/**", "/images/**").permitAll()
+                .antMatchers("/**").hasAuthority("ROLE_USER")
+                // for custom login page
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .permitAll()
+                .defaultSuccessUrl("/");
 
     }
 

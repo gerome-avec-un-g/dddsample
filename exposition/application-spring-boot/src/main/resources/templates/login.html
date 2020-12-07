@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout}">
+<head>
+    <title>Login</title>
+</head>
+<body>
+
+<div class="mdc-card" layout:fragment="content">
+    <div class="mdc-card__content">
+        <h2 class="demo-card__title mdc-typography mdc-typography--headline6">Login</h2>
+
+        <!-- TODO error not displayed on /login?error -->
+        <span th:if="${error}"> Unable to login. Check your username and password. </span>
+
+        <form method="POST" th:action="@{/login}" id="loginForm">
+            <label for="username">Username: </label>
+            <input type="text" name="username" id="username"/><br/>
+            <label for="password">Password: </label>
+            <input type="password" name="password" id="password"/><br/>
+            <input type="submit" value="Login"/>
+        </form>
+
+
+    </div>
+</div>
+
+</body>
+</html>
