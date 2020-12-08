@@ -43,11 +43,11 @@ public class BooksSteps {
     public void the_user_adds_a_book(DataTable table) {
         try {
             for (Map<String, String> columns : table.<String, String>asMaps(String.class, String.class)) {
-                CreateBookForm createBookForm = new CreateBookForm();
-                createBookForm.setTitle(columns.get("title"));
-                createBookForm.setAuthor(columns.get("author"));
-                createBookForm.setType(Book.Type.valueOf(columns.get("type")));
-                booksPresentationService.createBook(createBookForm);
+                BookCreationForm bookCreationForm = new BookCreationForm();
+                bookCreationForm.setTitle(columns.get("title"));
+                bookCreationForm.setAuthor(columns.get("author"));
+                bookCreationForm.setType(Book.Type.valueOf(columns.get("type")));
+                booksPresentationService.createBook(bookCreationForm);
             }
         } catch (Exception exception) {
             cucumberState.actualException = exception;
@@ -80,11 +80,11 @@ public class BooksSteps {
     public void aLibraryWithBooks(DataTable table) {
         try {
             for (Map<String, String> columns : table.<String, String>asMaps(String.class, String.class)) {
-                CreateBookForm createBookForm = new CreateBookForm();
-                createBookForm.setTitle(columns.get("title"));
-                createBookForm.setAuthor(columns.get("author"));
-                createBookForm.setType(Book.Type.valueOf(columns.get("type")));
-                booksPresentationService.createBook(createBookForm);
+                BookCreationForm bookCreationForm = new BookCreationForm();
+                bookCreationForm.setTitle(columns.get("title"));
+                bookCreationForm.setAuthor(columns.get("author"));
+                bookCreationForm.setType(Book.Type.valueOf(columns.get("type")));
+                booksPresentationService.createBook(bookCreationForm);
             }
         } catch (Exception exception) {
             cucumberState.actualException = exception;

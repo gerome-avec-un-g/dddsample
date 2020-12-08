@@ -6,9 +6,9 @@ import fr.geromeavecung.businessdomain.books.BookAlreadyExists;
 import fr.geromeavecung.businessdomain.books.Title;
 import fr.geromeavecung.businessdomain.shared.BusinessException;
 import fr.geromeavecung.dddsample.books.BooksController;
+import fr.geromeavecung.exposition.presentation.BookCreationForm;
 import fr.geromeavecung.exposition.presentation.BookSummary;
 import fr.geromeavecung.exposition.presentation.BooksPresentationService;
-import fr.geromeavecung.exposition.presentation.CreateBookForm;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,11 +68,11 @@ class BooksControllerTest {
 
     @WithMockUser(value = "buzz")
     @Test
-    void booksCreateGet_first_time() throws Exception {
-        mockMvc.perform(get("/books/create"))
+    void booksCreationGet_first_time() throws Exception {
+        mockMvc.perform(get("/books/creation"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("book-creation"))
-                .andExpect(model().attribute("createBookForm", new CreateBookForm()))
+                .andExpect(model().attribute("bookCreationForm", new BookCreationForm()))
                 .andExpect(model().attribute("types", Arrays.stream(Book.Type.values()).collect(Collectors.toSet())))
                 .andExpect(model().attribute("success", nullValue()))
                 .andExpect(model().attribute("businessError", nullValue()));
@@ -80,11 +80,11 @@ class BooksControllerTest {
 
     @WithMockUser(value = "buzz")
     @Test
-    void booksCreateGet_redirect_after_success() throws Exception {
-        mockMvc.perform(get("/books/create").flashAttr("success", "bookCreationSuccess"))
+    void booksCreationGet_redirect_after_success() throws Exception {
+        mockMvc.perform(get("/books/creation").flashAttr("success", "bookCreationSuccess"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("book-creation"))
-                .andExpect(model().attribute("createBookForm", new CreateBookForm()))
+                .andExpect(model().attribute("bookCreationForm", new BookCreationForm()))
                 .andExpect(model().attribute("success", "bookCreationSuccess"))
                 .andExpect(model().attribute("businessError", nullValue()))
                 .andExpect(content().string(containsString("Le livre est créé")));
@@ -92,20 +92,20 @@ class BooksControllerTest {
 
     @WithMockUser(value = "buzz")
     @Test
-    void booksCreateGet_redirect_after_error() throws Exception {
-        CreateBookForm createBookForm = new CreateBookForm();
-        createBookForm.setAuthor("abc");
-        createBookForm.setTitle("def");
-        createBookForm.setType(Book.Type.FICTION);
+    void booksCreationGet_redirect_after_error() throws Exception {
+        BookCreationForm bookCreationForm = new BookCreationForm();
+        bookCreationForm.setAuthor("abc");
+        bookCreationForm.setTitle("def");
+        bookCreationForm.setType(Book.Type.FICTION);
         Book book = Book.create(Title.create("abc"), Author.create("def"), Book.Type.FICTION);
         BusinessException businessException = new BookAlreadyExists(book);
 
-        mockMvc.perform(get("/books/create")
-                .flashAttr("createBookForm", createBookForm)
+        mockMvc.perform(get("/books/creation")
+                .flashAttr("bookCreationForm", bookCreationForm)
                 .flashAttr("businessError", businessException))
                 .andExpect(status().isOk())
                 .andExpect(view().name("book-creation"))
-                .andExpect(model().attribute("createBookForm", createBookForm))
+                .andExpect(model().attribute("bookCreationForm", bookCreationForm))
                 .andExpect(model().attribute("success", nullValue()))
                 .andExpect(model().attribute("businessError", businessException))
                 .andExpect(content().string(containsString("Le livre abc de def existe déjà")))
@@ -115,41 +115,41 @@ class BooksControllerTest {
 
     @WithMockUser(value = "buzz")
     @Test
-    void booksCreatePost_success() throws Exception {
-        CreateBookForm createBookForm = new CreateBookForm();
-        createBookForm.setAuthor("abc");
-        createBookForm.setTitle("def");
-        createBookForm.setType(Book.Type.FICTION);
+    void booksCreationPost_success() throws Exception {
+        BookCreationForm bookCreationForm = new BookCreationForm();
+        bookCreationForm.setAuthor("abc");
+        bookCreationForm.setTitle("def");
+        bookCreationForm.setType(Book.Type.FICTION);
 
-        mockMvc.perform(post("/books/create").flashAttr("createBookForm", createBookForm))
+        mockMvc.perform(post("/books/creation").flashAttr("bookCreationForm", bookCreationForm))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/books/create"))
+                .andExpect(redirectedUrl("/books/creation"))
                 .andExpect(flash().attribute("success", "bookCreationSuccess"));
 
-        verify(booksPresentationService).createBook(createBookForm);
+        verify(booksPresentationService).createBook(bookCreationForm);
     }
 
     @WithMockUser(value = "buzz")
     @Test
-    void booksCreatePost_error() throws Exception {
-        CreateBookForm createBookForm = new CreateBookForm();
-        createBookForm.setAuthor("abc");
-        createBookForm.setTitle("def");
-        createBookForm.setType(Book.Type.FICTION);
-        CreateBookForm expectedCreateBookForm = new CreateBookForm();
-        expectedCreateBookForm.setAuthor("abc");
-        expectedCreateBookForm.setTitle("def");
-        createBookForm.setType(Book.Type.FICTION);
+    void booksCreationPost_error() throws Exception {
+        BookCreationForm bookCreationForm = new BookCreationForm();
+        bookCreationForm.setAuthor("abc");
+        bookCreationForm.setTitle("def");
+        bookCreationForm.setType(Book.Type.FICTION);
+        BookCreationForm expectedBookCreationForm = new BookCreationForm();
+        expectedBookCreationForm.setAuthor("abc");
+        expectedBookCreationForm.setTitle("def");
+        bookCreationForm.setType(Book.Type.FICTION);
 
         Book book = Book.create(Title.create("abc"), Author.create("def"), Book.Type.FICTION);
         BookAlreadyExists bookAlreadyExists = new BookAlreadyExists(book);
-        doThrow(bookAlreadyExists).when(booksPresentationService).createBook(expectedCreateBookForm);
+        doThrow(bookAlreadyExists).when(booksPresentationService).createBook(expectedBookCreationForm);
 
-        mockMvc.perform(post("/books/create").flashAttr("createBookForm", createBookForm))
+        mockMvc.perform(post("/books/creation").flashAttr("bookCreationForm", bookCreationForm))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/books/create"))
+                .andExpect(redirectedUrl("/books/creation"))
                 .andExpect(flash().attribute("businessError", bookAlreadyExists))
-                .andExpect(flash().attribute("createBookForm", createBookForm));
+                .andExpect(flash().attribute("bookCreationForm", bookCreationForm));
     }
 
     // TODO more test for security/roles

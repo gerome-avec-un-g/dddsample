@@ -3,9 +3,9 @@ package fr.geromeavecung.dddsample.books;
 import fr.geromeavecung.businessdomain.books.Book;
 import fr.geromeavecung.businessdomain.shared.BusinessException;
 import fr.geromeavecung.dddsample.LibraryApplicationPropertiesConfiguration;
+import fr.geromeavecung.exposition.presentation.BookCreationForm;
 import fr.geromeavecung.exposition.presentation.BooksActionForm;
 import fr.geromeavecung.exposition.presentation.BooksPresentationService;
-import fr.geromeavecung.exposition.presentation.CreateBookForm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,30 +60,28 @@ public class BooksController {
         return modelAndView;
     }
 
-    @GetMapping("/create")
+    @GetMapping("/creation")
     public ModelAndView bookCreationGet(Model model) {
         ModelAndView modelAndView = new ModelAndView("book-creation");
         modelAndView.addAllObjects(model.asMap());
-        if (!modelAndView.getModelMap().containsAttribute("createBookForm")) {
-            modelAndView.addObject("createBookForm", new CreateBookForm());
+        if (!modelAndView.getModelMap().containsAttribute("bookCreationForm")) {
+            modelAndView.addObject("bookCreationForm", new BookCreationForm());
         }
         modelAndView.addObject("types", Arrays.stream(Book.Type.values()).collect(Collectors.toSet()));
         return modelAndView;
     }
 
-    // TODO post should be on /books or /books/create ? page urls vs rest urls ?
-    // TODO @ModelAttribute not mandatory ?
-    @PostMapping("/create")
-    public RedirectView bookCreationPost(@ModelAttribute CreateBookForm createBookForm, RedirectAttributes redirectAttributes) {
+    @PostMapping("/creation")
+    public RedirectView bookCreationPost(@ModelAttribute BookCreationForm bookCreationForm, RedirectAttributes redirectAttributes) {
         try {
-            booksPresentationService.createBook(createBookForm);
+            booksPresentationService.createBook(bookCreationForm);
             redirectAttributes.addFlashAttribute("success", "bookCreationSuccess");
         } catch (BusinessException businessException) {
-            LOGGER.error("/books/create", businessException);
-            redirectAttributes.addFlashAttribute("createBookForm", createBookForm);
+            LOGGER.error("/books/creation", businessException);
+            redirectAttributes.addFlashAttribute("bookCreationForm", bookCreationForm);
             redirectAttributes.addFlashAttribute("businessError", businessException);
         }
-        return new RedirectView("/books/create", true);
+        return new RedirectView("/books/creation", true);
     }
 
     @PostMapping("/actions")

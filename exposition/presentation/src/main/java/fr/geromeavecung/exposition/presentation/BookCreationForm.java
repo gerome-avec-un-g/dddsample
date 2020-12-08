@@ -4,7 +4,7 @@ import fr.geromeavecung.businessdomain.books.Book;
 
 import java.util.Objects;
 
-public class CreateBookForm {
+public class BookCreationForm {
 
     private String title;
 
@@ -40,7 +40,7 @@ public class CreateBookForm {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CreateBookForm that = (CreateBookForm) o;
+        BookCreationForm that = (BookCreationForm) o;
         return Objects.equals(title, that.title) &&
                 Objects.equals(author, that.author);
     }

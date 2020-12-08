@@ -16,10 +16,10 @@ public class BooksPresentationService {
         this.booksOrchestrationService = booksOrchestrationService;
     }
 
-    public void createBook(CreateBookForm createBookForm) {
-        Title title = Title.create(createBookForm.getTitle());
-        Author author = Author.create(createBookForm.getAuthor());
-        Book book = Book.create(title, author, createBookForm.getType());
+    public void createBook(BookCreationForm bookCreationForm) {
+        Title title = Title.create(bookCreationForm.getTitle());
+        Author author = Author.create(bookCreationForm.getAuthor());
+        Book book = Book.create(title, author, bookCreationForm.getType());
         booksOrchestrationService.add(book);
     }
 
