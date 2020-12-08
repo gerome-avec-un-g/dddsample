@@ -11,7 +11,7 @@ global test strategy
 * junit to test non-business cases for equals, hashcode, toString
 * cucumber for collaborative business testing from orchestration/presentation to domain/repositories (with in memory implementations)
 
-
+mvn spring-boot:run -Dspring-boot.run.profiles=local
 
 TODO  
 maven mvnw ?  

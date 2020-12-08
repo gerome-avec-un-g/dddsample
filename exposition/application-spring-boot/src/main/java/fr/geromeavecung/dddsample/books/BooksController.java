@@ -43,7 +43,7 @@ public class BooksController {
     @GetMapping
     public ModelAndView books(Model model, @AuthenticationPrincipal UserDetails userDetails) {
         ModelAndView modelAndView = new ModelAndView("books");
-        System.out.println(libraryApplicationPropertiesConfiguration.getVersion() + userDetails);
+        System.out.println(libraryApplicationPropertiesConfiguration.toString() + " " + userDetails);
         modelAndView.addObject("books", booksPresentationService.displayBooks());
         modelAndView.addAllObjects(model.asMap());
         if (!modelAndView.getModelMap().containsAttribute("booksActionForm")) {

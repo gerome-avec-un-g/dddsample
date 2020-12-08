@@ -9,6 +9,8 @@ public class LibraryApplicationPropertiesConfiguration {
 
     private String version = "UNKNOWN";
 
+    private String environment = "UNKNOWN";
+
     public String getVersion() {
         return version;
     }
@@ -17,11 +19,19 @@ public class LibraryApplicationPropertiesConfiguration {
         this.version = version;
     }
 
+    public String getEnvironment() {
+        return environment;
+    }
+
+    public void setEnvironment(String environment) {
+        this.environment = environment;
+    }
+
     @Override
     public String toString() {
         return "LibraryApplicationPropertiesConfiguration{" +
                 "version='" + version + '\'' +
+                ", environment='" + environment + '\'' +
                 '}';
     }
-
 }
