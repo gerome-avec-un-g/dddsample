@@ -12,8 +12,8 @@ import org.junit.runner.RunWith;
         features = {"src/test/resources/features"},
         tags = "not @inProgress"
         /*
-         * to just run one feature: features = {"src/test/resources/features/add_books.feature"},
-         * to just run a few tests in debug: tags = "@only"
+         * run single feature: features = {"src/test/resources/features/add_books.feature"},
+         * run specific tests to debug: tags = "@only"
          */
 )
 public class CucumberRunnerTest {

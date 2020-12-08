@@ -31,7 +31,7 @@ public class SecurityConfigurationInMemory extends WebSecurityConfigurerAdapter 
     @Bean
     public static PasswordEncoder passwordEncoder() {
         // required to fix exception There is no PasswordEncoder mapped for the id "null"
-        // WARNING : unsafe use BCryptPasswordEncoder instead
+        // WARNING : unsafe use BCryptPasswordEncoder instead for other profiles
         return NoOpPasswordEncoder.getInstance();
     }
 
@@ -45,7 +45,7 @@ public class SecurityConfigurationInMemory extends WebSecurityConfigurerAdapter 
     }
 
     private void configureAuthorizations(HttpSecurity http) throws Exception {
-        // TODO in controller ?
+        // TODO replace with annotation in controller ?
         // TODO weird mix of role and authority ?
         http.authorizeRequests()
                 // static resources should be permitted to all
@@ -65,7 +65,7 @@ public class SecurityConfigurationInMemory extends WebSecurityConfigurerAdapter 
         // TODO .invalidateHttpSession(true)
         // TODO .deleteCookies("JSESSIONID")
         http.logout()
-                // use get url instead of post
+                // use get verb instead of post
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/login");
     }
