@@ -37,6 +37,7 @@ public class BooksPresentationService {
     }
 
     public Book bookDetail(String id) {
-        return null;
+        Title title = Title.create(id);
+        return booksOrchestrationService.bookDetail(title);
     }
 }

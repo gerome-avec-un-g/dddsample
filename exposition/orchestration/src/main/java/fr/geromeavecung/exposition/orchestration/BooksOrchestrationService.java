@@ -2,6 +2,7 @@ package fr.geromeavecung.exposition.orchestration;
 
 import fr.geromeavecung.businessdomain.books.Book;
 import fr.geromeavecung.businessdomain.books.BooksService;
+import fr.geromeavecung.businessdomain.books.Title;
 
 import java.util.Set;
 
@@ -22,4 +23,7 @@ public class BooksOrchestrationService {
         return booksService.displayBooks();
     }
 
+    public Book bookDetail(Title title) {
+        return booksService.bookDetail(title);
+    }
 }
