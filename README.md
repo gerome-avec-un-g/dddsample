@@ -13,8 +13,7 @@ global test strategy
 
 mvn spring-boot:run -Dspring-boot.run.profiles=local
 
-TODO  
-maven mvnw ?  
+TODO maven mvnw ?  
 thymeleaf th:text placeholder good practice ?
 
 

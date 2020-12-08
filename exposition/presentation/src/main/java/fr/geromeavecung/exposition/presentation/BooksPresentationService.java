@@ -35,4 +35,8 @@ public class BooksPresentationService {
             throw new CantDoTwoActionsAtOnce(idsAction1, idsAction2);
         }
     }
+
+    public Book bookDetail(String id) {
+        return null;
+    }
 }

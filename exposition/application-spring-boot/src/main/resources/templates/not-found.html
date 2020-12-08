@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout}">
+<head>
+    <title>Oops</title>
+</head>
+<body>
+
+<div class="mdc-card" layout:fragment="content">
+    <div class="mdc-card__content">
+        <h2 class="demo-card__title mdc-typography mdc-typography--headline6" th:text="#{not.found.title}"></h2>
+        <p th:text="#{not.found.message}"></p>
+    </div>
+</div>
+
+</body>
+</html>

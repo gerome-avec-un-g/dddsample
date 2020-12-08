@@ -7,16 +7,20 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
 
 @ControllerAdvice
-class GlobalDefaultExceptionHandler {
+class LibraryApplicationGlobalExceptionHandler {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(GlobalDefaultExceptionHandler.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(LibraryApplicationGlobalExceptionHandler.class);
 
     @ExceptionHandler(Exception.class)
     public ModelAndView globalExceptionHandler(Exception exception) {
         LOGGER.error("Global exception caught: ", exception);
-        return new ModelAndView("error");
+        return new ModelAndView("server-error");
     }
 
-    // TODO global 404 + manage error Not Found vs exceptions
+//    @ExceptionHandler(Exception.class)
+//    public ModelAndView notFoundHandler(Exception exception) {
+//        LOGGER.error("Resource not found: ", exception);
+//        return new ModelAndView("not-found");
+//    }
 
 }
