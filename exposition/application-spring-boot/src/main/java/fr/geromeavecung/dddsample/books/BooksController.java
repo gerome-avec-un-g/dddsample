@@ -56,7 +56,7 @@ public class BooksController {
     @GetMapping("/{id}")
     public ModelAndView booksById(@PathVariable("id") String id, @AuthenticationPrincipal UserDetails userDetails) {
         ModelAndView modelAndView = new ModelAndView("book-detail");
-        modelAndView.addObject("book", booksPresentationService.bookDetail(id));
+        modelAndView.addObject("bookDetail", booksPresentationService.bookDetail(id));
         return modelAndView;
     }
 

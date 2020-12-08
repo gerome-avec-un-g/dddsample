@@ -36,8 +36,8 @@ public class BooksPresentationService {
         }
     }
 
-    public Book bookDetail(String id) {
+    public BookDetail bookDetail(String id) {
         Title title = Title.create(id);
-        return booksOrchestrationService.bookDetail(title);
+        return new BookDetail(booksOrchestrationService.bookDetail(title));
     }
 }
