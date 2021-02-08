@@ -10,7 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>exposition</module>
-        <module>business-domain</module>
+        <module>business</module>
         <module>infrastructure</module>
         <module>tests-report</module>
     </modules>
