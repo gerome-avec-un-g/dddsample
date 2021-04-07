@@ -1,9 +1,11 @@
 package fr.geromeavecung.dddsample.books;
 
+import com.lowagie.text.DocumentException;
 import fr.geromeavecung.businessdomain.books.Book;
 import fr.geromeavecung.businessdomain.shared.BusinessException;
 import fr.geromeavecung.dddsample.LibraryApplicationPropertiesConfiguration;
 import fr.geromeavecung.exposition.presentation.BookCreationForm;
+import fr.geromeavecung.exposition.presentation.BookSummary;
 import fr.geromeavecung.exposition.presentation.BooksActionForm;
 import fr.geromeavecung.exposition.presentation.BooksPresentationService;
 import org.slf4j.Logger;
@@ -21,12 +23,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
+import org.thymeleaf.templatemode.TemplateMode;
+import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
+import org.xhtmlrenderer.pdf.ITextRenderer;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
+import java.net.http.HttpResponse;
 import java.util.Arrays;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Controller
-@RequestMapping("/books")
+//@RequestMapping("/books")
 public class BooksController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(BooksController.class);
@@ -41,7 +53,7 @@ public class BooksController {
         this.libraryApplicationPropertiesConfiguration = libraryApplicationPropertiesConfiguration;
     }
 
-    @GetMapping
+    @GetMapping("/books")
     public ModelAndView books(Model model, @AuthenticationPrincipal UserDetails userDetails) {
         ModelAndView modelAndView = new ModelAndView("books");
         System.out.println(libraryApplicationPropertiesConfiguration.toString() + " " + userDetails);
@@ -53,14 +65,69 @@ public class BooksController {
         return modelAndView;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/books-print")
+    public void print(@AuthenticationPrincipal UserDetails userDetails, HttpServletResponse response) throws DocumentException, IOException {
+
+        String html = parseThymeleafTemplate();
+        //generatePdfFromHtml(html);
+
+        ServletOutputStream outputStream = null;
+        try  {
+            //String url = UtilitaryTool.getBaseUrl(request)+"/books/x/y/"+bookId+"?pdf=true";
+            response.setContentType("application/pdf; charset=UTF-8");
+            response.setHeader("Content-Disposition", "attachment;filename=books.pdf");
+            outputStream = response.getOutputStream();
+            ITextRenderer renderer = new ITextRenderer();
+            renderer.setDocumentFromString(html);
+            renderer.layout();
+            renderer.createPDF(outputStream);
+        } catch (Exception e)  {
+            LOGGER.error("An error occured on sending PDF to browser", e);
+        } finally {
+            try {
+                outputStream.flush();
+                outputStream.close();
+            } catch (Exception ex) {
+                LOGGER.error("An error occured on flushing or closing outputStream", ex);
+            }
+        }
+
+    }
+
+    private String parseThymeleafTemplate() {
+        ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
+        templateResolver.setSuffix(".html");
+        templateResolver.setTemplateMode(TemplateMode.HTML);
+
+        TemplateEngine templateEngine = new TemplateEngine();
+        templateEngine.setTemplateResolver(templateResolver);
+        Set<BookSummary> books = booksPresentationService.displayBooks();
+        Context context = new Context();
+        context.setVariable("books", books);
+
+        return templateEngine.process("templates/books-print", context);
+    }
+
+//    public void generatePdfFromHtml(String html) throws IOException, DocumentException {
+//        //String outputFolder = System.getProperty("user.home") + File.separator + "thymeleaf.pdf";
+//        OutputStream outputStream = new FileOutputStream(outputFolder);
+//
+//        ITextRenderer renderer = new ITextRenderer();
+//        renderer.setDocumentFromString(html);
+//        renderer.layout();
+//        renderer.createPDF(outputStream);
+//
+//        outputStream.close();
+//    }
+
+    @GetMapping("/books/{id}")
     public ModelAndView booksById(@PathVariable("id") String id, @AuthenticationPrincipal UserDetails userDetails) {
         ModelAndView modelAndView = new ModelAndView("book-detail");
         modelAndView.addObject("bookDetail", booksPresentationService.bookDetail(id));
         return modelAndView;
     }
 
-    @GetMapping("/creation")
+    @GetMapping("/books/creation")
     public ModelAndView bookCreationGet(Model model) {
         ModelAndView modelAndView = new ModelAndView("book-creation");
         modelAndView.addAllObjects(model.asMap());
@@ -71,7 +138,7 @@ public class BooksController {
         return modelAndView;
     }
 
-    @PostMapping("/creation")
+    @PostMapping("/books/creation")
     public RedirectView bookCreationPost(@ModelAttribute BookCreationForm bookCreationForm, RedirectAttributes redirectAttributes) {
         try {
             booksPresentationService.createBook(bookCreationForm);
@@ -84,7 +151,7 @@ public class BooksController {
         return new RedirectView("/books/creation", true);
     }
 
-    @PostMapping("/actions")
+    @PostMapping("/books/actions")
     public RedirectView bookActionPost(@ModelAttribute BooksActionForm booksActionForm, RedirectAttributes redirectAttributes) {
         try {
             booksPresentationService.booksAction(booksActionForm);
