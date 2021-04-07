@@ -67,11 +67,10 @@ public class BooksController {
         Context context = new Context();
         context.setVariable("books", books);
         String html = templateEngine.process("books-print", context);
-        ServletOutputStream outputStream = null;
+        ServletOutputStream outputStream = response.getOutputStream();
         try  {
             response.setContentType("application/pdf; charset=UTF-8");
             response.setHeader("Content-Disposition", "attachment;filename=books.pdf");
-            outputStream = response.getOutputStream();
             ITextRenderer renderer = new ITextRenderer();
             renderer.setDocumentFromString(html);
             renderer.layout();
