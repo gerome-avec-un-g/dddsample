@@ -22,15 +22,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
-import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
-import org.thymeleaf.templatemode.TemplateMode;
-import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
+import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.xhtmlrenderer.pdf.ITextRenderer;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
-import java.io.*;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -41,12 +39,15 @@ public class BooksController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(BooksController.class);
 
+    private final SpringTemplateEngine templateEngine;
+
     private final BooksPresentationService booksPresentationService;
 
     private final LibraryApplicationPropertiesConfiguration libraryApplicationPropertiesConfiguration;
 
     @Autowired
-    public BooksController(BooksPresentationService booksPresentationService, LibraryApplicationPropertiesConfiguration libraryApplicationPropertiesConfiguration) {
+    public BooksController(SpringTemplateEngine templateEngine, BooksPresentationService booksPresentationService, LibraryApplicationPropertiesConfiguration libraryApplicationPropertiesConfiguration) {
+        this.templateEngine = templateEngine;
         this.booksPresentationService = booksPresentationService;
         this.libraryApplicationPropertiesConfiguration = libraryApplicationPropertiesConfiguration;
     }
@@ -65,7 +66,10 @@ public class BooksController {
 
     @GetMapping("/books-print")
     public void print(@AuthenticationPrincipal UserDetails userDetails, HttpServletResponse response) throws DocumentException, IOException {
-        String html = parseThymeleafTemplate();
+        Set<BookSummary> books = booksPresentationService.displayBooks();
+        Context context = new Context();
+        context.setVariable("books", books);
+        String html = templateEngine.process("books-print", context);
         ServletOutputStream outputStream = null;
         try  {
             response.setContentType("application/pdf; charset=UTF-8");
@@ -86,20 +90,6 @@ public class BooksController {
             }
         }
 
-    }
-
-    private String parseThymeleafTemplate() {
-        ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
-        templateResolver.setSuffix(".html");
-        templateResolver.setTemplateMode(TemplateMode.HTML);
-
-        TemplateEngine templateEngine = new TemplateEngine();
-        templateEngine.setTemplateResolver(templateResolver);
-        Set<BookSummary> books = booksPresentationService.displayBooks();
-        Context context = new Context();
-        context.setVariable("books", books);
-
-        return templateEngine.process("templates/books-print", context);
     }
 
     @GetMapping("/books/{id}")
