@@ -1,43 +1,199 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Books</title>
+    <meta charset="UTF-8"/>
+    <style>
+        body {
+    font-family: sans-serif;
+    font-size: 12px;
+}
+
+@page {
+
+    @bottom-left {
+        content: element(footer);
+        vertical-align: top;
+        padding-top: 10px;
+    }
+
+    @top-right {
+        content: element(header);
+        vertical-align: bottom;
+        padding-bottom: 10px;
+    }
+
+    margin-top: 3.3cm;
+    margin-left: 2cm;
+    margin-right: 2cm;
+    margin-bottom: 3.3cm;
+
+    size: A4 portrait;
+}
+
+div.header {
+    position: running(header);
+}
+
+div.footer {
+    display: block;
+    margin-top: 0.5cm;
+    position: running(footer);
+}
+
+#pagenumber:before {
+    content: counter(page);
+}
+
+#pagecount:before {
+    content: counter(pages);
+}
+
+.logo-container {
+    text-align: right;
+}
+
+.page-count {
+    text-align: right;
+}
+
+.logo {
+    width: 275px;
+}
+
+h1 {
+    font-size: 18px;
+    margin-bottom: 40px;
+    margin-top: 40px;
+}
+
+p {
+    font-size: 12px;
+}
+
+.footer {
+    text-align: center;
+}
+
+@font-face {
+    font-family: "Bar-Code 39";
+    src: url(Code39.ttf) format('truetype');
+}
+
+.barcode {
+    font-family: "Bar-Code 39";
+    font-size: 26px;
+}
+
+.right {
+    text-align: right;
+}
+
+.left {
+    text-align: left;
+}
+
+.bottom {
+    vertical-align: bottom;
+}
+
+.address-block {
+    height: 100px;
+}
+
+table {
+    width: 100%;
+}
+
+hr {
+    background-color: #000000;
+    border: dashed #000000 0.5px;
+    height: 1px;
+}
+
+.page-break {
+    page-break-after: always;
+}
+
+.next-page {
+    page-break-before: always
+}
+
+
+    </style>
 </head>
 <body>
-<div class="mdc-card">
+<h1>YOUR EXAMPLE THYMELEAF PDF</h1>
 
-    <div class="mdc-card__content">
+<p th:text="#{longMessage}"></p>
 
-        <h2 class="demo-card__title mdc-typography mdc-typography--headline6">Nice PDF</h2>
+<p>Quisque mauris magna, vulputate eget feugiat ut, molestie posuere urna. Etiam volutpat hendrerit efficitur.
+    Vestibulum condimentum volutpat arcu porttitor condimentum. Aliquam vestibulum pulvinar enim sit amet fermentum.
+    Vivamus vulputate, enim id rutrum dictum, enim nibh fermentum mi, vel varius tortor risus at enim. Aliquam
+    scelerisque mi metus, non imperdiet risus interdum eu. Nullam pretium nulla ante, vitae tincidunt neque suscipit in.
+    Nam dapibus iaculis nisl, eget dictum lectus dictum vitae. Ut malesuada justo ligula, sed rhoncus nisl gravida eu.
+    Fusce nulla mi, suscipit at elit ullamcorper, aliquet vehicula odio. Ut molestie ac purus vitae porttitor. Curabitur
+    eget euismod enim, venenatis posuere eros. Ut vel erat in odio varius eleifend. Quisque aliquam odio turpis, sed
+    posuere purus ullamcorper eu.</p>
 
-        <p th:text="#{longMessage}"></p>
+<p><b>Best regards,</b></p>
 
-        <div class="mdc-data-table">
-            <div class="mdc-data-table__table-container">
-                <table class="mdc-data-table__table" aria-label="Dessert calories">
-                    <thead>
-                    <tr class="mdc-data-table__header-row">
-                        <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Title</th>
-                        <th class="mdc-data-table__header-cell mdc-data-table__header-cell--numeric"
-                            role="columnheader" scope="col">Author
-                        </th>
-                        <th class="mdc-data-table__header-cell mdc-data-table__header-cell--numeric"
-                            role="columnheader" scope="col">Type
-                        </th>
-                    </tr>
-                    </thead>
-                    <tbody class="mdc-data-table__content">
-                    <tr class="mdc-data-table__row" th:each="book: ${books}">
-                        <td class="mdc-data-table__cell" th:text="${book.title}"></td>
-                        <td class="mdc-data-table__cell" th:text="${book.author}"></td>
-                        <td class="mdc-data-table__cell" th:text="#{${book.type}}"></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+<p>Thymeleaf Example Project</p>
+
+<p><b>You find more information on the second page.</b></p>
+
+<div class="next-page">
+
+    <h2>More Information</h2>
+
+    <div class="mdc-data-table">
+        <div class="mdc-data-table__table-container">
+            <table class="mdc-data-table__table" aria-label="Dessert calories">
+                <thead>
+                <tr class="mdc-data-table__header-row">
+                    <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Title</th>
+                    <th class="mdc-data-table__header-cell mdc-data-table__header-cell--numeric"
+                        role="columnheader" scope="col">Author
+                    </th>
+                    <th class="mdc-data-table__header-cell mdc-data-table__header-cell--numeric"
+                        role="columnheader" scope="col">Type
+                    </th>
+                </tr>
+                </thead>
+                <tbody class="mdc-data-table__content">
+                <tr class="mdc-data-table__row" th:each="book: ${books}">
+                    <td class="mdc-data-table__cell" th:text="${book.title}"></td>
+                    <td class="mdc-data-table__cell" th:text="${book.author}"></td>
+                    <td class="mdc-data-table__cell" th:text="#{${book.type}}"></td>
+                </tr>
+                </tbody>
+            </table>
         </div>
-
     </div>
+
+    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+        dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+        clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
+        consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed
+        diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+        takimata sanctus est Lorem ipsum dolor sit amet.</p>
+    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+        dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+        clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
+        consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed
+        diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+        takimata sanctus est Lorem ipsum dolor sit amet.</p>
+    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+        dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+        clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
+        consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed
+        diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+        takimata sanctus est Lorem ipsum dolor sit amet.</p>
+    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+        dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+        clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
+        consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed
+        diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+        takimata sanctus est Lorem ipsum dolor sit amet.</p>
 </div>
 
 </body>

@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
@@ -32,7 +31,6 @@ import org.xhtmlrenderer.pdf.ITextRenderer;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.net.http.HttpResponse;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -67,13 +65,9 @@ public class BooksController {
 
     @GetMapping("/books-print")
     public void print(@AuthenticationPrincipal UserDetails userDetails, HttpServletResponse response) throws DocumentException, IOException {
-
         String html = parseThymeleafTemplate();
-        //generatePdfFromHtml(html);
-
         ServletOutputStream outputStream = null;
         try  {
-            //String url = UtilitaryTool.getBaseUrl(request)+"/books/x/y/"+bookId+"?pdf=true";
             response.setContentType("application/pdf; charset=UTF-8");
             response.setHeader("Content-Disposition", "attachment;filename=books.pdf");
             outputStream = response.getOutputStream();
@@ -107,18 +101,6 @@ public class BooksController {
 
         return templateEngine.process("templates/books-print", context);
     }
-
-//    public void generatePdfFromHtml(String html) throws IOException, DocumentException {
-//        //String outputFolder = System.getProperty("user.home") + File.separator + "thymeleaf.pdf";
-//        OutputStream outputStream = new FileOutputStream(outputFolder);
-//
-//        ITextRenderer renderer = new ITextRenderer();
-//        renderer.setDocumentFromString(html);
-//        renderer.layout();
-//        renderer.createPDF(outputStream);
-//
-//        outputStream.close();
-//    }
 
     @GetMapping("/books/{id}")
     public ModelAndView booksById(@PathVariable("id") String id, @AuthenticationPrincipal UserDetails userDetails) {
