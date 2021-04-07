@@ -15,10 +15,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
@@ -34,7 +31,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Controller
-//@RequestMapping("/books")
+@RequestMapping("/books")
 public class BooksController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(BooksController.class);
@@ -52,7 +49,7 @@ public class BooksController {
         this.libraryApplicationPropertiesConfiguration = libraryApplicationPropertiesConfiguration;
     }
 
-    @GetMapping("/books")
+    @GetMapping
     public ModelAndView books(Model model, @AuthenticationPrincipal UserDetails userDetails) {
         ModelAndView modelAndView = new ModelAndView("books");
         System.out.println(libraryApplicationPropertiesConfiguration.toString() + " " + userDetails);
@@ -64,7 +61,7 @@ public class BooksController {
         return modelAndView;
     }
 
-    @GetMapping("/books-print")
+    @GetMapping("/print")
     public void print(@AuthenticationPrincipal UserDetails userDetails, HttpServletResponse response) throws DocumentException, IOException {
         Set<BookSummary> books = booksPresentationService.displayBooks();
         Context context = new Context();
@@ -92,14 +89,14 @@ public class BooksController {
 
     }
 
-    @GetMapping("/books/{id}")
+    @GetMapping("/{id}")
     public ModelAndView booksById(@PathVariable("id") String id, @AuthenticationPrincipal UserDetails userDetails) {
         ModelAndView modelAndView = new ModelAndView("book-detail");
         modelAndView.addObject("bookDetail", booksPresentationService.bookDetail(id));
         return modelAndView;
     }
 
-    @GetMapping("/books/creation")
+    @GetMapping("/creation")
     public ModelAndView bookCreationGet(Model model) {
         ModelAndView modelAndView = new ModelAndView("book-creation");
         modelAndView.addAllObjects(model.asMap());
@@ -110,7 +107,7 @@ public class BooksController {
         return modelAndView;
     }
 
-    @PostMapping("/books/creation")
+    @PostMapping("/creation")
     public RedirectView bookCreationPost(@ModelAttribute BookCreationForm bookCreationForm, RedirectAttributes redirectAttributes) {
         try {
             booksPresentationService.createBook(bookCreationForm);
@@ -123,7 +120,7 @@ public class BooksController {
         return new RedirectView("/books/creation", true);
     }
 
-    @PostMapping("/books/actions")
+    @PostMapping("/actions")
     public RedirectView bookActionPost(@ModelAttribute BooksActionForm booksActionForm, RedirectAttributes redirectAttributes) {
         try {
             booksPresentationService.booksAction(booksActionForm);

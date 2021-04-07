@@ -63,7 +63,7 @@ class BooksControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name("books"))
                 .andExpect(model().attribute("books", expectedBooks))
-                .andExpect(content().string(containsString("href=\"/books/create\"")));
+                .andExpect(content().string(containsString("href=\"/books/creation\"")));
     }
 
     @WithMockUser(value = "buzz")
