@@ -2,130 +2,47 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'/>
     <meta charset="UTF-8"/>
-    <title>C.V.</title>
-    <style>
-
-    </style>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
 </head>
 
 <body>
 
-<h1 th:text="#{jobTitle}">placeholder</h1>
-<h1 th:text="#{job}">placeholder</h1>
-<div class="name" th:text="#{name}">placeholder</div>
-<div th:text="#{mail}">placeholder</div>
-<!--            <div th:text="#{phone}">placeholder</div>-->
-<div th:text="#{age}">placeholder</div>
+<h1 th:utext="#{jobTitle}">placeholder</h1>
+<h1 th:utext="#{job}">placeholder</h1>
+<div class="name" th:utext="#{name}">placeholder</div>
+<div th:utext="#{mail}">placeholder</div>
+<!--            <div th:utext="#{phone}">placeholder</div>-->
+<div th:utext="#{age}">placeholder</div>
 
-<h1 th:text="#{skills}">placeholder</h1>
+<h1 th:utext="#{skills}">placeholder</h1>
 <th:block th:each="skill: ${skills}">
-    <div th:text="#{${skill}+'Title'}">placeholder</div>
-    <div th:text="#{${skill}}">placeholder</div>
+    <div th:utext="#{${skill}+'Title'}">placeholder</div>
+    <div th:utext="#{${skill}}">placeholder</div>
 </th:block>
 
-<h1 th:text="#{missions}">placeholder</h1>
+<h1 th:utext="#{missions}">placeholder</h1>
 <th:block th:each="mission: ${missions}">
     <div th:utext="#{${mission}+'Date'}">placeholder</div>
     <div th:utext="#{${mission}}">placeholder</div>
-    <div th:text="#{${mission}+'TechnicalEnvironment'}">placeholder</div>
+    <div th:utext="#{${mission}+'TechnicalEnvironment'}">placeholder</div>
 </th:block>
 
-<div class="dates">
-    <div>2011 à 2013</div>
-    <div>3 ans</div>
-</div>
-<div class="mission">
-    <div>
-        <span class="jobTitle">Ingénieur d'étude et développement</span> <span
-            class="contract">en régie chez</span> <span class="company">Generali,</span>
-        <span class="team">dans une équipe de 10 personnes du
-							département Incendie, Accidents et Risques Divers.</span>
-    </div>
-    <div>
-						<span class="project">Maintenance évolutive de
-							l'application de souscription et de gestion des contrats IARD.</span> <span
-            class="task">Analyse et conception fonctionnelle avec le
-							métier. Gestion des anomalies. Réalisation d'IHM en Struts, web
-							services, persistence avec Hibernate, tests unitaires et
-							intégration.</span>
-    </div>
-</div>
-
-<div class="dates">
-    <div>2010</div>
-    <div>10 mois</div>
-</div>
-<div class="mission">
-    <div>
-        <span class="jobTitle">Ingénieur d'étude et développement</span> <span
-            class="contract">en régie au</span> <span class="company">Crédit
-							du Nord,</span> <span class="department"></span> <span class="team">dans
-							une équipe de 10 personnes.</span>
-    </div>
-    <div>
-						<span class="project">Maintenance évolutive de deux
-							applications de gestion de la relation client.</span> <span class="task">Analyse
-							fonctionnelle avec le métier. Gestion des anomalies.
-							Développement et tests des demandes de maintenance.</span>
-    </div>
-</div>
-
-<div class="dates">
-    <div>2008 à 2009</div>
-    <div>2 ans</div>
-</div>
-<div class="mission">
-    <div>
-        <span class="jobTitle">Ingénieur d'étude et développement</span> <span
-            class="contract">au forfait pour</span> <span class="company">AXA
-							Banque,</span> <span class="department"></span> <span class="team">dans
-							une équipe de 30 personnes.</span>
-    </div>
-    <div>
-						<span class="project">Refonte complète du site internet AXA
-							Banque - authentification, gestion des comptes, bourse,
-							souscription - vers une architecture orientée services.</span> <span
-            class="task">Analyse et conception fonctionnelle avec le
-							métier. Réalisation d'IHM en JSF, de web services et tests
-							unitaires.</span>
-    </div>
-</div>
-
-<div class="dates">
-    <div>2005</div>
-    <div>9 mois</div>
-</div>
-
-<div class="mission">
-    <div>
-        <span class="jobTitle">Analyste Concepteur</span> <span
-            class="contract">en CDD à la</span> <span class="company">Caisse
-							d'Épargne,</span> <span class="team">dans une équipe de 5
-							personnes du service recouvrement.</span>
-    </div>
-    <div>
-						<span class="project">Conception et réalisation d'une
-							application de calcul des provisions et d'une application de
-							reporting de l'activité du service.</span> <span class="task">Analyse
-							et conception fonctionnelle avec le métier. Réalisation en VB.</span>
-    </div>
-</div>
-
-<h1 th:text="#{formations}">placeholder</h1>
+<h1 th:utext="#{formations}">placeholder</h1>
 <th:block th:each="formation: ${formations}">
-    <div th:text="#{${formation}+'Date'}">placeholder</div>
-    <div th:text="#{${formation}}">placeholder</div>
+    <div th:utext="#{${formation}+'Date'}">placeholder</div>
+    <div th:utext="#{${formation}}">placeholder</div>
 </th:block>
 
-<h1 th:text="#{interests}">placeholder</h1>
+<h1 th:utext="#{interests}">placeholder</h1>
 <th:block th:each="interest: ${interests}">
-    <div th:text="#{${interest}+'Title'}">placeholder</div>
-    <div th:text="#{${interest}}">placeholder</div>
+    <div th:utext="#{${interest}+'Title'}">placeholder</div>
+    <div th:utext="#{${interest}}">placeholder</div>
 </th:block>
 
-<div th:text="#{motivationLetter}">placeholder</div>
+<div th:utext="#{motivationLetter}">placeholder</div>
 
 </body>
 
