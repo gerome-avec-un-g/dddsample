@@ -26,6 +26,7 @@ import org.xhtmlrenderer.pdf.ITextRenderer;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -51,6 +52,7 @@ public class BooksController {
 
     @GetMapping
     public ModelAndView books(Model model, @AuthenticationPrincipal UserDetails userDetails) {
+        LOGGER.info("Charset: " + Charset.defaultCharset().displayName());
         ModelAndView modelAndView = new ModelAndView("books");
         System.out.println(libraryApplicationPropertiesConfiguration.toString() + " " + userDetails);
         modelAndView.addObject("books", booksPresentationService.displayBooks());
