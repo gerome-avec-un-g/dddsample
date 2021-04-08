@@ -20,288 +20,128 @@
 <div th:text="#{age}">placeholder</div>
 
 <h1 th:text="#{skills}">placeholder</h1>
+<th:block th:each="skill: ${skills}">
+    <div th:text="#{${skill}+'Title'}">placeholder</div>
+    <div th:text="#{${skill}}">placeholder</div>
+</th:block>
 
-<div th:text="#{langagesTitle}">placeholder</div>
-<div th:text="#{langages}">placeholder</div>
-
-<div th:text="#{technologiesTitle}">placeholder</div>
-<div th:text="#{technologies}">placeholder</div>
-
-<div th:text="#{frameworksTitle}">placeholder</div>
-<div th:text="#{frameworks}">placeholder</div>
-
-<div th:text="#{cicdTitle}">placeholder</div>
-<div th:text="#{cicd}">placeholder</div>
-
-<div th:text="#{databaseTitle}">placeholder</div>
-<div th:text="#{database}">placeholder</div>
-
-<div th:text="#{englishTitle}">placeholder</div>
-<div th:text="#{english}">placeholder</div>
-
-
-<div class="experience">
-    <div class="title">Expériences Professionnelles</div>
-    <div class="dates">
-        Depuis 2014 <br/>2 ans et demi
-    </div>
-    <div class="mission">
-        <div>
-            <span class="jobTitle">Ingénieur d'étude et développement</span> <span
-                class="contract">en régie chez</span> <span class="company">Société
+<h1 th:text="#{missions}">placeholder</h1>
+<div class="dates">
+    Depuis 2014 <br/>2 ans et demi
+</div>
+<div class="mission">
+    <div>
+        <span class="jobTitle">Ingénieur d'étude et développement</span> <span
+            class="contract">en régie chez</span> <span class="company">Société
 							Générale Securities Services,</span> <span class="team">dans une
 							équipe internationale - France, Allemagne, Italie, Inde - de 15
 							personnes au sein du département valorisation de fonds.</span>
-        </div>
-        <div>
+    </div>
+    <div>
 						<span class="project">Conception et réalisation d'une
 							application de monitoring des processus métier. </span> <span
-                class="task">Analyse et conception fonctionnelle avec le
+            class="task">Analyse et conception fonctionnelle avec le
 							métier. Réalisation d'IHM en GWT, web services dans une
 							architecture OSGi, persistence avec JPA, workflows avec Activiti
 							et tests unitaires.</span>
-        </div>
     </div>
-    <!-- TODO scrum/agile, best practice / process/workflow ?-->
+</div>
+<!-- TODO scrum/agile, best practice / process/workflow ?-->
 
-    <div class="dates">
-        <div>2011 à 2013</div>
-        <div>3 ans</div>
-    </div>
-    <div class="mission">
-        <div>
-            <span class="jobTitle">Ingénieur d'étude et développement</span> <span
-                class="contract">en régie chez</span> <span class="company">Generali,</span>
-            <span class="team">dans une équipe de 10 personnes du
+<div class="dates">
+    <div>2011 à 2013</div>
+    <div>3 ans</div>
+</div>
+<div class="mission">
+    <div>
+        <span class="jobTitle">Ingénieur d'étude et développement</span> <span
+            class="contract">en régie chez</span> <span class="company">Generali,</span>
+        <span class="team">dans une équipe de 10 personnes du
 							département Incendie, Accidents et Risques Divers.</span>
-        </div>
-        <div>
+    </div>
+    <div>
 						<span class="project">Maintenance évolutive de
 							l'application de souscription et de gestion des contrats IARD.</span> <span
-                class="task">Analyse et conception fonctionnelle avec le
+            class="task">Analyse et conception fonctionnelle avec le
 							métier. Gestion des anomalies. Réalisation d'IHM en Struts, web
 							services, persistence avec Hibernate, tests unitaires et
 							intégration.</span>
-        </div>
     </div>
+</div>
 
-    <div class="dates">
-        <div>2010</div>
-        <div>10 mois</div>
-    </div>
-    <div class="mission">
-        <div>
-            <span class="jobTitle">Ingénieur d'étude et développement</span> <span
-                class="contract">en régie au</span> <span class="company">Crédit
+<div class="dates">
+    <div>2010</div>
+    <div>10 mois</div>
+</div>
+<div class="mission">
+    <div>
+        <span class="jobTitle">Ingénieur d'étude et développement</span> <span
+            class="contract">en régie au</span> <span class="company">Crédit
 							du Nord,</span> <span class="department"></span> <span class="team">dans
 							une équipe de 10 personnes.</span>
-        </div>
-        <div>
+    </div>
+    <div>
 						<span class="project">Maintenance évolutive de deux
 							applications de gestion de la relation client.</span> <span class="task">Analyse
 							fonctionnelle avec le métier. Gestion des anomalies.
 							Développement et tests des demandes de maintenance.</span>
-        </div>
     </div>
+</div>
 
-    <div class="dates">
-        <div>2008 à 2009</div>
-        <div>2 ans</div>
-    </div>
-    <div class="mission">
-        <div>
-            <span class="jobTitle">Ingénieur d'étude et développement</span> <span
-                class="contract">au forfait pour</span> <span class="company">AXA
+<div class="dates">
+    <div>2008 à 2009</div>
+    <div>2 ans</div>
+</div>
+<div class="mission">
+    <div>
+        <span class="jobTitle">Ingénieur d'étude et développement</span> <span
+            class="contract">au forfait pour</span> <span class="company">AXA
 							Banque,</span> <span class="department"></span> <span class="team">dans
 							une équipe de 30 personnes.</span>
-        </div>
-        <div>
+    </div>
+    <div>
 						<span class="project">Refonte complète du site internet AXA
 							Banque - authentification, gestion des comptes, bourse,
 							souscription - vers une architecture orientée services.</span> <span
-                class="task">Analyse et conception fonctionnelle avec le
+            class="task">Analyse et conception fonctionnelle avec le
 							métier. Réalisation d'IHM en JSF, de web services et tests
 							unitaires.</span>
-        </div>
     </div>
+</div>
 
-    <div class="dates">
-        <div>2005</div>
-        <div>9 mois</div>
-    </div>
+<div class="dates">
+    <div>2005</div>
+    <div>9 mois</div>
+</div>
 
-    <div class="mission">
-        <div>
-            <span class="jobTitle">Analyste Concepteur</span> <span
-                class="contract">en CDD à la</span> <span class="company">Caisse
+<div class="mission">
+    <div>
+        <span class="jobTitle">Analyste Concepteur</span> <span
+            class="contract">en CDD à la</span> <span class="company">Caisse
 							d'Épargne,</span> <span class="team">dans une équipe de 5
 							personnes du service recouvrement.</span>
-        </div>
-        <div>
+    </div>
+    <div>
 						<span class="project">Conception et réalisation d'une
 							application de calcul des provisions et d'une application de
 							reporting de l'activité du service.</span> <span class="task">Analyse
 							et conception fonctionnelle avec le métier. Réalisation en VB.</span>
-        </div>
     </div>
 </div>
 
-<div class="diplome">
-    <div class="title">Diplôme</div>
-    <!-- <div class="dates">2007</div>
-    <div class="mission">formation 3 mois java web</div> -->
-    <div class="dates">2003</div>
-    <div class="mission">Licence en Informatique Fondamentale -
-        Université Henri Poincaré - Nancy
-    </div>
-</div>
+<h1 th:text="#{formations}">placeholder</h1>
+<th:block th:each="formation: ${formations}">
+    <div th:text="#{${formation}+'Date'}">placeholder</div>
+    <div th:text="#{${formation}}">placeholder</div>
+</th:block>
 
-<div class="interest">
-    <div class="title">Centres d'intérêts</div>
-    <div class="categorie">Programmation</div>
-    <div class="content">Site personnel avec GWT, GWTMockito, GIN,
-        Google App Engine, Google Analytics, Material Design, Responsive
-        Design
-    </div>
-    <div class="categorie">Sports</div>
-    <div class="content">Arts martiaux (Penchak Silat, Krav-Maga,
-        Aïkido) et sports de glisse (Surf, Snowboard)
-    </div>
-    <div class="categorie">Loisirs</div>
-    <div class="content">Musique, Cinéma</div>
-</div>
+<h1 th:text="#{interests}">placeholder</h1>
+<th:block th:each="interest: ${interests}">
+    <div th:text="#{${interest}+'Title'}">placeholder</div>
+    <div th:text="#{${interest}}">placeholder</div>
+</th:block>
 
-<div class="experience">
-    <div class="title">Expériences Professionnelles</div>
-    <div class="dates">
-        Depuis 2014 <br/>2 ans et demi
-    </div>
-    <div class="mission">
-        <div>
-            <span class="jobTitle">Ingénieur d'étude et développement</span> <span
-                class="contract">en régie chez</span> <span class="company">Société
-							Générale Securities Services,</span> <span class="team">dans une
-							équipe internationale - France, Allemagne, Italie, Inde - de 15
-							personnes au sein du département valorisation de fonds.</span>
-        </div>
-        <div>
-						<span class="project">Conception et réalisation d'une
-							application de monitoring des processus métier. </span> <span
-                class="task">Analyse et conception fonctionnelle avec le
-							métier. Réalisation d'IHM en GWT, de Services Métiers dans une
-							architecture OSGI/SOA et Tests Unitaires.</span>
-        </div>
-    </div>
-    <!-- TODO scrum/agile, best practice / process/workflow ?-->
-
-    <div class="dates">
-        <div>2011 à 2013</div>
-        <div>3 ans</div>
-    </div>
-    <div class="mission">
-        <div>
-            <span class="jobTitle">Ingénieur d'étude et développement</span> <span
-                class="contract">en régie chez</span> <span class="company">Generali,</span>
-            <span class="team">dans une équipe de 10 personnes du
-							département Incendie, Accidents et Risques Divers.</span>
-        </div>
-        <div>
-						<span class="project">Maintenance évolutive de
-							l'application de souscription et de gestion des contrats IARD.</span> <span
-                class="task">Analyse et conception fonctionnelle avec le
-							métier. Gestion des anomalies. Réalisation d'IHM en Struts, de
-							web services, tests unitaires et intégration. </span>
-        </div>
-    </div>
-
-    <div class="dates">
-        <div>2010</div>
-        <div>10 mois</div>
-    </div>
-    <div class="mission">
-        <div>
-            <span class="jobTitle">Ingénieur d'étude et développement</span> <span
-                class="contract">en régie au</span> <span class="company">Crédit
-							du Nord,</span> <span class="department"></span> <span class="team">dans
-							une équipe de 10 personnes.</span>
-        </div>
-        <div>
-						<span class="project">Maintenance évolutive de deux
-							applications de gestion de la relation client.</span> <span class="task">Analyse
-							fonctionnelle avec le métier. Gestion des anomalies. Conception,
-							développement et tests des demandes de maintenance.</span>
-        </div>
-    </div>
-
-    <div class="dates">
-        <div>2008 à 2009</div>
-        <div>2 ans</div>
-    </div>
-    <div class="mission">
-        <div>
-            <span class="jobTitle">Ingénieur d'étude et développement</span> <span
-                class="contract">au forfait pour</span> <span class="company">AXA
-							Banque,</span> <span class="department"></span> <span class="team">dans
-							une équipe de 30 personnes.</span>
-        </div>
-        <div>
-						<span class="project">Refonte complète du site internet AXA
-							Banque - authentification, gestion des comptes, bourse,
-							souscription - vers une architecture orientée services.</span> <span
-                class="task">Analyse et conception fonctionnelle avec le
-							métier. Réalisation d'IHM en JSF, de web services et tests
-							unitaires.</span>
-        </div>
-    </div>
-
-    <div class="dates">
-        <div>2005</div>
-        <div>9 mois</div>
-    </div>
-
-    <div class="mission">
-        <div>
-            <span class="jobTitle">Analyste Concepteur</span> <span
-                class="contract">en CDD à la</span> <span class="company">Caisse
-							d'Épargne,</span> <span class="team">dans une équipe de 5
-							personnes du service recouvrement.</span>
-        </div>
-        <div>
-						<span class="project">Conception et réalisation d'une
-							application de calcul des provisions et d'une application de
-							reporting de l'activité du service.</span> <span class="task">Analyse
-							et conception fonctionnelle avec le métier. Réalisation en VB.</span>
-        </div>
-    </div>
-</div>
-
-<div class="diplome">
-    <div class="title">Diplôme</div>
-    <div class="dates">2003</div>
-    <div class="mission">Licence en Informatique Fondamentale -
-        Université Henri Poincaré - Nancy
-    </div>
-</div>
-
-<div class="interest">
-    <div class="title">Centres d'intérêts</div>
-    <div class="categorie">Programmation</div>
-    <div class="content">Site personnel avec GWT, GWTMockito, GIN,
-        AppEngine, Google Analytics, Material Design
-    </div>
-    <div class="categorie">Sports</div>
-    <div class="content">Arts martiaux (Penchak Silat, Krav-Maga,
-        Aïkido) et sports de glisse (Surf, Snowboard)
-    </div>
-    <div class="categorie">Loisirs</div>
-    <div class="content">Musique, Cinéma</div>
-</div>
-
-<div>Je cherche un poste de Lead Developper au sein d'une
-    mission en GWT dans le domaine de la banque ou des assurances.
-    J'apporterai mes compétences et bonnes pratiques (TDD, intégration
-    continue...)
-</div>
+<div th:text="#{motivationLetter}">placeholder</div>
 
 </body>
 
