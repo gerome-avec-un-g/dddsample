@@ -43,6 +43,7 @@ public class ResumeController {
     @GetMapping
     public ModelAndView html(@AuthenticationPrincipal UserDetails userDetails, HttpServletResponse response) throws DocumentException, IOException {
         ModelAndView modelAndView = new ModelAndView("resume/resume-pdf");
+        //ModelAndView modelAndView = new ModelAndView("resume/resume-pdf-material-web-component");
         modelAndView.addObject("skills", SKILLS);
         modelAndView.addObject("missions", MISSIONS);
         modelAndView.addObject("formations", FORMATIONS);

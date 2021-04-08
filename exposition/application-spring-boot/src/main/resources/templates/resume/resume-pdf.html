@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org ">
 
 <head>
     <meta charset="UTF-8"/>
@@ -7,16 +8,38 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css"/>
     <script defer="defer" src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <style>
+        @page {
+            margin-top: 3.3cm;
+            margin-left: 2cm;
+            margin-right: 2cm;
+            margin-bottom: 3.3cm;
+
+            size: A4 portrait;
+        }
+
+        body {
+            width: 21cm;
+        }
+
+
+
+    </style>
 </head>
 
 <body>
-
-<h1 th:utext="#{jobTitle}">placeholder</h1>
-<h1 th:utext="#{job}">placeholder</h1>
-<div class="name" th:utext="#{name}">placeholder</div>
-<div th:utext="#{mail}">placeholder</div>
-<!--            <div th:utext="#{phone}">placeholder</div>-->
-<div th:utext="#{age}">placeholder</div>
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--9-col">
+        <div class="typo-styles__demo mdl-typography--headline" th:utext="#{jobTitle}">placeholder</div>
+        <div class="typo-styles__demo mdl-typography--headline" th:utext="#{job}">placeholder</div>
+    </div>
+    <div class="mdl-cell mdl-cell--3-col">
+        <div class="name" th:utext="#{name}">placeholder</div>
+        <div th:utext="#{mail}">placeholder</div>
+        <!--            <div th:utext="#{phone}">placeholder</div>-->
+        <div th:utext="#{age}">placeholder</div>
+    </div>
+</div>
 
 <div class="typo-styles__demo mdl-typography--headline" th:utext="#{skills}">placeholder</div>
 <div class="mdl-grid" th:each="skill: ${skills}">
@@ -24,24 +47,26 @@
     <div class="mdl-cell mdl-cell--9-col" th:utext="#{${skill}}">placeholder</div>
 </div>
 
-<h1 th:utext="#{missions}">placeholder</h1>
-<th:block th:each="mission: ${missions}">
-    <div th:utext="#{${mission}+'Date'}">placeholder</div>
-    <div th:utext="#{${mission}}">placeholder</div>
-    <div th:utext="#{${mission}+'TechnicalEnvironment'}">placeholder</div>
-</th:block>
+<div class="typo-styles__demo mdl-typography--headline" th:utext="#{missions}">placeholder</div>
+<div class="mdl-grid" th:each="mission: ${missions}">
+    <div class="mdl-cell mdl-cell--3-col" th:utext="#{${mission}+'Date'}">placeholder</div>
+    <div class="mdl-cell mdl-cell--9-col">
+        <div th:utext="#{${mission}}">placeholder</div>
+        <div th:utext="#{${mission}+'TechnicalEnvironment'}">placeholder</div>
+    </div>
+</div>
 
-<h1 th:utext="#{formations}">placeholder</h1>
-<th:block th:each="formation: ${formations}">
-    <div th:utext="#{${formation}+'Date'}">placeholder</div>
-    <div th:utext="#{${formation}}">placeholder</div>
-</th:block>
+<div class="typo-styles__demo mdl-typography--headline" th:utext="#{formations}">placeholder</div>
+<div class="mdl-grid" th:each="formation: ${formations}">
+    <div class="mdl-cell mdl-cell--3-col" th:utext="#{${formation}+'Date'}">placeholder</div>
+    <div class="mdl-cell mdl-cell--9-col" th:utext="#{${formation}}">placeholder</div>
+</div>
 
 <div class="typo-styles__demo mdl-typography--headline" th:utext="#{interests}">placeholder</div>
-<th:block th:each="interest: ${interests}">
-    <div th:utext="#{${interest}+'Title'}">placeholder</div>
-    <div th:utext="#{${interest}}">placeholder</div>
-</th:block>
+<div class="mdl-grid" th:each="interest: ${interests}">
+    <div class="mdl-cell mdl-cell--3-col" th:utext="#{${interest}+'Title'}">placeholder</div>
+    <div class="mdl-cell mdl-cell--9-col" th:utext="#{${interest}}">placeholder</div>
+</div>
 
 <div th:utext="#{motivationLetter}">placeholder</div>
 
