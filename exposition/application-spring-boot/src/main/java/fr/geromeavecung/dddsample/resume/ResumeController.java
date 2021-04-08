@@ -38,7 +38,8 @@ public class ResumeController {
         context.setLocale(Locale.GERMAN);
         context.setVariable("skills", Arrays.asList("langages", "technologies", "frameworks",
                 "cicd", "database", "english"));
-        context.setVariable("formations", Arrays.asList("formationJava", "licence", "bac"));
+        context.setVariable("missions", Arrays.asList("bnp", "cnp", "egencia", "sgss", "generali", "cdn", "axaBanque", "axaGie", "progesys", "caisseEpargne"));
+        context.setVariable("formations", Arrays.asList("formationJava", "licence", "deug", "bac"));
         context.setVariable("interests", Arrays.asList("programming", "sports", "leisure"));
         String html = templateEngine.process("resume/resume-pdf", context);
         ServletOutputStream outputStream = response.getOutputStream();

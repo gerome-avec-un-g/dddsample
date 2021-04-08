@@ -13,7 +13,7 @@
 <body>
 
 <h1 th:text="#{jobTitle}">placeholder</h1>
-<h1 th:text="#{mainTech}">placeholder</h1>
+<h1 th:text="#{job}">placeholder</h1>
 <div class="name" th:text="#{name}">placeholder</div>
 <div th:text="#{mail}">placeholder</div>
 <!--            <div th:text="#{phone}">placeholder</div>-->
@@ -26,27 +26,11 @@
 </th:block>
 
 <h1 th:text="#{missions}">placeholder</h1>
-<div class="dates">
-    Depuis 2014 <br/>2 ans et demi
-</div>
-<div class="mission">
-    <div>
-        <span class="jobTitle">Ingénieur d'étude et développement</span> <span
-            class="contract">en régie chez</span> <span class="company">Société
-							Générale Securities Services,</span> <span class="team">dans une
-							équipe internationale - France, Allemagne, Italie, Inde - de 15
-							personnes au sein du département valorisation de fonds.</span>
-    </div>
-    <div>
-						<span class="project">Conception et réalisation d'une
-							application de monitoring des processus métier. </span> <span
-            class="task">Analyse et conception fonctionnelle avec le
-							métier. Réalisation d'IHM en GWT, web services dans une
-							architecture OSGi, persistence avec JPA, workflows avec Activiti
-							et tests unitaires.</span>
-    </div>
-</div>
-<!-- TODO scrum/agile, best practice / process/workflow ?-->
+<th:block th:each="mission: ${missions}">
+    <div th:utext="#{${mission}+'Date'}">placeholder</div>
+    <div th:utext="#{${mission}}">placeholder</div>
+    <div th:text="#{${mission}+'TechnicalEnvironment'}">placeholder</div>
+</th:block>
 
 <div class="dates">
     <div>2011 à 2013</div>
