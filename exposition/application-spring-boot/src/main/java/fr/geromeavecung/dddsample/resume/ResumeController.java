@@ -16,6 +16,7 @@ import org.xhtmlrenderer.pdf.ITextRenderer;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Locale;
 
 @Controller
 @RequestMapping("/resume")
@@ -33,6 +34,7 @@ public class ResumeController {
     @GetMapping("/print")
     public void print(@AuthenticationPrincipal UserDetails userDetails, HttpServletResponse response) throws DocumentException, IOException {
         Context context = new Context();
+        context.setLocale(Locale.GERMAN);
         //context.setVariable("books", books);
         String html = templateEngine.process("resume/resume-pdf", context);
         ServletOutputStream outputStream = response.getOutputStream();
