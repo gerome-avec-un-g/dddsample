@@ -9,6 +9,14 @@
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css"/>
     <script defer="defer" src="https://code.getmdl.io/1.3.0/material.min.js"></script>
     <style>
+
+        @page {
+            body {
+                width: 100%;
+                padding: 0
+            }
+        }
+
         body {
             width: 21cm;
             padding: 3cm 2cm
@@ -37,11 +45,11 @@
     </colgroup>
     <tr>
         <td>
-            <h4 th:utext="#{jobTitle}">placeholder</h4>
+            <h4 th:utext="#{jobTitle}" style="margin-top:0">placeholder</h4>
             <h4 th:utext="#{job}">placeholder</h4>
         </td>
         <td>
-            <div class="name" th:utext="#{name}">placeholder</div>
+            <div th:utext="#{name}">placeholder</div>
             <div th:utext="#{mail}">placeholder</div>
             <!--            <div th:utext="#{phone}">placeholder</div>-->
             <div th:utext="#{age}">placeholder</div>
@@ -71,7 +79,10 @@
         <td th:utext="#{${mission}+'Date'}">placeholder</td>
         <td>
             <div th:utext="#{${mission}}">placeholder</div>
-            <div th:utext="#{${mission}+'TechnicalEnvironment'}">placeholder</div>
+            <div>
+                <th:block th:utext="#{technicalEnvironment}">placeholder</th:block>
+                <th:blco th:utext="#{${mission}+'TechnicalEnvironment'}">placeholder</th:blco>
+            </div>
         </td>
     </tr>
 </table>
