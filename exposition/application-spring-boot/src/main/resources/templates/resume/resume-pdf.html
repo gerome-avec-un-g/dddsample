@@ -1,175 +1,308 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'/>
     <meta charset="UTF-8"/>
+    <title>C.V.</title>
     <style>
-        body {
-    font-family: sans-serif;
-    font-size: 12px;
-}
-
-@page {
-
-    @bottom-left {
-        content: element(footer);
-        vertical-align: top;
-        padding-top: 10px;
-    }
-
-    @top-right {
-        content: element(header);
-        vertical-align: bottom;
-        padding-bottom: 10px;
-    }
-
-    margin-top: 3.3cm;
-    margin-left: 2cm;
-    margin-right: 2cm;
-    margin-bottom: 3.3cm;
-
-    size: A4 portrait;
-}
-
-div.header {
-    position: running(header);
-}
-
-div.footer {
-    display: block;
-    margin-top: 0.5cm;
-    position: running(footer);
-}
-
-#pagenumber:before {
-    content: counter(page);
-}
-
-#pagecount:before {
-    content: counter(pages);
-}
-
-.logo-container {
-    text-align: right;
-}
-
-.page-count {
-    text-align: right;
-}
-
-.logo {
-    width: 275px;
-}
-
-h1 {
-    font-size: 18px;
-    margin-bottom: 40px;
-    margin-top: 40px;
-}
-
-p {
-    font-size: 12px;
-}
-
-.footer {
-    text-align: center;
-}
-
-@font-face {
-    font-family: "Bar-Code 39";
-    src: url(Code39.ttf) format('truetype');
-}
-
-.barcode {
-    font-family: "Bar-Code 39";
-    font-size: 26px;
-}
-
-.right {
-    text-align: right;
-}
-
-.left {
-    text-align: left;
-}
-
-.bottom {
-    vertical-align: bottom;
-}
-
-.address-block {
-    height: 100px;
-}
-
-table {
-    width: 100%;
-}
-
-hr {
-    background-color: #000000;
-    border: dashed #000000 0.5px;
-    height: 1px;
-}
-
-.page-break {
-    page-break-after: always;
-}
-
-.next-page {
-    page-break-before: always
-}
-
 
     </style>
 </head>
+
 <body>
-<h1>YOUR EXAMPLE THYMELEAF PDF</h1>
 
-<p th:text="#{firstName}"></p>
+<h1 th:text="#{jobTitle}">placeholder</h1>
+<h1 th:text="#{mainTech}">placeholder</h1>
+<div class="name" th:text="#{name}">placeholder</div>
+<div th:text="#{mail}">placeholder</div>
+<!--            <div th:text="#{phone}">placeholder</div>-->
+<div th:text="#{age}">placeholder</div>
 
-<p>Quisque mauris magna, vulputate eget feugiat ut, molestie posuere urna. Etiam volutpat hendrerit efficitur.
-    Vestibulum condimentum volutpat arcu porttitor condimentum. Aliquam vestibulum pulvinar enim sit amet fermentum.
-    Vivamus vulputate, enim id rutrum dictum, enim nibh fermentum mi, vel varius tortor risus at enim. Aliquam
-    scelerisque mi metus, non imperdiet risus interdum eu. Nullam pretium nulla ante, vitae tincidunt neque suscipit in.
-    Nam dapibus iaculis nisl, eget dictum lectus dictum vitae. Ut malesuada justo ligula, sed rhoncus nisl gravida eu.
-    Fusce nulla mi, suscipit at elit ullamcorper, aliquet vehicula odio. Ut molestie ac purus vitae porttitor. Curabitur
-    eget euismod enim, venenatis posuere eros. Ut vel erat in odio varius eleifend. Quisque aliquam odio turpis, sed
-    posuere purus ullamcorper eu.</p>
+<h1 th:text="#{skills}">placeholder</h1>
 
-<p><b>Best regards,</b></p>
+<div th:text="#{langagesTitle}">placeholder</div>
+<div th:text="#{langages}">placeholder</div>
 
-<p>Thymeleaf Example Project</p>
+<div th:text="#{technologiesTitle}">placeholder</div>
+<div th:text="#{technologies}">placeholder</div>
 
-<p><b>You find more information on the second page.</b></p>
+<div th:text="#{frameworksTitle}">placeholder</div>
+<div th:text="#{frameworks}">placeholder</div>
 
-<div class="next-page">
+<div th:text="#{cicdTitle}">placeholder</div>
+<div th:text="#{cicd}">placeholder</div>
 
-    <h2>More Information</h2>
+<div th:text="#{databaseTitle}">placeholder</div>
+<div th:text="#{database}">placeholder</div>
 
-    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-        dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-        clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
-        consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed
-        diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-        takimata sanctus est Lorem ipsum dolor sit amet.</p>
-    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-        dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-        clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
-        consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed
-        diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-        takimata sanctus est Lorem ipsum dolor sit amet.</p>
-    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-        dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-        clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
-        consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed
-        diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-        takimata sanctus est Lorem ipsum dolor sit amet.</p>
-    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-        dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-        clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
-        consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed
-        diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-        takimata sanctus est Lorem ipsum dolor sit amet.</p>
+<div th:text="#{englishTitle}">placeholder</div>
+<div th:text="#{english}">placeholder</div>
+
+
+<div class="experience">
+    <div class="title">Expériences Professionnelles</div>
+    <div class="dates">
+        Depuis 2014 <br/>2 ans et demi
+    </div>
+    <div class="mission">
+        <div>
+            <span class="jobTitle">Ingénieur d'étude et développement</span> <span
+                class="contract">en régie chez</span> <span class="company">Société
+							Générale Securities Services,</span> <span class="team">dans une
+							équipe internationale - France, Allemagne, Italie, Inde - de 15
+							personnes au sein du département valorisation de fonds.</span>
+        </div>
+        <div>
+						<span class="project">Conception et réalisation d'une
+							application de monitoring des processus métier. </span> <span
+                class="task">Analyse et conception fonctionnelle avec le
+							métier. Réalisation d'IHM en GWT, web services dans une
+							architecture OSGi, persistence avec JPA, workflows avec Activiti
+							et tests unitaires.</span>
+        </div>
+    </div>
+    <!-- TODO scrum/agile, best practice / process/workflow ?-->
+
+    <div class="dates">
+        <div>2011 à 2013</div>
+        <div>3 ans</div>
+    </div>
+    <div class="mission">
+        <div>
+            <span class="jobTitle">Ingénieur d'étude et développement</span> <span
+                class="contract">en régie chez</span> <span class="company">Generali,</span>
+            <span class="team">dans une équipe de 10 personnes du
+							département Incendie, Accidents et Risques Divers.</span>
+        </div>
+        <div>
+						<span class="project">Maintenance évolutive de
+							l'application de souscription et de gestion des contrats IARD.</span> <span
+                class="task">Analyse et conception fonctionnelle avec le
+							métier. Gestion des anomalies. Réalisation d'IHM en Struts, web
+							services, persistence avec Hibernate, tests unitaires et
+							intégration.</span>
+        </div>
+    </div>
+
+    <div class="dates">
+        <div>2010</div>
+        <div>10 mois</div>
+    </div>
+    <div class="mission">
+        <div>
+            <span class="jobTitle">Ingénieur d'étude et développement</span> <span
+                class="contract">en régie au</span> <span class="company">Crédit
+							du Nord,</span> <span class="department"></span> <span class="team">dans
+							une équipe de 10 personnes.</span>
+        </div>
+        <div>
+						<span class="project">Maintenance évolutive de deux
+							applications de gestion de la relation client.</span> <span class="task">Analyse
+							fonctionnelle avec le métier. Gestion des anomalies.
+							Développement et tests des demandes de maintenance.</span>
+        </div>
+    </div>
+
+    <div class="dates">
+        <div>2008 à 2009</div>
+        <div>2 ans</div>
+    </div>
+    <div class="mission">
+        <div>
+            <span class="jobTitle">Ingénieur d'étude et développement</span> <span
+                class="contract">au forfait pour</span> <span class="company">AXA
+							Banque,</span> <span class="department"></span> <span class="team">dans
+							une équipe de 30 personnes.</span>
+        </div>
+        <div>
+						<span class="project">Refonte complète du site internet AXA
+							Banque - authentification, gestion des comptes, bourse,
+							souscription - vers une architecture orientée services.</span> <span
+                class="task">Analyse et conception fonctionnelle avec le
+							métier. Réalisation d'IHM en JSF, de web services et tests
+							unitaires.</span>
+        </div>
+    </div>
+
+    <div class="dates">
+        <div>2005</div>
+        <div>9 mois</div>
+    </div>
+
+    <div class="mission">
+        <div>
+            <span class="jobTitle">Analyste Concepteur</span> <span
+                class="contract">en CDD à la</span> <span class="company">Caisse
+							d'Épargne,</span> <span class="team">dans une équipe de 5
+							personnes du service recouvrement.</span>
+        </div>
+        <div>
+						<span class="project">Conception et réalisation d'une
+							application de calcul des provisions et d'une application de
+							reporting de l'activité du service.</span> <span class="task">Analyse
+							et conception fonctionnelle avec le métier. Réalisation en VB.</span>
+        </div>
+    </div>
+</div>
+
+<div class="diplome">
+    <div class="title">Diplôme</div>
+    <!-- <div class="dates">2007</div>
+    <div class="mission">formation 3 mois java web</div> -->
+    <div class="dates">2003</div>
+    <div class="mission">Licence en Informatique Fondamentale -
+        Université Henri Poincaré - Nancy
+    </div>
+</div>
+
+<div class="interest">
+    <div class="title">Centres d'intérêts</div>
+    <div class="categorie">Programmation</div>
+    <div class="content">Site personnel avec GWT, GWTMockito, GIN,
+        Google App Engine, Google Analytics, Material Design, Responsive
+        Design
+    </div>
+    <div class="categorie">Sports</div>
+    <div class="content">Arts martiaux (Penchak Silat, Krav-Maga,
+        Aïkido) et sports de glisse (Surf, Snowboard)
+    </div>
+    <div class="categorie">Loisirs</div>
+    <div class="content">Musique, Cinéma</div>
+</div>
+
+<div class="experience">
+    <div class="title">Expériences Professionnelles</div>
+    <div class="dates">
+        Depuis 2014 <br/>2 ans et demi
+    </div>
+    <div class="mission">
+        <div>
+            <span class="jobTitle">Ingénieur d'étude et développement</span> <span
+                class="contract">en régie chez</span> <span class="company">Société
+							Générale Securities Services,</span> <span class="team">dans une
+							équipe internationale - France, Allemagne, Italie, Inde - de 15
+							personnes au sein du département valorisation de fonds.</span>
+        </div>
+        <div>
+						<span class="project">Conception et réalisation d'une
+							application de monitoring des processus métier. </span> <span
+                class="task">Analyse et conception fonctionnelle avec le
+							métier. Réalisation d'IHM en GWT, de Services Métiers dans une
+							architecture OSGI/SOA et Tests Unitaires.</span>
+        </div>
+    </div>
+    <!-- TODO scrum/agile, best practice / process/workflow ?-->
+
+    <div class="dates">
+        <div>2011 à 2013</div>
+        <div>3 ans</div>
+    </div>
+    <div class="mission">
+        <div>
+            <span class="jobTitle">Ingénieur d'étude et développement</span> <span
+                class="contract">en régie chez</span> <span class="company">Generali,</span>
+            <span class="team">dans une équipe de 10 personnes du
+							département Incendie, Accidents et Risques Divers.</span>
+        </div>
+        <div>
+						<span class="project">Maintenance évolutive de
+							l'application de souscription et de gestion des contrats IARD.</span> <span
+                class="task">Analyse et conception fonctionnelle avec le
+							métier. Gestion des anomalies. Réalisation d'IHM en Struts, de
+							web services, tests unitaires et intégration. </span>
+        </div>
+    </div>
+
+    <div class="dates">
+        <div>2010</div>
+        <div>10 mois</div>
+    </div>
+    <div class="mission">
+        <div>
+            <span class="jobTitle">Ingénieur d'étude et développement</span> <span
+                class="contract">en régie au</span> <span class="company">Crédit
+							du Nord,</span> <span class="department"></span> <span class="team">dans
+							une équipe de 10 personnes.</span>
+        </div>
+        <div>
+						<span class="project">Maintenance évolutive de deux
+							applications de gestion de la relation client.</span> <span class="task">Analyse
+							fonctionnelle avec le métier. Gestion des anomalies. Conception,
+							développement et tests des demandes de maintenance.</span>
+        </div>
+    </div>
+
+    <div class="dates">
+        <div>2008 à 2009</div>
+        <div>2 ans</div>
+    </div>
+    <div class="mission">
+        <div>
+            <span class="jobTitle">Ingénieur d'étude et développement</span> <span
+                class="contract">au forfait pour</span> <span class="company">AXA
+							Banque,</span> <span class="department"></span> <span class="team">dans
+							une équipe de 30 personnes.</span>
+        </div>
+        <div>
+						<span class="project">Refonte complète du site internet AXA
+							Banque - authentification, gestion des comptes, bourse,
+							souscription - vers une architecture orientée services.</span> <span
+                class="task">Analyse et conception fonctionnelle avec le
+							métier. Réalisation d'IHM en JSF, de web services et tests
+							unitaires.</span>
+        </div>
+    </div>
+
+    <div class="dates">
+        <div>2005</div>
+        <div>9 mois</div>
+    </div>
+
+    <div class="mission">
+        <div>
+            <span class="jobTitle">Analyste Concepteur</span> <span
+                class="contract">en CDD à la</span> <span class="company">Caisse
+							d'Épargne,</span> <span class="team">dans une équipe de 5
+							personnes du service recouvrement.</span>
+        </div>
+        <div>
+						<span class="project">Conception et réalisation d'une
+							application de calcul des provisions et d'une application de
+							reporting de l'activité du service.</span> <span class="task">Analyse
+							et conception fonctionnelle avec le métier. Réalisation en VB.</span>
+        </div>
+    </div>
+</div>
+
+<div class="diplome">
+    <div class="title">Diplôme</div>
+    <div class="dates">2003</div>
+    <div class="mission">Licence en Informatique Fondamentale -
+        Université Henri Poincaré - Nancy
+    </div>
+</div>
+
+<div class="interest">
+    <div class="title">Centres d'intérêts</div>
+    <div class="categorie">Programmation</div>
+    <div class="content">Site personnel avec GWT, GWTMockito, GIN,
+        AppEngine, Google Analytics, Material Design
+    </div>
+    <div class="categorie">Sports</div>
+    <div class="content">Arts martiaux (Penchak Silat, Krav-Maga,
+        Aïkido) et sports de glisse (Surf, Snowboard)
+    </div>
+    <div class="categorie">Loisirs</div>
+    <div class="content">Musique, Cinéma</div>
+</div>
+
+<div>Je cherche un poste de Lead Developper au sein d'une
+    mission en GWT dans le domaine de la banque ou des assurances.
+    J'apporterai mes compétences et bonnes pratiques (TDD, intégration
+    continue...)
 </div>
 
 </body>
+
 </html>
