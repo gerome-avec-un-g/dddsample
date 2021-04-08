@@ -5,8 +5,10 @@ import fr.geromeavecung.businessdomain.books.BooksService;
 import fr.geromeavecung.exposition.orchestration.BooksOrchestrationService;
 import fr.geromeavecung.exposition.presentation.BooksPresentationService;
 import nz.net.ultraq.thymeleaf.LayoutDialect;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.web.filter.CommonsRequestLoggingFilter;
 
 @Configuration
@@ -20,6 +22,16 @@ public class LibraryApplicationConfiguration {
     @Bean
     public LayoutDialect layoutDialect() {
         return new LayoutDialect();
+    }
+
+    @Bean
+    public MessageSource messageSource() {
+        ReloadableResourceBundleMessageSource messageSource
+                = new ReloadableResourceBundleMessageSource();
+
+        messageSource.setBasename("classpath:messages");
+        messageSource.setDefaultEncoding("UTF-8");
+        return messageSource;
     }
 
     @Bean
