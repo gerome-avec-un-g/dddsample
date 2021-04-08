@@ -28,7 +28,7 @@ public class ResumeController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(fr.geromeavecung.dddsample.books.BooksController.class);
     public static final List<String> SKILLS = Arrays.asList("langages", "technologies", "frameworks",
-            "cicd", "database", "english");
+            "cicd", "database", "process", "english");
     public static final List<String> MISSIONS = Arrays.asList("bnp", "cnp", "egencia", "sgss", "generali", "cdn", "axaBanque", "axaGie", "progesys", "caisseEpargne");
     public static final List<String> FORMATIONS = Arrays.asList("formationJava", "licence", "deug", "bac");
     public static final List<String> INTERESTS = Arrays.asList("programming", "sports", "leisure");
