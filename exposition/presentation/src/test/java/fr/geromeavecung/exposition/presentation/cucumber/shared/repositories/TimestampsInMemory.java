@@ -1,4 +1,4 @@
-package fr.geromeavecung.exposition.presentation.cucumber.shared;
+package fr.geromeavecung.exposition.presentation.cucumber.shared.repositories;
 
 import fr.geromeavecung.businessdomain.shared.Timestamp;
 import fr.geromeavecung.businessdomain.shared.Timestamps;

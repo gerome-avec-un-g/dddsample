@@ -1,6 +1,8 @@
 package fr.geromeavecung.exposition.presentation.cucumber.shared;
 
 import fr.geromeavecung.exposition.presentation.cucumber.books.BooksConfiguration;
+import fr.geromeavecung.exposition.presentation.cucumber.shared.repositories.IdentifiersInMemory;
+import fr.geromeavecung.exposition.presentation.cucumber.shared.repositories.TimestampsInMemory;
 import io.cucumber.spring.CucumberContextConfiguration;
 import org.springframework.test.context.ContextConfiguration;
 
