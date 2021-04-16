@@ -1,25 +1,36 @@
 # Domain Driven Design sample project
 
+## Run the application
+
+```
+mvn spring-boot:run -Dspring-boot.run.profiles=local
+```
+
+## Dependencies
+
+###Lombok
 not using lombok because (at least in the domain):
 * can be poorly used
 * plays poorly with coverage
+* Intellij has Alt + Insert
 
+###Cucumber
+see src/test/java/fr/geromeavecung/exposition/presentation/cucumber/README.md
 
-global test strategy
+##Global test strategy
+
 * junit + spring + mockito for exposition
 * junit + spring + mockito for infra
-* junit to test non-business cases for equals, hashcode, toString
-* cucumber for collaborative business testing from orchestration/presentation to domain/repositories (with in memory implementations)
+* cucumber for collaborative business testing from presentation to domain with in memory
+  implementations of repositories
+* junit to test remaining "technical" cases (mostly some path for equals, hashcode, toString...)
 
-mvn spring-boot:run -Dspring-boot.run.profiles=local
 
 TODO maven mvnw ?  
 thymeleaf th:text placeholder good practice ?
-
 
 spring à revoir  
 3.1 jdbc  
 4.2 security et datasource  
 4.3.4 csrf à faire chaque form ?  
-5.1.2 jdbc configuration
-5.1.3 server config (specially ssl)
+5.1.2 jdbc configuration 5.1.3 server config (specially ssl)

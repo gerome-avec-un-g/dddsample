@@ -1,4 +1,4 @@
-package fr.geromeavecung.exposition.presentation;
+package fr.geromeavecung.exposition.presentation.cucumber.books.repositories;
 
 import fr.geromeavecung.businessdomain.books.Book;
 import fr.geromeavecung.businessdomain.books.Books;

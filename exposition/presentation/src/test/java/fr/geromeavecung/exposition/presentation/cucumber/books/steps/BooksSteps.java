@@ -1,13 +1,16 @@
-package fr.geromeavecung.exposition.presentation;
+package fr.geromeavecung.exposition.presentation.cucumber.books.steps;
 
 import fr.geromeavecung.businessdomain.books.Author;
 import fr.geromeavecung.businessdomain.books.Book;
 import fr.geromeavecung.businessdomain.books.BooksService;
 import fr.geromeavecung.businessdomain.books.Title;
-import fr.geromeavecung.businessdomain.shared.BusinessException;
 import fr.geromeavecung.exposition.orchestration.BooksOrchestrationService;
+import fr.geromeavecung.exposition.presentation.BookCreationForm;
+import fr.geromeavecung.exposition.presentation.BookSummary;
+import fr.geromeavecung.exposition.presentation.BooksPresentationService;
+import fr.geromeavecung.exposition.presentation.cucumber.books.repositories.BooksInMemory;
+import fr.geromeavecung.exposition.presentation.cucumber.shared.SharedState;
 import io.cucumber.datatable.DataTable;
-import io.cucumber.java.DataTableType;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -25,18 +28,13 @@ public class BooksSteps {
 
     private final BooksPresentationService booksPresentationService;
 
-    private final CucumberState cucumberState;
+    private final SharedState sharedState;
 
     @Autowired
-    public BooksSteps(BooksInMemory booksInMemory, CucumberState cucumberState) {
+    public BooksSteps(BooksInMemory booksInMemory, SharedState sharedState) {
         this.booksInMemory = booksInMemory;
         booksPresentationService = new BooksPresentationService(new BooksOrchestrationService(new BooksService(booksInMemory)));
-        this.cucumberState = cucumberState;
-    }
-
-    @DataTableType(replaceWithEmptyString = "[blank]")
-    public String stringType(String cell) {
-        return cell;
+        this.sharedState = sharedState;
     }
 
     @When("the user tries to add a book")
@@ -50,29 +48,20 @@ public class BooksSteps {
                 booksPresentationService.createBook(bookCreationForm);
             }
         } catch (Exception exception) {
-            cucumberState.actualException = exception;
+            sharedState.setActualException(exception);
         }
-    }
-
-    @Then("i have an error {string} with message {string}")
-    public void i_have_an_error_message(String className, String message) {
-        assertThat(cucumberState.actualException)
-                .isInstanceOf(BusinessException.class)
-                .hasMessage(message);
-        assertThat(cucumberState.actualException.getClass().getSimpleName()).isEqualTo(className);
     }
 
     @Then("the book is added")
     public void theBookIsAdded(DataTable table) {
+        sharedState.assertThatNoExceptionIsThrown();
         try {
             for (Map<String, String> columns : table.<String, String>asMaps(String.class, String.class)) {
                 assertThat(booksInMemory.findAll()).contains(Book.create(Title.create(columns.get("title")), Author.create(columns.get("author")), Book.Type.valueOf(columns.get("type"))));
             }
         } catch (Exception exception) {
-            cucumberState.actualException = exception;
+            sharedState.setActualException(exception);
         }
-
-        noExceptionIsThrownForPassingCase();
     }
 
 
@@ -87,7 +76,7 @@ public class BooksSteps {
                 booksPresentationService.createBook(bookCreationForm);
             }
         } catch (Exception exception) {
-            cucumberState.actualException = exception;
+            sharedState.setActualException(exception);
         }
     }
 
@@ -98,13 +87,13 @@ public class BooksSteps {
         try {
             bookSummaries = booksPresentationService.displayBooks();
         } catch (Exception exception) {
-            cucumberState.actualException = exception;
+            sharedState.setActualException(exception);
         }
     }
 
     @Then("the books are displayed")
     public void theBooksAreDisplayed(DataTable table) {
-        noExceptionIsThrownForPassingCase();
+        sharedState.assertThatNoExceptionIsThrown();
         Set<BookSummary> expected = new HashSet<>();
         for (Map<String, String> columns : table.<String, String>asMaps(String.class, String.class)) {
             expected.add(new BookSummary(columns.get("title"), columns.get("author"), columns.get("type")));
@@ -112,7 +101,6 @@ public class BooksSteps {
         assertThat(bookSummaries).isEqualTo(expected);
     }
 
-    private void noExceptionIsThrownForPassingCase() {
-        assertThat(cucumberState.actualException).isNull();
-    }
+
+
 }

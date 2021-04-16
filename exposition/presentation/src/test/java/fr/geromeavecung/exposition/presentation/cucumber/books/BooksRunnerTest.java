@@ -1,4 +1,4 @@
-package fr.geromeavecung.exposition.presentation;
+package fr.geromeavecung.exposition.presentation.cucumber.books;
 
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
@@ -11,11 +11,7 @@ import org.junit.runner.RunWith;
         glue = "fr.geromeavecung.exposition.presentation",
         features = {"src/test/resources/features"},
         tags = "not @inProgress"
-        /*
-         * run single feature: features = {"src/test/resources/features/add_books.feature"},
-         * run specific tests to debug: tags = "@only"
-         */
 )
-public class CucumberRunnerTest {
+public class BooksRunnerTest {
 
 }
