@@ -15,6 +15,8 @@
         <cucumber.version>6.8.2</cucumber.version>
         <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/../../${aggregate.tests.report.directory}
         </sonar.coverage.jacoco.xmlReportPaths>
+        <!-- file name friendly timestamp format -->
+        <maven.build.timestamp.format>yyyy-MM-dd-HHmm</maven.build.timestamp.format>
     </properties>
 
     <dependencies>
@@ -68,21 +70,31 @@
                     <plugin>
                         <groupId>com.github.cukedoctor</groupId>
                         <artifactId>cukedoctor-maven-plugin</artifactId>
-                        <version>3.3</version>
+                        <version>3.5.2</version>
                         <configuration>
-                            <outputFileName>documentation</outputFileName>
                             <outputDir>documents</outputDir>
                             <format>pdf</format>
                             <toc>left</toc>
                             <numbered>true</numbered>
-                            <docVersion>${project.version}</docVersion>
+                            <docVersion>${project.version} at ${maven.build.timestamp}</docVersion>
+                            <hideScenarioKeyword>true</hideScenarioKeyword>
+                            <hideStepTime>true</hideStepTime>
+                            <hideSummarySection>true</hideSummarySection>
                         </configuration>
                         <executions>
+                            <!-- do once for each business domain -->
                             <execution>
+                                <id>books</id>
                                 <goals>
                                     <goal>execute</goal>
                                 </goals>
                                 <phase>verify</phase>
+                                <configuration>
+                                    <!-- you can't have "." or ":" in file name  see also <maven.build.timestamp.format> -->
+                                    <outputFileName>documentation-books-${maven.build.timestamp}</outputFileName>
+                                    <featuresDir>target/books.json</featuresDir>
+                                    <documentTitle>Books</documentTitle>
+                                </configuration>
                             </execution>
                         </executions>
                     </plugin>

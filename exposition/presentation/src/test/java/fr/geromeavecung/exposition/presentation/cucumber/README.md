@@ -101,3 +101,40 @@ complex, you can break it down with multiple @Then
 # Features
 
 # Documentation
+
+The documentation is generated with Cukedoctor maven plugin in exposition/presentation/target/documents.
+
+The plugin is executed once for each business domain :
+```
+<!-- do once for each business domain -->
+<execution>
+    <id>business-domain</id>
+    <goals>
+        <goal>execute</goal>
+    </goals>
+    <phase>verify</phase>
+    <configuration>
+        <!-- you can't have "." or ":" in file name  see also <maven.build.timestamp.format> -->
+        <outputFileName>documentation-business-domain-${maven.build.timestamp}</outputFileName>
+        <featuresDir>target/business-domain.json</featuresDir>
+        <documentTitle>Business Domain</documentTitle>
+    </configuration>
+</execution>
+```
+"featuresDir" is the name of the json file configured in the class BusinessDomainRunnerTest.java @CucumberOptions.plugin
+
+
+To be able to **use ${maven.build.timestamp} in the file name, it should be properly formatted
+```
+<properties>
+    ...
+    <!-- file name friendly timestamp format -->
+    <maven.build.timestamp.format>yyyy-MM-dd-HHmm</maven.build.timestamp.format>
+    ...
+</properties>
+```
+
+I18N is available in src/main/resources/cukedoctor.properties
+/!\ TODO ? https://github.com/rmpestano/cukedoctor#641-reading-features
+
+You can set a custom introduction with src/main/resources/cukedoctor-intro.adoc
