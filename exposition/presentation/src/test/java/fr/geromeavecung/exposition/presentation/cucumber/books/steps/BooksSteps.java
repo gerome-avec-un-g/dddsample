@@ -39,6 +39,7 @@ public class BooksSteps {
 
     @When("the user tries to add a book")
     public void the_user_adds_a_book(DataTable table) {
+        sharedState.setActualException(null);
         try {
             for (Map<String, String> columns : table.<String, String>asMaps(String.class, String.class)) {
                 BookCreationForm bookCreationForm = new BookCreationForm();
@@ -84,6 +85,7 @@ public class BooksSteps {
 
     @When("the user tries to display all books")
     public void theUserTriesToDisplayAllBooks() {
+        sharedState.setActualException(null);
         try {
             bookSummaries = booksPresentationService.displayBooks();
         } catch (Exception exception) {

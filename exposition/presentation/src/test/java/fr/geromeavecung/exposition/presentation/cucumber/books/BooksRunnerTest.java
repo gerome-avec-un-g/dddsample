@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         // TODO strict = true,
         plugin = {"json:target/books.json"},
-        glue = "fr.geromeavecung.exposition.presentation",
+        glue = {"fr.geromeavecung.exposition.presentation.cucumber.shared", "fr.geromeavecung.exposition.presentation.cucumber.books"},
         features = {"src/test/resources/features"},
         tags = "not @inProgress"
 )

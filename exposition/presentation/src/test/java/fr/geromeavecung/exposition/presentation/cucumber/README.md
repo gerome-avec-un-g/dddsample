@@ -55,6 +55,9 @@ plugin = {"json:target/businessdomain.json"},
 
 is used to generate one document per business domain
 
+The glue should only be the shared package and this business domain package to avoid coupling with other business
+domains.
+
 ### fr.geromeavecung.exposition.presentation.cucumber.books.repositories
 
 Contains the in memory implementations of the business domain repositories
@@ -63,14 +66,37 @@ Contains the in memory implementations of the business domain repositories
 
 Contains the steps for your features.
 
-You should have one Step file for each of your feature. 
+You should have one Step file for each of your feature. 1 feature = 1 Step file = 1 Orchestration Service
+
 You can have some common Steps that are shared by multiple features, often for setting the user.
 
-The name of the public methods for steps should be snake_case prefixed by either given_, when_ or then_. 
-Snake_case for test methods makes it easy to identify them when you are browsing caller hierarchy.
-The prefix make it easier to lookup when browsing file structure;
+The name of the public methods for steps should be snake_case prefixed by either given_, when_ or then_. Snake_case for
+test methods makes it easy to identify them when you are browsing caller hierarchy. The prefix make it easier to lookup
+when browsing file structure;
 
-Private methods should follow standard Java naming conventions. 
+Private methods should follow standard Java naming conventions.
+
+
+Only one @Given ?
+
+You should have only one @When, which is the call the orchestration service corresponding to your feature
+
+```
+@When("the logged-in user does the action")
+public void when_the_logged_in_user_does_the_action() {
+    sharedState.setActualException(null);
+    try {
+        result = actionPresentationService.action();
+    } catch (Exception exception) {
+        sharedState.setActualException(exception);
+    }
+}
+```
+It is important the reset the exception and catch the one throw by your specific service call 
+to avoid getting exception from previous tests. 
+
+@Then corresponds to the verification of the object returned by the presentation service. If the object is
+complex, you can break it down with multiple @Then
 
 # Features
 
