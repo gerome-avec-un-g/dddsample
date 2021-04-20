@@ -2,30 +2,33 @@ Cucumber
 
 # Technical files and test automation
 
-## Shared package
+## fr.geromeavecung.exposition.presentation.cucumber.shared
 
-### fr.geromeavecung.exposition.presentation.cucumber.shared.CucumberConfiguration.java
+### CucumberConfiguration.java
 
-This is the main configuration for Cucumber. It references the configurations for shared state and shared repositories
-implementations. It also references the configurations of each specific functional domains, which should be added when
-creating a new functional domain.
+This is the main configuration for Cucumber. It references the shared configuration and the configurations of each
+specific functional domains, which should be added when creating a new functional domain.
 
-### fr.geromeavecung.exposition.presentation.cucumber.shared.SharedState.java
+### SharedConfiguration
+
+The configuration for shared repositories based on @ComponentScan
+
+### SharedState.java
 
 Contains common data that is used by different Cucumber steps, like the identifier of the logged-in user doing the
 actions, the current exception...
 
-### fr.geromeavecung.exposition.presentation.cucumber.shared.repositories.XXXInMemory.java
+### SharedSteps.java
+
+Steps for all shared in memory implementation of repositories and exception verification. Also contains some
+configuration to manage null/empty strings for DataTables.
+
+### repositories.XXXInMemory.java
 
 Some in memory implementations of repositories that are shared by multiple functional domains (Identifiers,
 Timestamps...)
 IdentifiersInMemory and TimestampsInMemory are here to get rid of the randomness of UUID.randomUUID() and
 LocalDateTime.now(). They always return a fixed value that can be changed with the appropriate steps in SharedSteps.
-
-### fr.geromeavecung.exposition.presentation.cucumber.shared.SharedSteps.java
-
-Steps for all shared in memory implementation of repositories and exception verification. Also contains some
-configuration to manage null/empty strings for DataTables.
 
 ## Functional Domain Package
 
@@ -76,7 +79,6 @@ when browsing file structure;
 
 Private methods should follow standard Java naming conventions.
 
-
 Only one @Given ?
 
 You should have only one @When, which is the call the orchestration service corresponding to your feature
@@ -92,11 +94,12 @@ public void when_the_logged_in_user_does_the_action() {
     }
 }
 ```
-It is important the reset the exception and catch the one throw by your specific service call 
-to avoid getting exception from previous tests. 
 
-@Then corresponds to the verification of the object returned by the presentation service. If the object is
-complex, you can break it down with multiple @Then
+It is important the reset the exception and catch the one throw by your specific service call to avoid getting exception
+from previous tests.
+
+@Then corresponds to the verification of the object returned by the presentation service. If the object is complex, you
+can break it down with multiple @Then
 
 # Features
 
@@ -105,6 +108,7 @@ complex, you can break it down with multiple @Then
 The documentation is generated with Cukedoctor maven plugin in exposition/presentation/target/documents.
 
 The plugin is executed once for each business domain :
+
 ```
 <!-- do once for each business domain -->
 <execution>
@@ -121,10 +125,11 @@ The plugin is executed once for each business domain :
     </configuration>
 </execution>
 ```
+
 "featuresDir" is the name of the json file configured in the class BusinessDomainRunnerTest.java @CucumberOptions.plugin
 
-
 To be able to **use ${maven.build.timestamp} in the file name, it should be properly formatted
+
 ```
 <properties>
     ...
@@ -134,7 +139,7 @@ To be able to **use ${maven.build.timestamp} in the file name, it should be prop
 </properties>
 ```
 
-I18N is available in src/main/resources/cukedoctor.properties
-/!\ TODO ? https://github.com/rmpestano/cukedoctor#641-reading-features
+I18N is available in src/main/resources/cukedoctor.properties /!\ TODO
+? https://github.com/rmpestano/cukedoctor#641-reading-features
 
 You can set a custom introduction with src/main/resources/cukedoctor-intro.adoc

@@ -4,8 +4,8 @@ import fr.geromeavecung.businessdomain.shared.BusinessException;
 import fr.geromeavecung.exposition.presentation.cucumber.shared.repositories.IdentifiersInMemory;
 import fr.geromeavecung.exposition.presentation.cucumber.shared.repositories.TimestampsInMemory;
 import io.cucumber.java.DataTableType;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -25,17 +25,25 @@ public class SharedSteps {
         this.sharedState = sharedState;
     }
 
+    /**
+     * Allows to simulate empty Strings
+     */
     @DataTableType(replaceWithEmptyString = "[blank]")
     public String stringType(String cell) {
         return cell;
     }
 
-    @When("Timestamp is {string}")
-    public void when_timestamp_is(String timestamp) {
-        timestampsInMemory.setTimestamp(timestamp);
+    @Given("Today is {int}-{int}-{int}")
+    public void given_today_is(int year, int month, int dayOfMonth) {
+        timestampsInMemory.setDate(year, month, dayOfMonth);
     }
 
-    @When("Next identifier is {string}")
+    @Given("The time is {int}:{int}:{int}")
+    public void given_the_hour_is(int hour, int minute, int second) {
+        timestampsInMemory.setTime(hour, minute, second);
+    }
+
+    @Given("Next identifier is {string}")
     public void when_next_identifier_is(String uuid) {
         identifiersInMemory.setUuid(uuid);
     }

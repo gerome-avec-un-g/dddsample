@@ -6,6 +6,6 @@ import org.springframework.test.context.ContextConfiguration;
 
 @CucumberContextConfiguration
 @ContextConfiguration(classes = {SharedConfiguration.class, BooksConfiguration.class})
-public class CucumberConfiguration {
+public class CucumberMainConfiguration {
 
 }

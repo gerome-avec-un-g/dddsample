@@ -6,6 +6,7 @@ Feature: add a book
   Rule: title validation
     Example: title is mandatory
       Given a librarian
+      And Today is 2021-04-20
       When the user tries to add a book
         | title | author       | type    |
         |       | Isaac Asimov | FICTION |
@@ -13,6 +14,7 @@ Feature: add a book
 
     Example: title has at least 1 characters
       Given a librarian
+      And The time is 19:21:59
       When the user tries to add a book
         | title   | author | type    |
         | [blank] |        | FICTION |
