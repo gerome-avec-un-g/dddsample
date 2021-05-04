@@ -8,7 +8,7 @@ import java.time.ZonedDateTime;
 public class TimestampsNow implements Timestamps {
 
     @Override
-    public Timestamp generate() {
+    public Timestamp now() {
         return Timestamp.generate(ZonedDateTime.now());
     }
 

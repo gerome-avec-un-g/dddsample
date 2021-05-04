@@ -6,7 +6,7 @@ public class Identifier {
 
     private final UUID value;
 
-    public static Identifier generate(UUID uuid) {
+    public static Identifier from(UUID uuid) {
         return new Identifier(uuid);
     }
 

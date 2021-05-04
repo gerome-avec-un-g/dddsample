@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Component
-@Scope(CucumberTestContext.SCOPE_CUCUMBER_GLUE) //@ScenarioScope  does not seem to work
+@Scope(CucumberTestContext.SCOPE_CUCUMBER_GLUE)
 public class SharedState {
 
     private Exception actualException;

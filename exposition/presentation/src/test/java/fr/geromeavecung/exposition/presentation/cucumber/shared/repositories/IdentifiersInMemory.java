@@ -12,15 +12,17 @@ import java.util.UUID;
 @Scope(CucumberTestContext.SCOPE_CUCUMBER_GLUE)
 public class IdentifiersInMemory implements Identifiers {
 
-    private String uuid = "271be4e7-aab9-4944-ab45-e1bf75d94dac";
+    private static final Identifier INITIAL_IDENTIFIER = Identifier.from(UUID.fromString("271be4e7-aab9-4944-ab45-e1bf75d94dac"));
+
+    private Identifier nextIdentifier = INITIAL_IDENTIFIER;
 
     @Override
-    public Identifier generate() {
-        return Identifier.generate(UUID.fromString(uuid));
+    public Identifier generateNextIdentifier() {
+        return nextIdentifier;
     }
 
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
+    public void setNextIdentifier(String uuid) {
+        this.nextIdentifier = Identifier.from(UUID.fromString(uuid));
     }
 
 }

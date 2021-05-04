@@ -17,7 +17,7 @@ public class TimestampsInMemory implements Timestamps {
     private ZonedDateTime zonedDateTime = ZonedDateTime.parse("2020-12-20T17:23:51.193133300+02:00[Europe/Paris]");
 
     @Override
-    public Timestamp generate() {
+    public Timestamp now() {
         return Timestamp.generate(zonedDateTime);
     }
 

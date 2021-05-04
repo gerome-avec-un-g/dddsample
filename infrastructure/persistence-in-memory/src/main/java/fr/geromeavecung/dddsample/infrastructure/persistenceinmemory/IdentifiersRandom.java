@@ -8,8 +8,8 @@ import java.util.UUID;
 public class IdentifiersRandom implements Identifiers {
 
     @Override
-    public Identifier generate() {
-        return Identifier.generate(UUID.randomUUID());
+    public Identifier generateNextIdentifier() {
+        return Identifier.from(UUID.randomUUID());
     }
 
 }

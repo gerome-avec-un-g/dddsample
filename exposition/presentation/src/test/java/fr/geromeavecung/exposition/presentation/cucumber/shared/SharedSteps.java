@@ -26,7 +26,7 @@ public class SharedSteps {
     }
 
     /**
-     * Allows to simulate empty Strings
+     * Allows to simulate empty Strings in Cucumber tables
      */
     @DataTableType(replaceWithEmptyString = "[blank]")
     public String stringType(String cell) {
@@ -45,7 +45,7 @@ public class SharedSteps {
 
     @Given("Next identifier is {string}")
     public void when_next_identifier_is(String uuid) {
-        identifiersInMemory.setUuid(uuid);
+        identifiersInMemory.setNextIdentifier(uuid);
     }
 
     @Then("i have an error {string} with message {string}")
