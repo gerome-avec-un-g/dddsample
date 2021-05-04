@@ -9,7 +9,7 @@
 
 <div class="mdc-card" layout:fragment="content">
 
-    <form action="#" th:action="@{/books/creation}" th:object="${bookCreationForm}" method="post">
+    <form action="#" id="createBookForm" th:action="@{/books/creation}" th:object="${bookCreationForm}" method="post">
 
         <div class="mdc-card__content">
 
@@ -31,7 +31,10 @@
                     <div class="mdc-text-field-character-counter">0 / 20</div>
                 </div>
             </div>
-
+            <div>
+                <input type="checkbox" th:field="*{editions}" th:value="normale" onchange="myFunction()"/>
+                <input type="checkbox" th:field="*{editions}" th:value="deluxe" onchange="myFunction()"/>
+            </div>
             <div>
                 <label class="mdc-text-field mdc-text-field--outlined">
                   <span class="mdc-notched-outline">
@@ -54,10 +57,7 @@
                     <option th:each="type : ${types}" th:value="${type}" th:text="#{${type}}"></option>
                 </select>
             </div>
-            <div>
-                <input type="checkbox" th:field="*{editions}" th:value="normale" required="required"/>
-                <input type="checkbox" th:field="*{editions}" th:value="deluxe"/>
-            </div>
+
 
         </div>
 
@@ -77,9 +77,31 @@
 </body>
 
 <script layout:fragment="script">
-const textFields = [].map.call(document.querySelectorAll('.mdc-text-field'), function(el) {
-    mdc.textField.MDCTextField.attachTo(el);
-});
+    const textFields = [].map.call(document.querySelectorAll('.mdc-text-field'), function(el) {
+        mdc.textField.MDCTextField.attachTo(el);
+    });
+
+    function myFunction() {
+        const form = document.querySelector('#createBookForm');
+        const checkboxes = form.querySelectorAll('input[type=checkbox]');
+        const firstCheckbox = checkboxes.length > 0 ? checkboxes[0] : null;
+        if (firstCheckbox) {
+            if(isChecked(checkboxes)) {
+                firstCheckbox.setCustomValidity('');
+            } else {
+                firstCheckbox.setCustomValidity('At least one checkbox must be selected.');
+            }
+        }
+    }
+
+    function isChecked(checkboxes) {
+        for (let i = 0; i < checkboxes.length; i++) {
+            if (checkboxes[i].checked) return true;
+        }
+        return false;
+    }
+
+    myFunction();
 
 </script>
 
