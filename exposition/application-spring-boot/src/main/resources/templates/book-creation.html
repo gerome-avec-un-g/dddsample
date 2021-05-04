@@ -32,8 +32,8 @@
                 </div>
             </div>
             <div>
-                <input type="checkbox" th:field="*{editions}" th:value="normale" onchange="myFunction()"/>
-                <input type="checkbox" th:field="*{editions}" th:value="deluxe" onchange="myFunction()"/>
+                <input type="checkbox" th:field="*{editions}" th:value="normale" onchange="checkValidity()"/>
+                <input type="checkbox" th:field="*{editions}" th:value="deluxe" onchange="checkValidity()"/>
             </div>
             <div>
                 <label class="mdc-text-field mdc-text-field--outlined">
@@ -77,11 +77,14 @@
 </body>
 
 <script layout:fragment="script">
+
+    /*<![CDATA[*/
+
     const textFields = [].map.call(document.querySelectorAll('.mdc-text-field'), function(el) {
         mdc.textField.MDCTextField.attachTo(el);
     });
 
-    function myFunction() {
+    function checkValidity() {
         const form = document.querySelector('#createBookForm');
         const checkboxes = form.querySelectorAll('input[type=checkbox]');
         const firstCheckbox = checkboxes.length > 0 ? checkboxes[0] : null;
@@ -101,7 +104,9 @@
         return false;
     }
 
-    myFunction();
+    checkValidity();
+
+    /*]]>*/
 
 </script>
 
