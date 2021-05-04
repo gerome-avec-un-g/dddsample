@@ -54,6 +54,10 @@
                     <option th:each="type : ${types}" th:value="${type}" th:text="#{${type}}"></option>
                 </select>
             </div>
+            <div>
+                <input type="checkbox" th:field="*{editions}" th:value="normale"/>
+                <input type="checkbox" th:field="*{editions}" th:value="deluxe"/>
+            </div>
 
         </div>
 

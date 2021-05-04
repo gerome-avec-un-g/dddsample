@@ -17,10 +17,7 @@ public class BooksPresentationService {
     }
 
     public void createBook(BookCreationForm bookCreationForm) {
-        Title title = Title.create(bookCreationForm.getTitle());
-        Author author = Author.create(bookCreationForm.getAuthor());
-        Book book = Book.create(title, author, bookCreationForm.getType());
-        booksOrchestrationService.add(book);
+        booksOrchestrationService.add(bookCreationForm.toDomain());
     }
 
     public Set<BookSummary> displayBooks() {

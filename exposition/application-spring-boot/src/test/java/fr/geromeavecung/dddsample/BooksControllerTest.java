@@ -136,14 +136,10 @@ class BooksControllerTest {
         bookCreationForm.setAuthor("abc");
         bookCreationForm.setTitle("def");
         bookCreationForm.setType(Book.Type.FICTION);
-        BookCreationForm expectedBookCreationForm = new BookCreationForm();
-        expectedBookCreationForm.setAuthor("abc");
-        expectedBookCreationForm.setTitle("def");
-        bookCreationForm.setType(Book.Type.FICTION);
 
         Book book = Book.create(Title.create("abc"), Author.create("def"), Book.Type.FICTION);
         BookAlreadyExists bookAlreadyExists = new BookAlreadyExists(book);
-        doThrow(bookAlreadyExists).when(booksPresentationService).createBook(expectedBookCreationForm);
+        doThrow(bookAlreadyExists).when(booksPresentationService).createBook(bookCreationForm);
 
         mockMvc.perform(post("/books/creation").flashAttr("bookCreationForm", bookCreationForm))
                 .andExpect(status().is3xxRedirection())
