@@ -92,7 +92,7 @@
             if(isChecked(checkboxes)) {
                 firstCheckbox.setCustomValidity('');
             } else {
-                firstCheckbox.setCustomValidity('At least one checkbox must be selected.');
+                firstCheckbox.setCustomValidity('[[#{alert.atLeastOneChecked}]]');
             }
         }
     }
