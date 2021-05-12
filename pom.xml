@@ -13,6 +13,7 @@
         <module>business</module>
         <module>infrastructure</module>
         <module>tests-report</module>
+        <module>domaindrivendesignconcepts</module>
     </modules>
 
     <properties>
