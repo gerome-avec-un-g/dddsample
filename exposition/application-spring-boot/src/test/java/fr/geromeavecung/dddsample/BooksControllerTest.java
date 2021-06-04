@@ -56,7 +56,7 @@ class BooksControllerTest {
     @Test
     void books() throws Exception {
         Set<BookSummary> expectedBooks = new HashSet<>();
-        expectedBooks.add(new BookSummary("abc", "def", "FICTION"));
+        expectedBooks.add(new BookSummary(new Book(Title.create("abc"), Author.create("def"), Book.Type.FICTION)));
         when(booksPresentationService.displayBooks()).thenReturn(expectedBooks);
 
         mockMvc.perform(get("/books"))

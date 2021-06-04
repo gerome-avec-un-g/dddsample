@@ -6,34 +6,22 @@ import java.util.Objects;
 
 public class BookSummary {
 
-    private final String title;
-
-    private final String author;
-
-    private final String type;
-
-    public BookSummary(String title, String author, String type) {
-        this.title = title;
-        this.author = author;
-        this.type = type;
-    }
+    private final Book book;
 
     public BookSummary(Book book) {
-        this.title = book.getTitle().getValue();
-        this.author = book.getAuthor().getValue();
-        this.type = book.getType().name();
+        this.book = book;
     }
 
     public String getTitle() {
-        return title;
+        return book.getTitle().getValue();
     }
 
     public String getAuthor() {
-        return author;
+        return book.getAuthor().getValue();
     }
 
     public String getType() {
-        return type;
+        return book.getType().name();
     }
 
     @Override
@@ -41,22 +29,18 @@ public class BookSummary {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         BookSummary that = (BookSummary) o;
-        return Objects.equals(title, that.title)
-                && Objects.equals(author, that.author)
-                && Objects.equals(type, that.type);
+        return Objects.equals(book, that.book);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, author, type);
+        return Objects.hash(book);
     }
 
     @Override
     public String toString() {
         return "BookSummary{" +
-                "title='" + title + '\'' +
-                ", author='" + author + '\'' +
-                ", type='" + type + '\'' +
+                "book='" + book + '\'' +
                 '}';
     }
 }

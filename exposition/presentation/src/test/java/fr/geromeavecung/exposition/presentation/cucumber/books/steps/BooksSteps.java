@@ -98,7 +98,7 @@ public class BooksSteps {
         sharedState.assertThatNoExceptionIsThrown();
         Set<BookSummary> expected = new HashSet<>();
         for (Map<String, String> columns : table.<String, String>asMaps(String.class, String.class)) {
-            expected.add(new BookSummary(columns.get("title"), columns.get("author"), columns.get("type")));
+            expected.add(new BookSummary(new Book(Title.create(columns.get("title")), Author.create(columns.get("author")), Book.Type.valueOf(columns.get("type")))));
         }
         assertThat(bookSummaries).isEqualTo(expected);
     }
