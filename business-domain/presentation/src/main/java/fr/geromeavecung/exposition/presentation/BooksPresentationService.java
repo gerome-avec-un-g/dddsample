@@ -1,9 +1,11 @@
 package fr.geromeavecung.exposition.presentation;
 
 import fr.geromeavecung.businessdomain.shared.Identifiers;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.Book;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.Title;
 import fr.geromeavecung.exposition.orchestration.BooksOrchestrationService;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -24,7 +26,9 @@ public class BooksPresentationService {
     }
 
     public BookSummaryTable displayBooks() {
-        List<BookSummary> bookSummaries = booksOrchestrationService.displayBooks().stream().map(BookSummary::new).collect(Collectors.toList());
+        List<BookSummary> bookSummaries = booksOrchestrationService.displayBooks().stream()
+                .sorted(Comparator.comparing(Book::getAuthor).thenComparing(Book::getTitle))
+                .map(BookSummary::new).collect(Collectors.toList());
         return new BookSummaryTable(bookSummaries);
     }
 

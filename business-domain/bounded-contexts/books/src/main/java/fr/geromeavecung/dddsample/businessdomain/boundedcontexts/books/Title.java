@@ -4,7 +4,7 @@ import fr.geromeavecung.businessdomain.shared.FieldValidator;
 
 import java.util.Objects;
 
-public class Title {
+public class Title implements Comparable<Title> {
 
     private final String value;
 
@@ -35,6 +35,11 @@ public class Title {
     @Override
     public int hashCode() {
         return Objects.hash(value);
+    }
+
+    @Override
+    public int compareTo(Title o) {
+        return value.compareTo(o.value);
     }
 
 }

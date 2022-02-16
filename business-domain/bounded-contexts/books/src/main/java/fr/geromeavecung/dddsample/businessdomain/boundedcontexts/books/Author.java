@@ -4,7 +4,7 @@ import fr.geromeavecung.businessdomain.shared.FieldValidator;
 
 import java.util.Objects;
 
-public class Author {
+public class Author implements Comparable<Author>{
 
     private final String value;
 
@@ -22,8 +22,12 @@ public class Author {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Author author = (Author) o;
         return Objects.equals(value, author.value);
     }
@@ -36,6 +40,11 @@ public class Author {
     @Override
     public String toString() {
         return "Author{" + "value='" + value + '\'' + '}';
+    }
+
+    @Override
+    public int compareTo(Author o) {
+        return value.compareTo(o.value);
     }
 
 }
