@@ -55,7 +55,7 @@ public class BooksController {
     public ModelAndView books(Model model, @AuthenticationPrincipal UserDetails userDetails) {
         LOGGER.info("Charset: " + Charset.defaultCharset().displayName());
         ModelAndView modelAndView = new ModelAndView("books");
-        System.out.println(libraryApplicationPropertiesConfiguration.toString() + " " + userDetails);
+        //System.out.println(libraryApplicationPropertiesConfiguration.toString() + " " + userDetails);
         modelAndView.addObject("bookSummaryTable", booksPresentationService.displayBooks());
         modelAndView.addAllObjects(model.asMap());
         if (!modelAndView.getModelMap().containsAttribute("booksActionForm")) {
