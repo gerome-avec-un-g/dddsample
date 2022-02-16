@@ -12,19 +12,18 @@ mvn spring-boot:run -Dspring-boot.run.profiles=local
 not using lombok because (at least in the domain):
 * can be poorly used
 * plays poorly with coverage
-* Intellij has Alt + Insert
+* Intellij has code generation with Alt + Insert
 
 ###Cucumber
 see src/test/java/fr/geromeavecung/exposition/presentation/cucumber/README.md
 
 ##Global test strategy
 
-* junit + spring + mockito for exposition
-* junit + spring + mockito for infra
 * cucumber for collaborative business testing from presentation to domain with in memory
   implementations of repositories
 * junit to test remaining "technical" cases (mostly some path for equals, hashcode, toString...)
-
+* junit + spring + mockito for exposition
+* junit + spring + mockito for infra
 
 TODO maven mvnw ?  
 thymeleaf th:text placeholder good practice ?
