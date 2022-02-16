@@ -1,11 +1,12 @@
 package fr.geromeavecung.dddsample.books;
 
 import com.lowagie.text.DocumentException;
-import fr.geromeavecung.businessdomain.books.Book;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.Book;
 import fr.geromeavecung.businessdomain.shared.BusinessException;
 import fr.geromeavecung.dddsample.LibraryApplicationPropertiesConfiguration;
 import fr.geromeavecung.exposition.presentation.BookCreationForm;
 import fr.geromeavecung.exposition.presentation.BookSummary;
+import fr.geromeavecung.exposition.presentation.BookSummaryTable;
 import fr.geromeavecung.exposition.presentation.BooksActionForm;
 import fr.geromeavecung.exposition.presentation.BooksPresentationService;
 import org.slf4j.Logger;
@@ -55,7 +56,7 @@ public class BooksController {
         LOGGER.info("Charset: " + Charset.defaultCharset().displayName());
         ModelAndView modelAndView = new ModelAndView("books");
         System.out.println(libraryApplicationPropertiesConfiguration.toString() + " " + userDetails);
-        modelAndView.addObject("books", booksPresentationService.displayBooks());
+        modelAndView.addObject("bookSummaryTable", booksPresentationService.displayBooks());
         modelAndView.addAllObjects(model.asMap());
         if (!modelAndView.getModelMap().containsAttribute("booksActionForm")) {
             modelAndView.addObject("booksActionForm", new BooksActionForm());
@@ -65,9 +66,8 @@ public class BooksController {
 
     @GetMapping("/print")
     public void print(@AuthenticationPrincipal UserDetails userDetails, HttpServletResponse response) throws DocumentException, IOException {
-        Set<BookSummary> books = booksPresentationService.displayBooks();
         Context context = new Context();
-        context.setVariable("books", books);
+        context.setVariable("bookSummaryTable", booksPresentationService.displayBooks());
         String html = templateEngine.process("books-print", context);
         ServletOutputStream outputStream = response.getOutputStream();
         try  {

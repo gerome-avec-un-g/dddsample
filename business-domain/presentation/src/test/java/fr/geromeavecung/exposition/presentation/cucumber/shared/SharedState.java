@@ -1,6 +1,6 @@
 package fr.geromeavecung.exposition.presentation.cucumber.shared;
 
-import fr.geromeavecung.businessdomain.users.User;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.users.User;
 import io.cucumber.spring.CucumberTestContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;

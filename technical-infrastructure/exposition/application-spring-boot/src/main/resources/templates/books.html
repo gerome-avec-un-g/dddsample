@@ -41,7 +41,7 @@
                         </tr>
                         </thead>
                         <tbody class="mdc-data-table__content">
-                        <tr class="mdc-data-table__row" th:each="book: ${books}">
+                        <tr class="mdc-data-table__row" th:each="book: ${bookSummaryTable.bookSummaries}">
                             <td class="mdc-data-table__cell" th:text="${book.title}"></td>
                             <td class="mdc-data-table__cell" th:text="${book.author}"></td>
                             <td class="mdc-data-table__cell" th:text="#{${book.type}}"></td>

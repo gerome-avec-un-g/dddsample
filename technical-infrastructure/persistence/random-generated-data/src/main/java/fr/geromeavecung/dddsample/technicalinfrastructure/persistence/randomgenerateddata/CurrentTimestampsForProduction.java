@@ -1,11 +1,11 @@
-package fr.geromeavecung.dddsample.technicalinfrastructure.persistence.h2;
+package fr.geromeavecung.dddsample.technicalinfrastructure.persistence.randomgenerateddata;
 
 import fr.geromeavecung.businessdomain.shared.Timestamp;
 import fr.geromeavecung.businessdomain.shared.Timestamps;
 
 import java.time.ZonedDateTime;
 
-public class TimestampsNow implements Timestamps {
+public class CurrentTimestampsForProduction implements Timestamps {
 
     @Override
     public Timestamp now() {

@@ -17,7 +17,7 @@ public class IdentifiersInMemory implements Identifiers {
     private Identifier nextIdentifier = INITIAL_IDENTIFIER;
 
     @Override
-    public Identifier generateNextIdentifier() {
+    public Identifier generateNewIdentifier() {
         return nextIdentifier;
     }
 

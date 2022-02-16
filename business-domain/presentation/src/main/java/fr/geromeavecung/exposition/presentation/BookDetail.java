@@ -1,6 +1,6 @@
 package fr.geromeavecung.exposition.presentation;
 
-import fr.geromeavecung.businessdomain.books.Book;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.Book;
 
 import java.util.Objects;
 

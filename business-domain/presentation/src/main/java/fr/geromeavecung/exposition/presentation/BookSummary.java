@@ -1,8 +1,6 @@
 package fr.geromeavecung.exposition.presentation;
 
-import fr.geromeavecung.businessdomain.books.Book;
-
-import java.util.Objects;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.Book;
 
 public class BookSummary {
 
@@ -10,6 +8,10 @@ public class BookSummary {
 
     public BookSummary(Book book) {
         this.book = book;
+    }
+
+    public String getIdentifier() {
+        return book.getIdentifier().display();
     }
 
     public String getTitle() {
@@ -24,23 +26,4 @@ public class BookSummary {
         return book.getType().name();
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        BookSummary that = (BookSummary) o;
-        return Objects.equals(book, that.book);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(book);
-    }
-
-    @Override
-    public String toString() {
-        return "BookSummary{" +
-                "book='" + book + '\'' +
-                '}';
-    }
 }

@@ -1,13 +1,15 @@
 package fr.geromeavecung.dddsample;
 
-import fr.geromeavecung.businessdomain.books.Author;
-import fr.geromeavecung.businessdomain.books.Book;
-import fr.geromeavecung.businessdomain.books.BookAlreadyExists;
-import fr.geromeavecung.businessdomain.books.Title;
+import fr.geromeavecung.businessdomain.shared.Identifier;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.Author;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.Book;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.BookAlreadyExists;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.Title;
 import fr.geromeavecung.businessdomain.shared.BusinessException;
 import fr.geromeavecung.dddsample.books.BooksController;
 import fr.geromeavecung.exposition.presentation.BookCreationForm;
 import fr.geromeavecung.exposition.presentation.BookSummary;
+import fr.geromeavecung.exposition.presentation.BookSummaryTable;
 import fr.geromeavecung.exposition.presentation.BooksPresentationService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -19,8 +21,10 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -55,9 +59,9 @@ class BooksControllerTest {
     @WithMockUser(value = "buzz")
     @Test
     void books() throws Exception {
-        Set<BookSummary> expectedBooks = new HashSet<>();
-        expectedBooks.add(new BookSummary(new Book(Title.create("abc"), Author.create("def"), Book.Type.FICTION)));
-        when(booksPresentationService.displayBooks()).thenReturn(expectedBooks);
+        List<BookSummary> expectedBooks = new ArrayList<>();
+        expectedBooks.add(new BookSummary(new Book(Identifier.from("e0917866-bf12-4008-a710-c48ae05042cb"), Title.create("abc"), Author.create("def"), Book.Type.FICTION)));
+        when(booksPresentationService.displayBooks()).thenReturn(new BookSummaryTable(expectedBooks));
 
         mockMvc.perform(get("/books"))
                 .andExpect(status().isOk())
@@ -97,7 +101,7 @@ class BooksControllerTest {
         bookCreationForm.setAuthor("abc");
         bookCreationForm.setTitle("def");
         bookCreationForm.setType(Book.Type.FICTION);
-        Book book = Book.create(Title.create("abc"), Author.create("def"), Book.Type.FICTION);
+        Book book = Book.create(Identifier.from("fb235778-36c0-49ed-aad3-16f617a51a9f"), Title.create("abc"), Author.create("def"), Book.Type.FICTION);
         BusinessException businessException = new BookAlreadyExists(book);
 
         mockMvc.perform(get("/books/creation")
@@ -137,7 +141,7 @@ class BooksControllerTest {
         bookCreationForm.setTitle("def");
         bookCreationForm.setType(Book.Type.FICTION);
 
-        Book book = Book.create(Title.create("abc"), Author.create("def"), Book.Type.FICTION);
+        Book book = Book.create(Identifier.from("fe35e912-0008-4f3b-bf23-3641f55ec1a2"), Title.create("abc"), Author.create("def"), Book.Type.FICTION);
         BookAlreadyExists bookAlreadyExists = new BookAlreadyExists(book);
         doThrow(bookAlreadyExists).when(booksPresentationService).createBook(bookCreationForm);
 

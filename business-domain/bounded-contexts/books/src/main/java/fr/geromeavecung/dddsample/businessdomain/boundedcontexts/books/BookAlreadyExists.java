@@ -1,4 +1,4 @@
-package fr.geromeavecung.businessdomain.books;
+package fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books;
 
 import fr.geromeavecung.businessdomain.shared.BusinessException;
 

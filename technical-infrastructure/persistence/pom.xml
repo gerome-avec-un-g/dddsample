@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>h2</module>
+        <module>random-generated-data</module>
     </modules>
 
 

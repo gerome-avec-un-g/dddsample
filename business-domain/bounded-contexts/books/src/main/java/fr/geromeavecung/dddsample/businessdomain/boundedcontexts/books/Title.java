@@ -1,19 +1,19 @@
-package fr.geromeavecung.businessdomain.books;
+package fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books;
 
 import fr.geromeavecung.businessdomain.shared.FieldValidator;
 
 import java.util.Objects;
 
-public class Author {
+public class Title {
 
     private final String value;
 
-    public static Author create(String value) {
-        return new Author(value);
+    public static Title create(String value) {
+        return new Title(value);
     }
 
-    public Author(String value) {
-        this.value = FieldValidator.length("author", value, 1, 25);
+    public Title(String value) {
+        this.value = FieldValidator.length("title", value, 1, 40);
     }
 
     public String getValue() {
@@ -24,8 +24,8 @@ public class Author {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Author author = (Author) o;
-        return Objects.equals(value, author.value);
+        Title title = (Title) o;
+        return Objects.equals(value, title.value);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class Author {
 
     @Override
     public String toString() {
-        return "Author{" + "value='" + value + '\'' + '}';
+        return "Title{" + "value='" + value + '\'' + '}';
     }
 
 }

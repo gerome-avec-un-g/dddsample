@@ -1,8 +1,8 @@
 package fr.geromeavecung.exposition.orchestration;
 
-import fr.geromeavecung.businessdomain.books.Book;
-import fr.geromeavecung.businessdomain.books.BooksService;
-import fr.geromeavecung.businessdomain.books.Title;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.Book;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.BooksService;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.Title;
 
 import java.util.Set;
 

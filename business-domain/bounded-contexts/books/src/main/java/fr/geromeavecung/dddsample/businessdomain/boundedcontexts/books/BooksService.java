@@ -1,4 +1,4 @@
-package fr.geromeavecung.businessdomain.books;
+package fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books;
 
 import fr.geromeavecung.businessdomain.shared.NotFoundException;
 
@@ -14,18 +14,18 @@ public class BooksService {
     }
 
     public void add(Book book) {
-        if (books.findAll().contains(book)) {
+        if (books.readdAll().contains(book)) {
             throw new BookAlreadyExists(book);
         }
         books.save(book);
     }
 
     public Set<Book> displayBooks() {
-        return books.findAll();
+        return books.readdAll();
     }
 
     public Book bookDetail(Title title) {
-        Optional<Book> expectedBook = books.findAll().stream()
+        Optional<Book> expectedBook = books.readdAll().stream()
                 .filter(book -> book.getTitle().equals(title)).findFirst();
         if (expectedBook.isPresent()) {
             return expectedBook.get();

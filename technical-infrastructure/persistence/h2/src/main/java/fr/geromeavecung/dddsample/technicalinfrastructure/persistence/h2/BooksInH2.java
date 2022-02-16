@@ -1,7 +1,8 @@
 package fr.geromeavecung.dddsample.technicalinfrastructure.persistence.h2;
 
-import fr.geromeavecung.businessdomain.books.Book;
-import fr.geromeavecung.businessdomain.books.Books;
+import fr.geromeavecung.businessdomain.shared.Identifier;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.Book;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.Books;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -25,12 +26,17 @@ public class BooksInH2 implements Books {
     }
 
     @Override
-    public Set<Book> findAll() {
+    public Set<Book> readdAll() {
         return StreamSupport.stream(booksJpaRepository.findAll().spliterator(), false)
                 .map(BookJPA::toDomain)
                 .filter(Optional::isPresent)
                 .map(Optional::get)
                 .collect(Collectors.toSet());
+    }
+
+    @Override
+    public Book read(Identifier identifier) {
+        return null;
     }
 
     @Override

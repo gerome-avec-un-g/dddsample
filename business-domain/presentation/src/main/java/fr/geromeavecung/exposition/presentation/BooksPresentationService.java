@@ -1,8 +1,10 @@
 package fr.geromeavecung.exposition.presentation;
 
-import fr.geromeavecung.businessdomain.books.Title;
+import fr.geromeavecung.businessdomain.shared.Identifiers;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.Title;
 import fr.geromeavecung.exposition.orchestration.BooksOrchestrationService;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -10,16 +12,20 @@ public class BooksPresentationService {
 
     private final BooksOrchestrationService booksOrchestrationService;
 
-    public BooksPresentationService(BooksOrchestrationService booksOrchestrationService) {
+    private final Identifiers identifiers;
+
+    public BooksPresentationService(BooksOrchestrationService booksOrchestrationService, Identifiers identifiers) {
         this.booksOrchestrationService = booksOrchestrationService;
+        this.identifiers = identifiers;
     }
 
     public void createBook(BookCreationForm bookCreationForm) {
-        booksOrchestrationService.add(bookCreationForm.toDomain());
+        booksOrchestrationService.add(bookCreationForm.toDomain(identifiers.generateNewIdentifier()));
     }
 
-    public Set<BookSummary> displayBooks() {
-        return booksOrchestrationService.displayBooks().stream().map(BookSummary::new).collect(Collectors.toSet());
+    public BookSummaryTable displayBooks() {
+        List<BookSummary> bookSummaries = booksOrchestrationService.displayBooks().stream().map(BookSummary::new).collect(Collectors.toList());
+        return new BookSummaryTable(bookSummaries);
     }
 
     public void booksAction(BooksActionForm booksActionForm) {
