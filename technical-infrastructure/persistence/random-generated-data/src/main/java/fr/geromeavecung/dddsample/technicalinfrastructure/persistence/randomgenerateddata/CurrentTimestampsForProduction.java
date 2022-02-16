@@ -2,9 +2,11 @@ package fr.geromeavecung.dddsample.technicalinfrastructure.persistence.randomgen
 
 import fr.geromeavecung.businessdomain.shared.Timestamp;
 import fr.geromeavecung.businessdomain.shared.Timestamps;
+import org.springframework.stereotype.Repository;
 
 import java.time.ZonedDateTime;
 
+@Repository
 public class CurrentTimestampsForProduction implements Timestamps {
 
     @Override

@@ -1,8 +1,8 @@
 package fr.geromeavecung.dddsample;
 
+import fr.geromeavecung.businessdomain.shared.Identifiers;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.Books;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.BooksService;
-import fr.geromeavecung.dddsample.technicalinfrastructure.persistence.randomgenerateddata.RandomIdentifiersForProduction;
 import fr.geromeavecung.exposition.orchestration.BooksOrchestrationService;
 import fr.geromeavecung.exposition.presentation.BooksPresentationService;
 import nz.net.ultraq.thymeleaf.LayoutDialect;
@@ -16,8 +16,8 @@ import org.springframework.web.filter.CommonsRequestLoggingFilter;
 public class LibraryApplicationConfiguration {
 
     @Bean
-    public BooksPresentationService booksPresentationService(Books books) {
-        return new BooksPresentationService(new BooksOrchestrationService(new BooksService(books)), new RandomIdentifiersForProduction());
+    public BooksPresentationService booksPresentationService(Books books, Identifiers identifiers) {
+        return new BooksPresentationService(new BooksOrchestrationService(new BooksService(books)), identifiers);
     }
 
     @Bean

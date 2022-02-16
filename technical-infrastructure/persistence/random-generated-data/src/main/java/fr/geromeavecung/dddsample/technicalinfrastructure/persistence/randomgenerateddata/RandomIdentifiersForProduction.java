@@ -2,9 +2,11 @@ package fr.geromeavecung.dddsample.technicalinfrastructure.persistence.randomgen
 
 import fr.geromeavecung.businessdomain.shared.Identifier;
 import fr.geromeavecung.businessdomain.shared.Identifiers;
+import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
 
+@Repository
 public class RandomIdentifiersForProduction implements Identifiers {
 
     @Override
