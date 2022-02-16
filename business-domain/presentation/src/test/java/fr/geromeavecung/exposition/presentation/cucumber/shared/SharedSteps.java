@@ -48,12 +48,13 @@ public class SharedSteps {
         identifiersInMemory.setNextIdentifier(uuid);
     }
 
-    @Then("i have an error {string} with message {string}")
+    @Then("i have an error {string} with parameters {string}")
     public void then_i_have_an_error_with_message(String className, String message) {
+        assertThat(sharedState.getActualException()).isInstanceOf(BusinessException.class);
+        assertThat(sharedState.getActualException().getClass().getSimpleName()).isEqualTo(className);
         assertThat(sharedState.getActualException())
                 .isInstanceOf(BusinessException.class)
                 .hasMessage(message);
-        assertThat(sharedState.getActualException().getClass().getSimpleName()).isEqualTo(className);
     }
 
 }

@@ -26,7 +26,7 @@ public class BooksInH2 implements Books {
     }
 
     @Override
-    public Set<Book> readdAll() {
+    public Set<Book> readAll() {
         return StreamSupport.stream(booksJpaRepository.findAll().spliterator(), false)
                 .map(BookJPA::toDomain)
                 .filter(Optional::isPresent)
@@ -35,8 +35,8 @@ public class BooksInH2 implements Books {
     }
 
     @Override
-    public Book read(Identifier identifier) {
-        return null;
+    public Optional<Book> read(Identifier identifier) {
+        return Optional.empty();
     }
 
     @Override

@@ -10,7 +10,7 @@ import fr.geromeavecung.exposition.presentation.BookCreationForm;
 import fr.geromeavecung.exposition.presentation.BookSummary;
 import fr.geromeavecung.exposition.presentation.BookSummaryTable;
 import fr.geromeavecung.exposition.presentation.BooksPresentationService;
-import fr.geromeavecung.exposition.presentation.cucumber.books.repositories.BooksInMemory;
+import fr.geromeavecung.exposition.presentation.cucumber.books.repositories.BooksForCucumber;
 import fr.geromeavecung.exposition.presentation.cucumber.books.repositories.NonRandomIdentifierForCucumber;
 import fr.geromeavecung.exposition.presentation.cucumber.shared.SharedState;
 import io.cucumber.datatable.DataTable;
@@ -20,10 +20,8 @@ import io.cucumber.java.en.When;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -31,17 +29,17 @@ public class BooksSteps {
 
     // TODO split in common steps and feature steps
 
-    private final BooksInMemory booksInMemory;
+    private final BooksForCucumber booksForCucumber;
 
     private final BooksPresentationService booksPresentationService;
 
     private final SharedState sharedState;
 
     @Autowired
-    public BooksSteps(BooksInMemory booksInMemory, SharedState sharedState, NonRandomIdentifierForCucumber nonRandomIdentifierForCucumber) {
-        this.booksInMemory = booksInMemory;
+    public BooksSteps(BooksForCucumber booksForCucumber, SharedState sharedState, NonRandomIdentifierForCucumber nonRandomIdentifierForCucumber) {
+        this.booksForCucumber = booksForCucumber;
         this.sharedState = sharedState;
-        booksPresentationService = new BooksPresentationService(new BooksOrchestrationService(new BooksService(booksInMemory)), nonRandomIdentifierForCucumber);
+        booksPresentationService = new BooksPresentationService(new BooksOrchestrationService(new BooksService(booksForCucumber)), nonRandomIdentifierForCucumber);
     }
 
     @When("the user tries to add a book")
@@ -65,7 +63,9 @@ public class BooksSteps {
         sharedState.assertThatNoExceptionIsThrown();
         try {
             for (Map<String, String> columns : table.<String, String>asMaps(String.class, String.class)) {
-                assertThat(booksInMemory.readdAll()).contains(Book.create(Identifier.from(columns.get("identifier")), Title.create(columns.get("title")), Author.create(columns.get("author")), Book.Type.valueOf(columns.get("type"))));
+                Identifier identifier = Identifier.from(columns.get("identifier"));
+                // FIXME .get()
+                assertThat(booksForCucumber.read(identifier).get()).usingRecursiveComparison().isEqualTo(Book.create(identifier, Title.create(columns.get("title")), Author.create(columns.get("author")), Book.Type.valueOf(columns.get("type"))));
             }
         } catch (Exception exception) {
             sharedState.setActualException(exception);
@@ -77,14 +77,8 @@ public class BooksSteps {
     public void aLibraryWithBooks(DataTable table) {
         try {
             for (Map<String, String> columns : table.<String, String>asMaps(String.class, String.class)) {
-                // context should not use service
-//                BookCreationForm bookCreationForm = new BookCreationForm();
-//                bookCreationForm.setTitle(columns.get("title"));
-//                bookCreationForm.setAuthor(columns.get("author"));
-//                bookCreationForm.setType(Book.Type.valueOf(columns.get("type")));
-//                booksPresentationService.createBook(bookCreationForm);
                 Book book = new Book(Identifier.from(columns.get("identifier")), Title.create(columns.get("title")), Author.create(columns.get("author")), Book.Type.valueOf(columns.get("type")));
-                booksInMemory.save(book);
+                booksForCucumber.save(book);
             }
         } catch (Exception exception) {
             sharedState.setActualException(exception);

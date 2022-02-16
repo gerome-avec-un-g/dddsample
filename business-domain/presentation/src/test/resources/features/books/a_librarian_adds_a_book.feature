@@ -10,7 +10,7 @@ Feature: add a book
       When the user tries to add a book
         | title | author       | type    |
         |       | Isaac Asimov | FICTION |
-      Then i have an error "FieldRequired" with message "[title]"
+      Then i have an error "FieldRequired" with parameters "[title]"
 
     Example: title has at least 1 characters
       Given a librarian
@@ -18,14 +18,14 @@ Feature: add a book
       When the user tries to add a book
         | title   | author | type    |
         | [blank] |        | FICTION |
-      Then i have an error "FieldMinimumLength" with message "[title, , 1]"
+      Then i have an error "FieldMinimumLength" with parameters "[title, , 1]"
 
     Example: title has at most 40 characters
       Given a librarian
       When the user tries to add a book
-        | title                 | author | type    |
+        | title                                     | author | type    |
         | 01234567890123456789012345678901234567890 |        | FICTION |
-      Then i have an error "FieldMaximumLength" with message "[title, 01234567890123456789012345678901234567890, 40]"
+      Then i have an error "FieldMaximumLength" with parameters "[title, 01234567890123456789012345678901234567890, 40]"
     # TODO better spec for error messages
 
     @inProgress
@@ -34,7 +34,7 @@ Feature: add a book
       When the user tries to add a book
         | title    | author | type    |
         | [spaces] |        | FICTION |
-      Then i have an error "FieldIsEmpty" with message "[title]"
+      Then i have an error "FieldIsEmpty" with parameters "[title]"
 
   Rule: author validation
     Example: author is mandatory
@@ -42,38 +42,37 @@ Feature: add a book
       When the user tries to add a book
         | title      | author | type    |
         | Foundation |        | FICTION |
-      Then i have an error "FieldRequired" with message "[author]"
+      Then i have an error "FieldRequired" with parameters "[author]"
 
     Example: author has at least 1 characters
       Given a librarian
       When the user tries to add a book
         | title      | author  | type    |
         | Foundation | [blank] | FICTION |
-      Then i have an error "FieldMinimumLength" with message "[author, , 1]"
+      Then i have an error "FieldMinimumLength" with parameters "[author, , 1]"
 
     Example: author has at most 25 characters
       Given a librarian
       When the user tries to add a book
         | title      | author                     | type    |
         | Foundation | AsimovAsimovAsimovAsimovAs | FICTION |
-      Then i have an error "FieldMaximumLength" with message "[author, AsimovAsimovAsimovAsimovAs, 25]"
+      Then i have an error "FieldMaximumLength" with parameters "[author, AsimovAsimovAsimovAsimovAs, 25]"
 
-  Rule: a book can't be added twice
+  Rule: a book with same name and author can't be added twice
     Example: a book with same name and author can't be added twice
       Given a librarian
       When the user tries to add a book
         | title      | author       | type    |
         | Foundation | Isaac Asimov | FICTION |
         | Foundation | Isaac Asimov | FICTION |
-      Then i have an error "BookAlreadyExists" with message "[Book{title=Title{value='Foundation'}, author=Author{value='Isaac Asimov'}, type=FICTION}]"
-
+      Then i have an error "BookAlreadyExists" with parameters "[Foundation, Isaac Asimov]"
     Example: a book with same name and author can't be added twice even if type is different
       Given a librarian
       When the user tries to add a book
         | title      | author       | type       |
         | Foundation | Isaac Asimov | FICTION    |
         | Foundation | Isaac Asimov | TECHNOLOGY |
-      Then i have an error "BookAlreadyExists" with message "[Book{title=Title{value='Foundation'}, author=Author{value='Isaac Asimov'}, type=TECHNOLOGY}]"
+      Then i have an error "BookAlreadyExists" with parameters "[Foundation, Isaac Asimov]"
 
   Rule: working case
     Example: a book can be added
@@ -82,5 +81,5 @@ Feature: add a book
         | title      | author       | type    |
         | Foundation | Isaac Asimov | FICTION |
       Then the book is added
-        | title      | author       | type    |
-        | Foundation | Isaac Asimov | FICTION |
+        | identifier                           | title      | author       | type    |
+        | c9a147a3-4060-49ea-a546-b02c0cf7d98a | Foundation | Isaac Asimov | FICTION |

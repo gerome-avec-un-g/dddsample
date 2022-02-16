@@ -2,13 +2,14 @@ package fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books;
 
 import fr.geromeavecung.businessdomain.shared.Identifier;
 
+import java.util.Optional;
 import java.util.Set;
 
 public interface Books {
 
-    Set<Book> readdAll();
+    Set<Book> readAll();
 
-    Book read(Identifier identifier);
+    Optional<Book> read(Identifier identifier);
 
     void save(Book book);
 

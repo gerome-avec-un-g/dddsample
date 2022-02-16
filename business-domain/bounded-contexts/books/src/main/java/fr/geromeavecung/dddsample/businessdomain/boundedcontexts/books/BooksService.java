@@ -13,19 +13,21 @@ public class BooksService {
         this.books = books;
     }
 
-    public void add(Book book) {
-        if (books.readdAll().contains(book)) {
-            throw new BookAlreadyExists(book);
+    public void add(Book bookToBeAdded) {
+        if (books.readAll().stream()
+                .anyMatch(existingBook -> existingBook.getTitle().equals(bookToBeAdded.getTitle()) &&
+                        existingBook.getAuthor().equals(bookToBeAdded.getAuthor()))) {
+            throw new BookAlreadyExists(bookToBeAdded);
         }
-        books.save(book);
+        books.save(bookToBeAdded);
     }
 
     public Set<Book> displayBooks() {
-        return books.readdAll();
+        return books.readAll();
     }
 
     public Book bookDetail(Title title) {
-        Optional<Book> expectedBook = books.readdAll().stream()
+        Optional<Book> expectedBook = books.readAll().stream()
                 .filter(book -> book.getTitle().equals(title)).findFirst();
         if (expectedBook.isPresent()) {
             return expectedBook.get();

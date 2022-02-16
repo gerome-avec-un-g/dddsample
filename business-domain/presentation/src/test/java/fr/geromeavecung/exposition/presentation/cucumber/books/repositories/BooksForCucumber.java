@@ -8,22 +8,23 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
 @Scope(CucumberTestContext.SCOPE_CUCUMBER_GLUE)
-public class BooksInMemory implements Books {
+public class BooksForCucumber implements Books {
 
     private final Set<Book> books = new HashSet<>();
 
     @Override
-    public Set<Book> readdAll() {
+    public Set<Book> readAll() {
         return books;
     }
 
     @Override
-    public Book read(Identifier identifier) {
-        return null;
+    public Optional<Book> read(Identifier identifier) {
+        return books.stream().filter(book -> book.getIdentifier().equals(identifier)).findFirst();
     }
 
     @Override

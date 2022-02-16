@@ -12,7 +12,6 @@
     <artifactId>bounded-contexts</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>authorizations</module>
         <module>users</module>
         <module>books</module>
         <module>shared</module>
