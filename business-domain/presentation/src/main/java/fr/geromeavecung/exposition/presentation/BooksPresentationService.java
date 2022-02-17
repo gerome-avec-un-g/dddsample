@@ -1,6 +1,6 @@
 package fr.geromeavecung.exposition.presentation;
 
-import fr.geromeavecung.businessdomain.shared.Identifiers;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.Identifiers;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.Book;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.Title;
 import fr.geromeavecung.exposition.orchestration.BooksOrchestrationService;

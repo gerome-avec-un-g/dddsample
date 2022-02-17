@@ -1,4 +1,4 @@
-package fr.geromeavecung.businessdomain.shared;
+package fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core;
 
 public class NotFoundException extends BusinessException {
 

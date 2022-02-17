@@ -1,7 +1,7 @@
 package fr.geromeavecung.dddsample.technicalinfrastructure.persistence.randomgenerateddata;
 
-import fr.geromeavecung.businessdomain.shared.Timestamp;
-import fr.geromeavecung.businessdomain.shared.Timestamps;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.Timestamp;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.Timestamps;
 import org.springframework.stereotype.Repository;
 
 import java.time.ZonedDateTime;

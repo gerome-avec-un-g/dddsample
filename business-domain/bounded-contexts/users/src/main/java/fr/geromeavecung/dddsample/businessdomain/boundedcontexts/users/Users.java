@@ -1,6 +1,6 @@
 package fr.geromeavecung.dddsample.businessdomain.boundedcontexts.users;
 
-import fr.geromeavecung.businessdomain.shared.Identifier;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.Identifier;
 
 import java.util.List;
 

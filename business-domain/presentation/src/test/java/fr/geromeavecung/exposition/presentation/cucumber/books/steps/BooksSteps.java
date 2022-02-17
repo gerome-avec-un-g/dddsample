@@ -1,6 +1,6 @@
 package fr.geromeavecung.exposition.presentation.cucumber.books.steps;
 
-import fr.geromeavecung.businessdomain.shared.Identifier;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.Identifier;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.Author;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.Book;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.BooksService;

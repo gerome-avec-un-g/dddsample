@@ -1,7 +1,7 @@
 package fr.geromeavecung.dddsample.businessdomain.boundedcontexts.users;
 
-import fr.geromeavecung.businessdomain.shared.FieldValidator;
-import fr.geromeavecung.businessdomain.shared.Identifier;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.FieldValidator;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.Identifier;
 
 public class User {
 

@@ -1,6 +1,6 @@
 package fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books;
 
-import fr.geromeavecung.businessdomain.shared.FieldValidator;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.FieldValidator;
 
 import java.util.Objects;
 

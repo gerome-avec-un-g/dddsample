@@ -1,6 +1,6 @@
 package fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books;
 
-import fr.geromeavecung.businessdomain.shared.Identifier;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.Identifier;
 
 import java.util.Optional;
 import java.util.Set;

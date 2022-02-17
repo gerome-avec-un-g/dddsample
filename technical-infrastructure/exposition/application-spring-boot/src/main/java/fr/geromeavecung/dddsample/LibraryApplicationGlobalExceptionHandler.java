@@ -1,6 +1,6 @@
 package fr.geromeavecung.dddsample;
 
-import fr.geromeavecung.businessdomain.shared.NotFoundException;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.NotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ControllerAdvice;

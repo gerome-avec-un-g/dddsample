@@ -2,11 +2,9 @@ package fr.geromeavecung.dddsample.books;
 
 import com.lowagie.text.DocumentException;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.Book;
-import fr.geromeavecung.businessdomain.shared.BusinessException;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.BusinessException;
 import fr.geromeavecung.dddsample.LibraryApplicationPropertiesConfiguration;
 import fr.geromeavecung.exposition.presentation.BookCreationForm;
-import fr.geromeavecung.exposition.presentation.BookSummary;
-import fr.geromeavecung.exposition.presentation.BookSummaryTable;
 import fr.geromeavecung.exposition.presentation.BooksActionForm;
 import fr.geromeavecung.exposition.presentation.BooksPresentationService;
 import org.slf4j.Logger;
@@ -29,7 +27,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.Arrays;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Controller

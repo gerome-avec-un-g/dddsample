@@ -1,7 +1,7 @@
 package fr.geromeavecung.exposition.presentation.cucumber.shared.repositories;
 
-import fr.geromeavecung.businessdomain.shared.Identifier;
-import fr.geromeavecung.businessdomain.shared.Identifiers;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.Identifier;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.Identifiers;
 import io.cucumber.spring.CucumberTestContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;

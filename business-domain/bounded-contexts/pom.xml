@@ -14,7 +14,7 @@
     <modules>
         <module>users</module>
         <module>books</module>
-        <module>shared</module>
+        <module>core</module>
     </modules>
 
 

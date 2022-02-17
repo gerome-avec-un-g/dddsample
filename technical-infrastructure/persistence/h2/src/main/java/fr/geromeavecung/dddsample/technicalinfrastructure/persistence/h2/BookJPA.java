@@ -1,6 +1,6 @@
 package fr.geromeavecung.dddsample.technicalinfrastructure.persistence.h2;
 
-import fr.geromeavecung.businessdomain.shared.Identifier;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.Identifier;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.Author;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.Book;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.Title;

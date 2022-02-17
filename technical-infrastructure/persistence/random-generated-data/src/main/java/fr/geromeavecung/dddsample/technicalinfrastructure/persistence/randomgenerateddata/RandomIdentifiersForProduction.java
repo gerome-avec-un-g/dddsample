@@ -1,7 +1,7 @@
 package fr.geromeavecung.dddsample.technicalinfrastructure.persistence.randomgenerateddata;
 
-import fr.geromeavecung.businessdomain.shared.Identifier;
-import fr.geromeavecung.businessdomain.shared.Identifiers;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.Identifier;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.Identifiers;
 import org.springframework.stereotype.Repository;
 
 import java.util.UUID;

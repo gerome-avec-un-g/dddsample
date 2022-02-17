@@ -1,6 +1,6 @@
 package fr.geromeavecung.exposition.presentation.cucumber.books.steps;
 
-import fr.geromeavecung.businessdomain.shared.Identifier;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.Identifier;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.users.User;
 import fr.geromeavecung.exposition.presentation.cucumber.shared.SharedState;
 import io.cucumber.java.en.Given;

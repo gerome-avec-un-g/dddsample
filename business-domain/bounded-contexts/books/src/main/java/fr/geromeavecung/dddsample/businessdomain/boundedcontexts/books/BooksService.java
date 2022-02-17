@@ -1,6 +1,6 @@
 package fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books;
 
-import fr.geromeavecung.businessdomain.shared.NotFoundException;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.NotFoundException;
 
 import java.util.Optional;
 import java.util.Set;

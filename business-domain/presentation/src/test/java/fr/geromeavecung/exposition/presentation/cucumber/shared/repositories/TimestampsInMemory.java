@@ -1,7 +1,7 @@
 package fr.geromeavecung.exposition.presentation.cucumber.shared.repositories;
 
-import fr.geromeavecung.businessdomain.shared.Timestamp;
-import fr.geromeavecung.businessdomain.shared.Timestamps;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.Timestamp;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.Timestamps;
 import io.cucumber.spring.CucumberTestContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;

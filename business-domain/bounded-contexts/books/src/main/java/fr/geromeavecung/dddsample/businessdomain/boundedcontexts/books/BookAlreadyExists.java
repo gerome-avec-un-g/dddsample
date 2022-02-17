@@ -1,6 +1,6 @@
 package fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books;
 
-import fr.geromeavecung.businessdomain.shared.BusinessException;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.BusinessException;
 
 public class BookAlreadyExists extends BusinessException {
 

@@ -1,4 +1,4 @@
-package fr.geromeavecung.businessdomain.shared;
+package fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core;
 
 import java.util.Arrays;
 import java.util.List;
@@ -10,6 +10,10 @@ public abstract class BusinessException extends RuntimeException {
     protected BusinessException(String... parameters) {
         super(Arrays.toString(parameters));
         this.parameters = Arrays.asList(parameters);
+    }
+
+    public String getKey() {
+        return this.getClass().getSimpleName();
     }
 
     public List<String> getParameters() {

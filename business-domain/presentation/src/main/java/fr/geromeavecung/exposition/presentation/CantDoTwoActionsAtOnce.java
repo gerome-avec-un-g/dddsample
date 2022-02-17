@@ -1,6 +1,6 @@
 package fr.geromeavecung.exposition.presentation;
 
-import fr.geromeavecung.businessdomain.shared.BusinessException;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.BusinessException;
 
 import java.util.Set;
 
