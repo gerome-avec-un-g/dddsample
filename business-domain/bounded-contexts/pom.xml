@@ -15,6 +15,7 @@
         <module>users</module>
         <module>books</module>
         <module>core</module>
+        <module>authors</module>
     </modules>
 
 

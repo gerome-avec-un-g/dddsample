@@ -4,6 +4,7 @@ import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.FieldValid
 
 import java.util.Objects;
 
+@Deprecated
 public class Author implements Comparable<Author>{
 
     private final String value;
