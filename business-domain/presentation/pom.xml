@@ -10,6 +10,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>presentation</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>books-presentation</module>
+        <module>authors-presentation</module>
+    </modules>
 
     <properties>
         <cucumber.version>6.8.2</cucumber.version>

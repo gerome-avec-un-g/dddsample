@@ -1,4 +1,6 @@
-package fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core;
+package fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.validation;
+
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.BusinessException;
 
 public class FieldMaximumLength extends BusinessException {
 

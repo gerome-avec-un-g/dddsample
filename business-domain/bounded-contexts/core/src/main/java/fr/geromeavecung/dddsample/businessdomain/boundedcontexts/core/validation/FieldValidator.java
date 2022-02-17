@@ -1,4 +1,4 @@
-package fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core;
+package fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.validation;
 
 public class FieldValidator {
 

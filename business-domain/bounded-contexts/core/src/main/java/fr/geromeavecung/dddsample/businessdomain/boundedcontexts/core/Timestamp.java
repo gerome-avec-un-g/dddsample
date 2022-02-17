@@ -1,5 +1,7 @@
 package fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core;
 
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.validation.FieldValidator;
+
 import java.time.ZonedDateTime;
 
 public class Timestamp {

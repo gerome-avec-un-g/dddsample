@@ -1,6 +1,6 @@
 package fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books;
 
-import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.FieldValidator;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.validation.FieldValidator;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.Identifier;
 
 public class Book {
