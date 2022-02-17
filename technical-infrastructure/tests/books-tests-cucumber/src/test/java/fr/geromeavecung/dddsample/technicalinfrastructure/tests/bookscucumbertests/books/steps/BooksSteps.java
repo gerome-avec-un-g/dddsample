@@ -14,10 +14,10 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import orchestration.BooksOrchestrationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import presentation.BookCreationForm;
-import presentation.BookSummary;
-import presentation.BookSummaryTable;
-import presentation.BooksPresentationService;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.bookspresentation.BookCreationForm;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.bookspresentation.BookSummary;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.bookspresentation.BookSummaryTable;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.bookspresentation.BooksPresentationService;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package presentation;
+package fr.geromeavecung.dddsample.businessdomain.boundedcontexts.bookspresentation;
 
 import java.util.HashSet;
 import java.util.Set;

@@ -1,4 +1,4 @@
-package presentation;
+package fr.geromeavecung.dddsample.businessdomain.boundedcontexts.bookspresentation;
 
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.Identifier;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.Author;

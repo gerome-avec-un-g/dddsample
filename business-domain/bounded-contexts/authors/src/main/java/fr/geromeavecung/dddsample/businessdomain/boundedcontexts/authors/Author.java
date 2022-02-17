@@ -14,7 +14,15 @@ public class Author {
 
     // can we have more complex naming ? USA with middle letter, J.R.R. Tolkien, just 1 pseudo ?...
 
-    public Author(Identifier identifier, FirstName firstName, LastName lastName) {
+    public static Author create(Identifier identifier, FirstName firstName, LastName lastName) {
+        return new Author(identifier, firstName, lastName);
+    }
+
+    public static Author read(Identifier identifier, FirstName firstName, LastName lastName) {
+        return new Author(identifier, firstName, lastName);
+    }
+
+    private Author(Identifier identifier, FirstName firstName, LastName lastName) {
         this.identifier = identifier;
         this.firstName = firstName;
         this.lastName = lastName;
