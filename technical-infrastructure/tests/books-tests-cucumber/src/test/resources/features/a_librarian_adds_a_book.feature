@@ -10,7 +10,7 @@ Feature: add a book
       When the user tries to add a book
         | title | author       | type    |
         |       | Isaac Asimov | FICTION |
-      Then i have an error "FieldRequired" with parameters "[title]"
+      Then i have an error "FieldIsRequired" with parameters "[title]"
 
     Example: title has at least 1 characters
       Given a librarian
@@ -42,7 +42,7 @@ Feature: add a book
       When the user tries to add a book
         | title      | author | type    |
         | Foundation |        | FICTION |
-      Then i have an error "FieldRequired" with parameters "[author]"
+      Then i have an error "FieldIsRequired" with parameters "[author]"
 
     Example: author has at least 1 characters
       Given a librarian

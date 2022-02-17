@@ -1,5 +1,7 @@
 package fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core;
 
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.validation.FieldValidator;
+
 import java.util.Objects;
 
 public class FirstName {
@@ -11,7 +13,7 @@ public class FirstName {
     }
 
     private FirstName(String value) {
-        this.value = value;
+        this.value = FieldValidator.required("first name", value);
     }
 
     public String display() {

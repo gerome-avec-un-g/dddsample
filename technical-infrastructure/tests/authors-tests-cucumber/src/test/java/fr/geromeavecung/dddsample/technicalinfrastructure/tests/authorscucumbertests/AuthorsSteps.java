@@ -1,11 +1,8 @@
 package fr.geromeavecung.dddsample.technicalinfrastructure.tests.authorscucumbertests;
 
-import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.authors.Author;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.authorspresentation.ALibrarianAddsAnAuthorPresentation;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.authorspresentation.AuthorCreationForm;
-import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.FirstName;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.Identifier;
-import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.LastName;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -21,13 +18,16 @@ public class AuthorsSteps {
 
     private final AuthorsForCucumber authorsForCucumber;
 
+    private final NonRandomIdentifierForCucumber nonRandomIdentifierForCucumber;
+
     private final SharedState sharedState;
 
     @Autowired
-    public AuthorsSteps(AuthorsForCucumber authorsForCucumber, SharedState sharedState) {
+    public AuthorsSteps(AuthorsForCucumber authorsForCucumber, NonRandomIdentifierForCucumber nonRandomIdentifierForCucumber, SharedState sharedState) {
         this.authorsForCucumber = authorsForCucumber;
+        this.nonRandomIdentifierForCucumber = nonRandomIdentifierForCucumber;
         this.sharedState = sharedState;
-        aLibrarianAddsAnAuthorPresentation = new ALibrarianAddsAnAuthorPresentation();
+        aLibrarianAddsAnAuthorPresentation = new ALibrarianAddsAnAuthorPresentation(nonRandomIdentifierForCucumber);
     }
 
     @When("the user tries to add an author")

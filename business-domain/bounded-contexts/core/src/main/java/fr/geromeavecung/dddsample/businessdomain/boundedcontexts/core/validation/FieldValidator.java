@@ -10,7 +10,7 @@ public class FieldValidator {
 
     public static <T> T required(String fieldName, T fieldValue) {
         if (fieldValue == null) {
-            throw new FieldRequired(fieldName);
+            throw new FieldIsRequired(fieldName);
         }
         return fieldValue;
     }
