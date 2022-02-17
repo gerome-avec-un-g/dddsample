@@ -9,9 +9,8 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>tests-report</module>
-        <module>technical-infrastructure</module>
         <module>business-domain</module>
+        <module>technical-infrastructure</module>
     </modules>
 
     <properties>
@@ -19,7 +18,7 @@
         <maven.compiler.source>15</maven.compiler.source>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <aggregate.tests.report.directory>tests-report/target/site/jacoco-aggregate/jacoco.xml</aggregate.tests.report.directory>
+        <aggregate.tests.report.directory>technical-infrastructure/tests/reports-for-sonarqube/target/site/jacoco-aggregate/jacoco.xml</aggregate.tests.report.directory>
         <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/${aggregate.tests.report.directory}</sonar.coverage.jacoco.xmlReportPaths>
     </properties>
 
