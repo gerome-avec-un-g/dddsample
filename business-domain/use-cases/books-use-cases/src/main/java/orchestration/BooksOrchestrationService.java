@@ -1,4 +1,4 @@
-package fr.geromeavecung.exposition.orchestration;
+package orchestration;
 
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.Book;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.BooksService;

@@ -3,7 +3,7 @@ package fr.geromeavecung.exposition.presentation;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.Identifiers;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.Book;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.Title;
-import fr.geromeavecung.exposition.orchestration.BooksOrchestrationService;
+import orchestration.BooksOrchestrationService;
 
 import java.util.Comparator;
 import java.util.List;
