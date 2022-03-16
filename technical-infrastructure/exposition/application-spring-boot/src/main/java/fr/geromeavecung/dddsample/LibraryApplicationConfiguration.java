@@ -9,8 +9,8 @@ import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.BooksServ
 import fr.geromeavecung.dddsample.businessdomain.usecases.authorsusecases.ALibrarianAddsAnAuthor;
 import fr.geromeavecung.dddsample.businessdomain.usecases.authorsusecases.ALibrarianListsAllAuthors;
 import fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases.BooksPresentationService;
-import nz.net.ultraq.thymeleaf.LayoutDialect;
 import fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases.BooksOrchestrationService;
+import nz.net.ultraq.thymeleaf.layoutdialect.LayoutDialect;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

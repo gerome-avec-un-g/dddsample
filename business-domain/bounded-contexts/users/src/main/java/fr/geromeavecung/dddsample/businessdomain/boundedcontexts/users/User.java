@@ -11,4 +11,8 @@ public class User {
         this.identifier = FieldValidator.required("identifier", identifier);
     }
 
+    @Override
+    public String toString() {
+        return identifier.toString();
+    }
 }

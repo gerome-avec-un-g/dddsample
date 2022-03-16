@@ -16,4 +16,8 @@ public class Timestamp {
         this.value = FieldValidator.required("timestamp", localDateTime);
     }
 
+    @Override
+    public String toString() {
+        return value.toString();
+    }
 }

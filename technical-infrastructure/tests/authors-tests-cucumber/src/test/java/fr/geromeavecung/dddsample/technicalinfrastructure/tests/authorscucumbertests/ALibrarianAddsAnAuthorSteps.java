@@ -33,14 +33,6 @@ public class ALibrarianAddsAnAuthorSteps {
         aLibrarianAddsAnAuthor = new ALibrarianAddsAnAuthor(new AddAnAuthor(authorsForCucumber), nonRandomIdentifiersForTesting);
     }
 
-//    @Given("the existing authors are")
-//    public void the_existing_authors_are(DataTable dataTable) {
-//        for (Map<String, String> columns : dataTable.<String, String>asMaps(String.class, String.class)) {
-//            Identifier identifier = Identifier.from(columns.get("identifier"));
-//            authorsForCucumber.save(Author.read(identifier, FirstName.from(columns.get("first name")), LastName.from(columns.get("last name"))));
-//        }
-//    }
-
     @When("the connected user tries to add an author")
     public void the_connected_user_adds_an_author(DataTable dataTable) {
         authorsSharedState.setActualException(null);
@@ -63,9 +55,7 @@ public class ALibrarianAddsAnAuthorSteps {
             Identifier identifier = Identifier.from(columns.get("identifier"));
             Optional<Author> optionalAuthor = authorsForCucumber.read(identifier);
             assertThat(optionalAuthor).isPresent();
-            if (optionalAuthor.isPresent()) {
-                assertThat(optionalAuthor.get()).usingRecursiveComparison().isEqualTo(Author.read(identifier, FirstName.from(columns.get("first name")), LastName.from(columns.get("last name"))));
-            }
+            optionalAuthor.ifPresent(author -> assertThat(author).usingRecursiveComparison().isEqualTo(Author.read(identifier, FirstName.from(columns.get("first name")), LastName.from(columns.get("last name")))));
         }
     }
 

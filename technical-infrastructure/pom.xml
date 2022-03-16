@@ -10,9 +10,9 @@
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
     <modules>
-        <module>exposition</module>
-        <module>persistence</module>
         <module>tests</module>
+        <module>persistence</module>
+        <module>exposition</module>
     </modules>
 
     <artifactId>technical-infrastructure</artifactId>

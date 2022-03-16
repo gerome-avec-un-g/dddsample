@@ -55,6 +55,7 @@ public class BooksController {
     @GetMapping
     public ModelAndView books(Model model, @AuthenticationPrincipal UserDetails userDetails) {
         LOGGER.info("Charset: " + Charset.defaultCharset().displayName());
+        LOGGER.info("Version: " + libraryApplicationPropertiesConfiguration.getVersion());
         ModelAndView modelAndView = new ModelAndView("books");
         //System.out.println(libraryApplicationPropertiesConfiguration.toString() + " " + userDetails);
         modelAndView.addObject("bookSummaryTable", booksPresentationService.displayBooks());
@@ -66,7 +67,7 @@ public class BooksController {
     }
 
     @GetMapping("/print")
-    public void print(@AuthenticationPrincipal UserDetails userDetails, HttpServletResponse response) throws DocumentException, IOException {
+    public void print(@AuthenticationPrincipal UserDetails userDetails, HttpServletResponse response) throws IOException {
         Context context = new Context();
         context.setVariable("bookSummaryTable", booksPresentationService.displayBooks());
         String html = templateEngine.process("books-print", context);

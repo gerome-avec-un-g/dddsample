@@ -1,6 +1,5 @@
 package fr.geromeavecung.dddsample.resume;
 
-import com.lowagie.text.DocumentException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +39,7 @@ public class ResumeController {
     }
 
     @GetMapping
-    public ModelAndView html(@AuthenticationPrincipal UserDetails userDetails, HttpServletResponse response) throws DocumentException, IOException {
+    public ModelAndView html(@AuthenticationPrincipal UserDetails userDetails, HttpServletResponse response) {
         ModelAndView modelAndView = new ModelAndView("resume/resume-pdf");
         //ModelAndView modelAndView = new ModelAndView("resume/resume-pdf-material-web-component");
         modelAndView.addObject("skills", SKILLS);
@@ -51,7 +50,7 @@ public class ResumeController {
     }
 
     @GetMapping("/print")
-    public void print(@AuthenticationPrincipal UserDetails userDetails, HttpServletResponse response) throws DocumentException, IOException {
+    public void print(@AuthenticationPrincipal UserDetails userDetails, HttpServletResponse response) throws IOException {
         Context context = new Context();
         context.setLocale(Locale.GERMAN);
         context.setVariable("skills", Arrays.asList("langages", "technologies", "frameworks",

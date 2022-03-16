@@ -81,7 +81,7 @@
         <dependency>
             <groupId>nz.net.ultraq.thymeleaf</groupId>
             <artifactId>thymeleaf-layout-dialect</artifactId>
-            <version>2.3.0</version>
+            <version>3.1.0</version>
         </dependency>
         <!-- for spring tests -->
         <dependency>
@@ -93,7 +93,7 @@
         <dependency>
             <groupId>org.xhtmlrenderer</groupId>
             <artifactId>flying-saucer-pdf</artifactId>
-            <version>9.1.20</version>
+            <version>9.1.22</version>
         </dependency>
 
     </dependencies>
