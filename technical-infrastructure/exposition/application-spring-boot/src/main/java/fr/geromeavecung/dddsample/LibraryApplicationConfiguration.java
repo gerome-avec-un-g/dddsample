@@ -1,10 +1,12 @@
 package fr.geromeavecung.dddsample;
 
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.authors.AddAnAuthor;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.authors.Authors;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.authors.ReadAuthors;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.Identifiers;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.Books;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.BooksService;
+import fr.geromeavecung.dddsample.businessdomain.usecases.authorsusecases.ALibrarianAddsAnAuthor;
 import fr.geromeavecung.dddsample.businessdomain.usecases.authorsusecases.ALibrarianListsAllAuthors;
 import fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases.BooksPresentationService;
 import nz.net.ultraq.thymeleaf.LayoutDialect;
@@ -26,6 +28,11 @@ public class LibraryApplicationConfiguration {
     @Bean
     public ALibrarianListsAllAuthors aLibrarianListsAllAuthors(Authors authors) {
         return new ALibrarianListsAllAuthors(new ReadAuthors(authors));
+    }
+
+    @Bean
+    public ALibrarianAddsAnAuthor aLibrarianAddsAnAuthor(Authors authors, Identifiers identifiers) {
+        return new ALibrarianAddsAnAuthor(new AddAnAuthor(authors), identifiers);
     }
 
     @Bean

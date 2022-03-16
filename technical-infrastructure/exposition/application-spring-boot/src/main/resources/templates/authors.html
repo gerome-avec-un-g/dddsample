@@ -9,63 +9,56 @@
 
 <div class="mdc-card" layout:fragment="content">
 
-<!--    <form action="#" id="authorCreationForm" th:action="@{/authors/creation}" th:object="${authorCreationForm}" method="post">-->
+    <form action="#" id="authorCreationForm" th:action="@{/authors}" th:object="${authorCreationForm}" method="post">
 
-<!--        <div class="mdc-card__content">-->
+        <div class="mdc-card__content">
 
-<!--            <h2 class="demo-card__title mdc-typography mdc-typography&#45;&#45;headline6">Add an author</h2>-->
+            <h2 class="demo-card__title mdc-typography mdc-typography--headline6">Add an author</h2>
 
-<!--            <div>-->
-<!--                <label class="mdc-text-field mdc-text-field&#45;&#45;outlined">-->
-<!--                  <span class="mdc-notched-outline">-->
-<!--                    <span class="mdc-notched-outline__leading"></span>-->
-<!--                    <span class="mdc-notched-outline__notch">-->
-<!--                      <span class="mdc-floating-label" id="title">Title</span>-->
-<!--                    </span>-->
-<!--                    <span class="mdc-notched-outline__trailing"></span>-->
-<!--                  </span>-->
-<!--                    <input type="text" class="mdc-text-field__input" aria-labelledby="title" th:field="*{title}"-->
-<!--                           required maxlength="25">-->
-<!--                </label>-->
-<!--                <div class="mdc-text-field-helper-line">-->
-<!--                    <div class="mdc-text-field-character-counter">0 / 20</div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div>-->
-<!--                <label class="mdc-text-field mdc-text-field&#45;&#45;outlined">-->
-<!--                  <span class="mdc-notched-outline">-->
-<!--                    <span class="mdc-notched-outline__leading"></span>-->
-<!--                    <span class="mdc-notched-outline__notch">-->
-<!--                      <span class="mdc-floating-label" id="my-label-id">Author</span>-->
-<!--                    </span>-->
-<!--                    <span class="mdc-notched-outline__trailing"></span>-->
-<!--                  </span>-->
-<!--                    <input type="text" class="mdc-text-field__input" aria-labelledby="author" th:field="*{author}"-->
-<!--                           required maxlength="20">-->
-<!--                </label>-->
-<!--                <div class="mdc-text-field-helper-line">-->
-<!--                    <div class="mdc-text-field-character-counter">0 / 20</div>-->
-<!--                </div>-->
-<!--            </div>-->
+            <div>
+                <label class="mdc-text-field mdc-text-field--outlined">
+                  <span class="mdc-notched-outline">
+                    <span class="mdc-notched-outline__leading"></span>
+                    <span class="mdc-notched-outline__notch">
+                      <span class="mdc-floating-label" id="title">First Name</span>
+                    </span>
+                    <span class="mdc-notched-outline__trailing"></span>
+                  </span>
+                    <input type="text" class="mdc-text-field__input" aria-labelledby="title" th:field="*{firstName}"
+                           required maxlength="40">
+                </label>
+                <div class="mdc-text-field-helper-line">
+                    <div class="mdc-text-field-character-counter">0 / 40</div>
+                </div>
+            </div>
+            <div>
+                <label class="mdc-text-field mdc-text-field--outlined">
+                  <span class="mdc-notched-outline">
+                    <span class="mdc-notched-outline__leading"></span>
+                    <span class="mdc-notched-outline__notch">
+                      <span class="mdc-floating-label" id="my-label-id">Last Name</span>
+                    </span>
+                    <span class="mdc-notched-outline__trailing"></span>
+                  </span>
+                    <input type="text" class="mdc-text-field__input" aria-labelledby="author" th:field="*{lastName}"
+                           required maxlength="40">
+                </label>
+                <div class="mdc-text-field-helper-line">
+                    <div class="mdc-text-field-character-counter">0 / 40</div>
+                </div>
+            </div>
 
-<!--            <div>-->
-<!--                <select th:field="*{type}">-->
-<!--                    <option th:each="type : ${types}" th:value="${type}" th:text="#{${type}}"></option>-->
-<!--                </select>-->
-<!--            </div>-->
+        </div>
 
+        <div class="mdc-card__actions">
+            <a href="/books/create" class="mdc-button mdc-card__action mdc-card__action--button">
+                <div class="mdc-button__ripple"></div>
+                <span class="mdc-button__label">Cancel</span>
+            </a>
+            <input type="submit" value="Submit" class="mdc-button mdc-button--unelevated"/>
+        </div>
 
-<!--        </div>-->
-
-<!--        <div class="mdc-card__actions">-->
-<!--            <a href="/books/create" class="mdc-button mdc-card__action mdc-card__action&#45;&#45;button">-->
-<!--                <div class="mdc-button__ripple"></div>-->
-<!--                <span class="mdc-button__label">Cancel</span>-->
-<!--            </a>-->
-<!--            <input type="submit" value="Submit" class="mdc-button mdc-button&#45;&#45;unelevated"/>-->
-<!--        </div>-->
-
-<!--    </form>-->
+    </form>
 
     <div class="mdc-data-table">
         <div class="mdc-data-table__table-container">
