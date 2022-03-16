@@ -13,7 +13,7 @@ import java.util.List;
 
 @Service
 @Scope(CucumberTestContext.SCOPE_CUCUMBER_GLUE)
-public class NonRandomIdentifierForCucumber implements Identifiers {
+public class NonRandomIdentifiersForTesting implements Identifiers {
 
     private final static List<String> UUIDS = Arrays.asList(
             "c9a147a3-4060-49ea-a546-b02c0cf7d98a",
@@ -28,7 +28,7 @@ public class NonRandomIdentifierForCucumber implements Identifiers {
 
     private final Deque<Identifier> values = new ArrayDeque<>();
 
-    public NonRandomIdentifierForCucumber() {
+    public NonRandomIdentifiersForTesting() {
         UUIDS.forEach(uuid -> values.add(Identifier.from(uuid)));
     }
 

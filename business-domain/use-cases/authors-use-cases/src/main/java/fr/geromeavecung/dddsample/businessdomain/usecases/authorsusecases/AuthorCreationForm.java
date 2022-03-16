@@ -1,4 +1,4 @@
-package fr.geromeavecung.dddsample.businessdomain.boundedcontexts.authorspresentation;
+package fr.geromeavecung.dddsample.businessdomain.usecases.authorsusecases;
 
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.authors.Author;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.FirstName;

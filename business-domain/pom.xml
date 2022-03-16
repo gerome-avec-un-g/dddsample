@@ -12,7 +12,6 @@
     <modules>
         <module>bounded-contexts</module>
         <module>use-cases</module>
-        <module>presentation</module>
     </modules>
 
     <artifactId>business-domain</artifactId>

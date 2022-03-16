@@ -1,8 +1,8 @@
 package fr.geromeavecung.dddsample.technicalinfrastructure.tests.authorscucumbertests;
 
-import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.authorspresentation.ALibrarianAddsAnAuthorPresentation;
-import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.authorspresentation.AuthorCreationForm;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.Identifier;
+import fr.geromeavecung.dddsample.businessdomain.usecases.authorsusecases.ALibrarianAddsAnAuthor;
+import fr.geromeavecung.dddsample.businessdomain.usecases.authorsusecases.AuthorCreationForm;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -14,20 +14,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class AuthorsSteps {
 
-    private final ALibrarianAddsAnAuthorPresentation aLibrarianAddsAnAuthorPresentation;
+    private final ALibrarianAddsAnAuthor aLibrarianAddsAnAuthor;
 
     private final AuthorsForCucumber authorsForCucumber;
-
-    private final NonRandomIdentifierForCucumber nonRandomIdentifierForCucumber;
 
     private final SharedState sharedState;
 
     @Autowired
-    public AuthorsSteps(AuthorsForCucumber authorsForCucumber, NonRandomIdentifierForCucumber nonRandomIdentifierForCucumber, SharedState sharedState) {
+    public AuthorsSteps(AuthorsForCucumber authorsForCucumber, NonRandomIdentifiersForTesting nonRandomIdentifiersForTesting, SharedState sharedState) {
         this.authorsForCucumber = authorsForCucumber;
-        this.nonRandomIdentifierForCucumber = nonRandomIdentifierForCucumber;
         this.sharedState = sharedState;
-        aLibrarianAddsAnAuthorPresentation = new ALibrarianAddsAnAuthorPresentation(nonRandomIdentifierForCucumber);
+        aLibrarianAddsAnAuthor = new ALibrarianAddsAnAuthor(nonRandomIdentifiersForTesting);
     }
 
     @When("the user tries to add an author")
@@ -38,7 +35,7 @@ public class AuthorsSteps {
                 AuthorCreationForm authorCreationForm = new AuthorCreationForm();
                 authorCreationForm.setFirstName(columns.get("first name"));
                 authorCreationForm.setLastName(columns.get("last name"));
-                aLibrarianAddsAnAuthorPresentation.execute(sharedState.getLoggedInUser(), authorCreationForm);
+                aLibrarianAddsAnAuthor.execute(sharedState.getLoggedInUser(), authorCreationForm);
             }
         } catch (Exception exception) {
             sharedState.setActualException(exception);

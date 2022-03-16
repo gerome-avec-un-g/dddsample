@@ -7,10 +7,10 @@ import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.BookAlrea
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.Title;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.BusinessException;
 import fr.geromeavecung.dddsample.books.BooksController;
-import fr.geromeavecung.exposition.presentation.BookCreationForm;
-import fr.geromeavecung.exposition.presentation.BookSummary;
-import fr.geromeavecung.exposition.presentation.BookSummaryTable;
-import fr.geromeavecung.exposition.presentation.BooksPresentationService;
+import fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases.BookCreationForm;
+import fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases.BookSummary;
+import fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases.BookSummaryTable;
+import fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases.BooksPresentationService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;

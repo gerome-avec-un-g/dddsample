@@ -1,4 +1,4 @@
-package orchestration;
+package fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases;
 
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.Book;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.BooksService;

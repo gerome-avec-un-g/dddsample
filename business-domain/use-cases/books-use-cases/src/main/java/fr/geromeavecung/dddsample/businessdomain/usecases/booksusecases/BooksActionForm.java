@@ -1,4 +1,4 @@
-package fr.geromeavecung.dddsample.businessdomain.boundedcontexts.bookspresentation;
+package fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases;
 
 import java.util.HashSet;
 import java.util.Set;

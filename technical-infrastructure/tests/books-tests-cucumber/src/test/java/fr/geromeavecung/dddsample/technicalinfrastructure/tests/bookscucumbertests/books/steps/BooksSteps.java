@@ -12,12 +12,12 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import orchestration.BooksOrchestrationService;
+import fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases.BooksOrchestrationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.bookspresentation.BookCreationForm;
-import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.bookspresentation.BookSummary;
-import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.bookspresentation.BookSummaryTable;
-import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.bookspresentation.BooksPresentationService;
+import fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases.BookCreationForm;
+import fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases.BookSummary;
+import fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases.BookSummaryTable;
+import fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases.BooksPresentationService;
 
 import java.util.ArrayList;
 import java.util.List;
