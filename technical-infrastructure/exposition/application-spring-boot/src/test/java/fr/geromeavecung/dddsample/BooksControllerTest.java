@@ -13,7 +13,7 @@ import fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases.ALibrari
 import fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases.BookCreationForm;
 import fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases.BookSummary;
 import fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases.BookSummaryTable;
-import fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases.BooksPresentationService;
+import fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases.ALibrarianDisplaysABookDetails;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +52,7 @@ class BooksControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private BooksPresentationService booksPresentationService;
+    private ALibrarianDisplaysABookDetails ALibrarianDisplaysABookDetails;
 
     @MockBean
     private ALibrarianListsAllBooks aLibrarianListsAllBooks;

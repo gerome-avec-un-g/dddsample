@@ -12,8 +12,7 @@ import fr.geromeavecung.dddsample.businessdomain.usecases.authorsusecases.ALibra
 import fr.geromeavecung.dddsample.businessdomain.usecases.authorsusecases.ALibrarianListsAllAuthors;
 import fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases.ALibrarianAddsABook;
 import fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases.ALibrarianListsAllBooks;
-import fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases.BooksPresentationService;
-import fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases.BooksOrchestrationService;
+import fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases.ALibrarianDisplaysABookDetails;
 import nz.net.ultraq.thymeleaf.layoutdialect.LayoutDialect;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -25,8 +24,8 @@ import org.springframework.web.filter.CommonsRequestLoggingFilter;
 public class LibraryApplicationConfiguration {
 
     @Bean
-    public BooksPresentationService booksPresentationService(Books books, Identifiers identifiers) {
-        return new BooksPresentationService(new BooksOrchestrationService(new ListBookDetails(books)), identifiers);
+    public ALibrarianDisplaysABookDetails aLibrarianDisplaysABookDetails(Books books) {
+        return new ALibrarianDisplaysABookDetails(new ListBookDetails(books));
     }
 
     @Bean

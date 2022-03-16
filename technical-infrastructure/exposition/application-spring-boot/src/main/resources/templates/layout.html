@@ -49,8 +49,8 @@
         <div class="mdc-top-app-bar__row">
             <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
                 <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button">menu</button>
-                <a href="/" class="mdc-button mdc-button--unelevated mdc-top-app-bar__title" th:text="#{appTitle}">placeholder
-                    title</a>
+                <a href="/" class="mdc-button mdc-button--unelevated mdc-top-app-bar__title"
+                   th:text="#{applicationTitle}">placeholder title</a>
             </section>
 
         </div>
@@ -105,16 +105,19 @@
     });
 
 
+
 </script>
 <script th:if="${success}">
         snackbar.open();
         snackbar.labelText = '[[#{${success}}]]';
 
 
+
 </script>
 <script th:if="${businessError}">
         snackbar.open();
         snackbar.labelText = '[[${#messages.msgWithParams(businessError.key, businessError.parameters)}]]';
+
 
 
 </script>

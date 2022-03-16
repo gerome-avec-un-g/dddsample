@@ -6,7 +6,7 @@ import fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases.ALibrari
 import fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases.ALibrarianListsAllBooks;
 import fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases.BookCreationForm;
 import fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases.BooksActionForm;
-import fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases.BooksPresentationService;
+import fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases.ALibrarianDisplaysABookDetails;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +41,7 @@ public class BooksController {
 
     private final SpringTemplateEngine templateEngine;
 
-    private final BooksPresentationService booksPresentationService;
+    private final ALibrarianDisplaysABookDetails aLibrarianDisplaysABookDetails;
 
     private final ALibrarianListsAllBooks aLibrarianListsAllBooks;
 
@@ -50,9 +50,9 @@ public class BooksController {
     private final LibraryApplicationPropertiesConfiguration libraryApplicationPropertiesConfiguration;
 
     @Autowired
-    public BooksController(SpringTemplateEngine templateEngine, BooksPresentationService booksPresentationService, ALibrarianListsAllBooks aLibrarianListsAllBooks, ALibrarianAddsABook aLibrarianAddsABook, LibraryApplicationPropertiesConfiguration libraryApplicationPropertiesConfiguration) {
+    public BooksController(SpringTemplateEngine templateEngine, ALibrarianDisplaysABookDetails aLibrarianDisplaysABookDetails, ALibrarianListsAllBooks aLibrarianListsAllBooks, ALibrarianAddsABook aLibrarianAddsABook, LibraryApplicationPropertiesConfiguration libraryApplicationPropertiesConfiguration) {
         this.templateEngine = templateEngine;
-        this.booksPresentationService = booksPresentationService;
+        this.aLibrarianDisplaysABookDetails = aLibrarianDisplaysABookDetails;
         this.aLibrarianListsAllBooks = aLibrarianListsAllBooks;
         this.aLibrarianAddsABook = aLibrarianAddsABook;
         this.libraryApplicationPropertiesConfiguration = libraryApplicationPropertiesConfiguration;
@@ -63,7 +63,6 @@ public class BooksController {
         LOGGER.info("Charset: " + Charset.defaultCharset().displayName());
         LOGGER.info("Version: " + libraryApplicationPropertiesConfiguration.getVersion());
         ModelAndView modelAndView = new ModelAndView("books");
-        //System.out.println(libraryApplicationPropertiesConfiguration.toString() + " " + userDetails);
         modelAndView.addObject("bookSummaryTable", aLibrarianListsAllBooks.execute(null));
         modelAndView.addAllObjects(model.asMap());
         if (!modelAndView.getModelMap().containsAttribute("booksActionForm")) {
@@ -98,13 +97,6 @@ public class BooksController {
 
     }
 
-    @GetMapping("/{id}")
-    public ModelAndView booksById(@PathVariable("id") String id, @AuthenticationPrincipal UserDetails userDetails) {
-        ModelAndView modelAndView = new ModelAndView("book-detail");
-        modelAndView.addObject("bookDetail", booksPresentationService.bookDetail(id));
-        return modelAndView;
-    }
-
     @GetMapping("/creation")
     public ModelAndView bookCreationGet(Model model) {
         ModelAndView modelAndView = new ModelAndView("book-creation");
@@ -127,19 +119,6 @@ public class BooksController {
             redirectAttributes.addFlashAttribute("businessError", businessException);
         }
         return new RedirectView("/books/creation", true);
-    }
-
-    @PostMapping("/actions")
-    public RedirectView bookActionPost(@ModelAttribute BooksActionForm booksActionForm, RedirectAttributes redirectAttributes) {
-        try {
-            booksPresentationService.booksAction(booksActionForm);
-            redirectAttributes.addFlashAttribute("success", "booksActionSuccess");
-        } catch (BusinessException businessException) {
-            LOGGER.error("/books/actions: ", businessException);
-            redirectAttributes.addFlashAttribute("booksActionForm", booksActionForm);
-            redirectAttributes.addFlashAttribute("businessError", businessException);
-        }
-        return new RedirectView("/books", true);
     }
 
 }

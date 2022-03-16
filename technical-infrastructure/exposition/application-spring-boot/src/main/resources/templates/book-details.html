@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout}">
+<head>
+    <title th:text="#{book.details.title}"></title>
+</head>
+<body>
+<div class="mdc-card" layout:fragment="content">
+    <div class="mdc-card__content">
+        <h2 class="demo-card__title mdc-typography mdc-typography--headline6" th:text="#{book.details.title}">
+            placeholder title</h2>
+        <span th:text="#{book.detail.title(${bookDetails.title})}"></span><br/>
+        <span th:text="#{book.detail.author(${bookDetails.author})}"></span><br/>
+        <span th:text="#{book.detail.type(#{${bookDetails.type}})}"></span>
+    </div>
+    <div class="mdc-card__actions">
+        <button class="mdc-button mdc-card__action mdc-card__action--button">
+            <div class="mdc-button__ripple"></div>
+            <span class="mdc-button__label">Delete</span>
+        </button>
+        <button class="mdc-button mdc-card__action mdc-card__action--button">
+            <div class="mdc-button__ripple"></div>
+            <span class="mdc-button__label">Edit</span>
+        </button>
+    </div>
+</div>
+</body>
+</html>

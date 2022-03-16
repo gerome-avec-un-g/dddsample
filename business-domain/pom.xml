@@ -16,4 +16,6 @@
 
     <artifactId>business-domain</artifactId>
 
+<!-- TODO failsafe vs parent module creating empty /target directory   -->
+
 </project>

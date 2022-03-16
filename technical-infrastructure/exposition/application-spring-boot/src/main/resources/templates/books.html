@@ -46,7 +46,7 @@
                             <td class="mdc-data-table__cell" th:text="${bookSummary.authorFirstName} + ' ' + ${bookSummary.authorLastName}"></td>
                             <td class="mdc-data-table__cell" th:text="#{${bookSummary.type}}"></td>
                             <td class="mdc-data-table__cell">
-                                <a class="mdc-list-item" th:href="@{/books/{id}(id=${bookSummary.identifier})}">
+                                <a class="mdc-list-item" th:href="@{/book-details/{id}(id=${bookSummary.identifier})}">
                                     <span class="mdc-list-item__ripple"></span>
                                     <i class="material-icons mdc-list-item__graphic" aria-hidden="true">zoom_in</i>
                                 </a>
