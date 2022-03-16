@@ -2,9 +2,9 @@ package fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.validatio
 
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.BusinessException;
 
-public class FieldIsRequired extends BusinessException {
+public class FieldIsMandatory extends BusinessException {
 
-    public FieldIsRequired(String fieldName) {
+    public FieldIsMandatory(String fieldName) {
         super(fieldName);
     }
 

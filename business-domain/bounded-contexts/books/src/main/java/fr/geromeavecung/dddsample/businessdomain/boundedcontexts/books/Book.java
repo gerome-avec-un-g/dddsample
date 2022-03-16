@@ -1,6 +1,6 @@
 package fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books;
 
-import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.validation.FieldValidator;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.validation.MandatoryValidator;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.Identifier;
 
 public class Book {
@@ -22,10 +22,10 @@ public class Book {
     }
 
     public Book(Identifier identifier, Title title, Identifier author, Type type) {
-        this.identifier = FieldValidator.required("identifier", identifier);
-        this.title = FieldValidator.required("title", title);
-        this.author = FieldValidator.required("author", author);
-        this.type = FieldValidator.required("type", type);
+        this.identifier = MandatoryValidator.validate("identifier", identifier);
+        this.title = MandatoryValidator.validate("title", title);
+        this.author = MandatoryValidator.validate("author", author);
+        this.type = MandatoryValidator.validate("type", type);
     }
 
     public Identifier getIdentifier() {

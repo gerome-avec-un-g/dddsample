@@ -44,7 +44,7 @@ public class SharedSteps {
         this.sharedState = sharedState;
     }
 
-    @DataTableType(replaceWithEmptyString = "[blank]")
+    @DataTableType(replaceWithEmptyString = "[empty]")
     public String simulates_empty_string_in_cucumber_tables(String cell) {
         return cell;
     }

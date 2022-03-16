@@ -2,9 +2,9 @@ package fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.validatio
 
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.BusinessException;
 
-public class FieldMinimumLength extends BusinessException {
+public class FieldIsTooShort extends BusinessException {
 
-    public FieldMinimumLength(String fieldName, String fieldValue, int minimumLength) {
+    public FieldIsTooShort(String fieldName, String fieldValue, int minimumLength) {
         super(fieldName, fieldValue, Integer.toString(minimumLength));
     }
 

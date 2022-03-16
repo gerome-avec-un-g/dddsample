@@ -1,6 +1,6 @@
 package fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books;
 
-import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.validation.FieldValidator;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.validation.LengthValidator;
 
 import java.util.Objects;
 
@@ -13,7 +13,7 @@ public class Title implements Comparable<Title> {
     }
 
     public Title(String value) {
-        this.value = FieldValidator.length("title", value, 1, 40);
+        this.value = LengthValidator.validate("title", value, 1, 40);
     }
 
     public String getValue() {

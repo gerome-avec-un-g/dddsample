@@ -1,6 +1,6 @@
 package fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core;
 
-import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.validation.ValidateThatFieldFollowsRegularExpression;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.validation.FormatValidator;
 
 import java.util.Objects;
 
@@ -13,7 +13,7 @@ public class FirstName {
     }
 
     private FirstName(String value) {
-        this.value = ValidateThatFieldFollowsRegularExpression.validate("first name", value, "[a-zA-Z \\.-]{1,40}");
+        this.value = FormatValidator.validate("first name", value, "[a-zA-Z \\.-]{1,40}");
     }
 
     @Override

@@ -1,6 +1,6 @@
 package fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core;
 
-import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.validation.FieldValidator;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.validation.MandatoryValidator;
 
 import java.util.Objects;
 
@@ -13,7 +13,7 @@ public class LastName {
     }
 
     private LastName(String value) {
-        this.value = FieldValidator.required("last name", value);
+        this.value = MandatoryValidator.validate("last name", value);
     }
 
     @Override

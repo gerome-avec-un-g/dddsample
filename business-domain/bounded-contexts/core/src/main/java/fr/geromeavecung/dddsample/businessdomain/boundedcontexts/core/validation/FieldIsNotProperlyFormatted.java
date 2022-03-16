@@ -2,9 +2,9 @@ package fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.validatio
 
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.BusinessException;
 
-public class FieldDoesNotMatchRegularExpression extends BusinessException {
+public class FieldIsNotProperlyFormatted extends BusinessException {
 
-    public FieldDoesNotMatchRegularExpression(String fieldName, String fieldValue, String pattern) {
+    public FieldIsNotProperlyFormatted(String fieldName, String fieldValue, String pattern) {
         super(fieldName, fieldValue, pattern);
     }
 

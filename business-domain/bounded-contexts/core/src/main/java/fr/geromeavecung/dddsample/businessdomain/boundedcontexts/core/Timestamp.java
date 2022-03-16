@@ -1,6 +1,6 @@
 package fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core;
 
-import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.validation.FieldValidator;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.validation.MandatoryValidator;
 
 import java.time.ZonedDateTime;
 
@@ -13,7 +13,7 @@ public class Timestamp {
     }
 
     private Timestamp(ZonedDateTime localDateTime) {
-        this.value = FieldValidator.required("timestamp", localDateTime);
+        this.value = MandatoryValidator.validate("timestamp", localDateTime);
     }
 
     @Override

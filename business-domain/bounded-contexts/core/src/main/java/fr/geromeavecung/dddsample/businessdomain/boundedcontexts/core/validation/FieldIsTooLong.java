@@ -2,9 +2,9 @@ package fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.validatio
 
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.BusinessException;
 
-public class FieldMaximumLength extends BusinessException {
+public class FieldIsTooLong extends BusinessException {
 
-    public FieldMaximumLength(String fieldName, String fieldValue, int maximumLength) {
+    public FieldIsTooLong(String fieldName, String fieldValue, int maximumLength) {
         super(fieldName, fieldValue, Integer.toString(maximumLength));
     }
 
