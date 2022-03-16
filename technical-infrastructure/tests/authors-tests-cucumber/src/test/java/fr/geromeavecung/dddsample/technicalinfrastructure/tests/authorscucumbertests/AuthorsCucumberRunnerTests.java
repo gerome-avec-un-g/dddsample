@@ -12,6 +12,6 @@ import org.junit.runner.RunWith;
         features = {"src/test/resources/features"},
         tags = "not @inProgress"
 )
-public class AuthorsCucumberTestsRunner {
+public class AuthorsCucumberRunnerTests {
 
 }

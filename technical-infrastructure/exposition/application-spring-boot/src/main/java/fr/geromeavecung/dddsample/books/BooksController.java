@@ -1,6 +1,5 @@
 package fr.geromeavecung.dddsample.books;
 
-import com.lowagie.text.DocumentException;
 import fr.geromeavecung.dddsample.LibraryApplicationPropertiesConfiguration;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.Book;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.BusinessException;

@@ -70,7 +70,7 @@
                     <plugin>
                         <groupId>com.github.cukedoctor</groupId>
                         <artifactId>cukedoctor-maven-plugin</artifactId>
-                        <version>3.5.2</version>
+                        <version>3.7.0</version>
                         <configuration>
                             <outputDir>documents</outputDir>
                             <format>pdf</format>

@@ -8,7 +8,6 @@ import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.LastName;
 import fr.geromeavecung.dddsample.businessdomain.usecases.authorsusecases.ALibrarianAddsAnAuthor;
 import fr.geromeavecung.dddsample.businessdomain.usecases.authorsusecases.AuthorCreationForm;
 import io.cucumber.datatable.DataTable;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +36,7 @@ public class ALibrarianAddsAnAuthorSteps {
     public void the_connected_user_adds_an_author(DataTable dataTable) {
         authorsSharedState.setActualException(null);
         try {
-            for (Map<String, String> columns : dataTable.<String, String>asMaps(String.class, String.class)) {
+            for (Map<String, String> columns : dataTable.asMaps(String.class, String.class)) {
                 AuthorCreationForm authorCreationForm = new AuthorCreationForm();
                 authorCreationForm.setFirstName(columns.get("first name"));
                 authorCreationForm.setLastName(columns.get("last name"));
@@ -51,7 +50,7 @@ public class ALibrarianAddsAnAuthorSteps {
     @Then("the author is added")
     public void the_author_is_added(DataTable dataTable) {
         authorsSharedState.assertThatNoExceptionIsThrown();
-        for (Map<String, String> columns : dataTable.<String, String>asMaps(String.class, String.class)) {
+        for (Map<String, String> columns : dataTable.asMaps(String.class, String.class)) {
             Identifier identifier = Identifier.from(columns.get("identifier"));
             Optional<Author> optionalAuthor = authorsForCucumber.read(identifier);
             assertThat(optionalAuthor).isPresent();

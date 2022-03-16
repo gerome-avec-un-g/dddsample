@@ -25,11 +25,8 @@ public class SharedSteps {
         this.sharedState = sharedState;
     }
 
-    /**
-     * Allows to simulate empty Strings in Cucumber tables
-     */
     @DataTableType(replaceWithEmptyString = "[blank]")
-    public String stringType(String cell) {
+    public String simulatesEmptyStringsInCucumberTables(String cell) {
         return cell;
     }
 

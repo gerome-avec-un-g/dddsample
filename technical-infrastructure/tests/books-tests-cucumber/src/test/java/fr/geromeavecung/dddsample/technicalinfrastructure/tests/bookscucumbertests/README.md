@@ -69,7 +69,7 @@ The name of the public methods for steps should be snake_case prefixed by either
 Private methods should follow standard Java naming conventions.
 
 ##### Given
-These steps are used to set-up data :
+These steps are used to set up data :
 * the logged-in user doing the action
 * the data the user is sending. It is one object, but if it has a lot of sub-objects and/collections, you can split in multiple steps
 * the data the orchestration will interact with
@@ -92,7 +92,7 @@ public void when_the_logged_in_user_does_the_action() {
 It is **important** to reset the exception and catch the one throw by your specific service call to avoid getting exception from previous tests.
 
 ##### Then
-@Then corresponds to the verification of the object returned by the presentation service. If the object is complex, you can break it down with multiple @Then that are called one after the other, it should more or less match the presentation object return : one then per sub-object. Try to avoid multiple methods the check the same data but with different value that are just expressed in different natural expressions, use enum values instead (ie : "then the field is visible" and "then the field is not visible" should probably switch to "then the field is visible/hidden). 
+@Then corresponds to the verification of the object returned by the presentation service. If the object is complex, you can break it down with multiple @Then that are called one after the other, it should more or less match the presentation object return : one then per sub-object. Try to avoid multiple methods the check the same data but with different value that are just expressed in different natural expressions, use enum values instead (ie : "then the field is visible" and "then the field is not visible" should probably switch to "then the field is visible/hidden"). 
 It is **important** to check that no exception is returned by the @When, see SharedSteps.
 
 ## Features
@@ -136,4 +136,4 @@ To be able to use ${maven.build.timestamp} in the file name, it should be proper
 I18N is available in src/main/resources/cukedoctor.properties 
 TODO https://github.com/rmpestano/cukedoctor#641-reading-features
 
-You can set a custom introduction with src/main/resources/cukedoctor-intro.adoc but it will be the same for all documents. If you want a generic introduction to a business domain you can create an introductory feature with step-less scenarios
+You can set a custom introduction with src/main/resources/cukedoctor-intro.adoc, but it will be the same for all documents. If you want a generic introduction to a business domain you can create an introductory feature with step-less scenarios
