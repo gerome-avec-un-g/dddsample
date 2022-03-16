@@ -13,7 +13,7 @@ public class FirstName {
     }
 
     private FirstName(String value) {
-        this.value = ValidateThatFieldFollowsRegularExpression.validate("first name", value, "[a-zA-Z-]{1,40}");
+        this.value = ValidateThatFieldFollowsRegularExpression.validate("first name", value, "[a-zA-Z \\.-]{1,40}");
     }
 
     @Override

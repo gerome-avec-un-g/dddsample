@@ -80,11 +80,11 @@ You should have only one @When, which is the call the orchestration service corr
 ```
 @When("the logged-in user does the action")
 public void when_the_logged_in_user_does_the_action() {
-    sharedState.setActualException(null);
+    authorsSharedState.setActualException(null);
     try {
         result = actionPresentationService.action();
     } catch (Exception exception) {
-        sharedState.setActualException(exception);
+        authorsSharedState.setActualException(exception);
     }
 }
 ```

@@ -1,6 +1,6 @@
 Feature: a librarian adds an author
 
-  # TODO scenario outline https://cucumber.io/docs/gherkin/reference/
+  # TODO scenario outline ? https://cucumber.io/docs/gherkin/reference/
 
   Rule: the author's first name should be valid
     Example: the author's first name is mandatory
@@ -14,7 +14,7 @@ Feature: a librarian adds an author
       When the connected user tries to add an author
         | first name | last name |
         | [empty]    | Asimov    |
-      Then the system raises the error "Field Does Not Match Regular Expression" with parameters "[first name, , [a-zA-Z-]{1,40}]"
+      Then the system raises the error "Field Does Not Match Regular Expression" with parameters "[first name, , [a-zA-Z \.-]{1,40}]"
     Example: an author's first name with one character is valid
       Given the connected user is a librarian
       When the connected user tries to add an author
@@ -29,14 +29,14 @@ Feature: a librarian adds an author
         | first name                               | last name |
         | IsaacIsaacIsaacIsaacIsaacIsaacIsaacIsaac | Asimov    |
       Then the author is added
-        | identifier                           | first name | last name |
-        | c9a147a3-4060-49ea-a546-b02c0cf7d98a | I          | Asimov    |
+        | identifier                           | first name                               | last name |
+        | c9a147a3-4060-49ea-a546-b02c0cf7d98a | IsaacIsaacIsaacIsaacIsaacIsaacIsaacIsaac | Asimov    |
     Example: an author's first name with 41 characters is invalid
       Given the connected user is a librarian
       When the connected user tries to add an author
         | first name                                | last name |
         | IsaacIsaacIsaacIsaacIsaacIsaacIsaacIsaacI | Asimov    |
-      Then the system raises the error "Field Does Not Match Regular Expression" with parameters "[first name, IsaacIsaacIsaacIsaacIsaacIsaacIsaacIsaacI, [a-zA-Z-]{1,40}]"
+      Then the system raises the error "Field Does Not Match Regular Expression" with parameters "[first name, IsaacIsaacIsaacIsaacIsaacIsaacIsaacIsaacI, [a-zA-Z \.-]{1,40}]"
     Example: hyphen is valid
       Given the connected user is a librarian
       When the connected user tries to add an author
@@ -45,6 +45,22 @@ Feature: a librarian adds an author
       Then the author is added
         | identifier                           | first name | last name |
         | c9a147a3-4060-49ea-a546-b02c0cf7d98a | Jean-Paul  | Asimov    |
+    Example: point is valid
+      Given the connected user is a librarian
+      When the connected user tries to add an author
+        | first name   | last name |
+        | George R. R. | Martin    |
+      Then the author is added
+        | identifier                           | first name   | last name |
+        | c9a147a3-4060-49ea-a546-b02c0cf7d98a | George R. R. | Martin    |
+    Example: space is valid
+      Given the connected user is a librarian
+      When the connected user tries to add an author
+        | first name   | last name |
+        | George R. R. | Martin    |
+      Then the author is added
+        | identifier                           | first name   | last name |
+        | c9a147a3-4060-49ea-a546-b02c0cf7d98a | George R. R. | Martin    |
 
   Rule: the author's last name should be valid
     Example: the author's last name is mandatory
@@ -53,6 +69,7 @@ Feature: a librarian adds an author
         | first name | last name |
         | Isaac      |           |
       Then the system raises the error "Field Is Required" with parameters "[last name]"
+  # TODO all other rules same as first name
 
   Rule: two authors with the same first name and last name can't be added
     Example: two authors with the same first name and last name can't be added

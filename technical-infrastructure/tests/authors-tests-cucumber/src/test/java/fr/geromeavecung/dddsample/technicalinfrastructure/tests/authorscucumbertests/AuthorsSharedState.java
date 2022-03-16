@@ -9,11 +9,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @Component
 @Scope(CucumberTestContext.SCOPE_CUCUMBER_GLUE)
-public class SharedState {
+public class AuthorsSharedState {
+
+    // FIXME move into sharedstep ?
 
     private Exception actualException;
 
-    private User loggedInUser;
+    private User connectedUser;
 
     public Exception getActualException() {
         return actualException;
@@ -23,12 +25,12 @@ public class SharedState {
         this.actualException = actualException;
     }
 
-    public User getLoggedInUser() {
-        return loggedInUser;
+    public User getConnectedUser() {
+        return connectedUser;
     }
 
-    public void setLoggedInUser(User loggedInUser) {
-        this.loggedInUser = loggedInUser;
+    public void setConnectedUser(User connectedUser) {
+        this.connectedUser = connectedUser;
     }
 
     public void assertThatNoExceptionIsThrown() {
