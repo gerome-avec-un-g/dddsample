@@ -12,7 +12,7 @@
 
 
     <!--/*  Each token will be replaced by their respective titles in the resulting page. */-->
-    <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">MyLibraryApp</title>
+    <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE" th:text="#{applicationTitle}"></title>
 
 </head>
 <body>
@@ -20,20 +20,20 @@
 <aside class="mdc-drawer mdc-drawer--dismissible">
     <div class="mdc-drawer__content">
         <div class="mdc-list">
+            <a class="mdc-list-item mdc-list-item--activated" href="/" aria-current="page">
+                <span class="mdc-list-item__ripple"></span>
+                <i class="material-icons mdc-list-item__graphic" aria-hidden="true">home</i>
+                <span class="mdc-list-item__text" th:text="#{home}"></span>
+            </a>
             <a class="mdc-list-item mdc-list-item--activated" href="/books" aria-current="page">
                 <span class="mdc-list-item__ripple"></span>
                 <i class="material-icons mdc-list-item__graphic" aria-hidden="true">menu_book</i>
-                <span class="mdc-list-item__text" th:text="#{books}">placeholder link 1</span>
+                <span class="mdc-list-item__text" th:text="#{books}"></span>
             </a>
             <a class="mdc-list-item" href="/authors">
                 <span class="mdc-list-item__ripple"></span>
-                <i class="material-icons mdc-list-item__graphic" aria-hidden="true">send</i>
-                <span class="mdc-list-item__text">Outgoing</span>
-            </a>
-            <a class="mdc-list-item" href="#">
-                <span class="mdc-list-item__ripple"></span>
-                <i class="material-icons mdc-list-item__graphic" aria-hidden="true">drafts</i>
-                <span class="mdc-list-item__text">Drafts</span>
+                <i class="material-icons mdc-list-item__graphic" aria-hidden="true">history_edu</i>
+                <span class="mdc-list-item__text" th:text="#{authors}"></span>
             </a>
             <a class="mdc-list-item" href="/logout">
                 <span class="mdc-list-item__ripple"></span>

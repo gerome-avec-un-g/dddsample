@@ -1,62 +1,37 @@
 package fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases;
 
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.authors.Author;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.Book;
-
-import java.util.Objects;
 
 public class BookDetail {
 
-    private final String title;
+    private final Book book;
 
-    private final String author;// FIXME
+    private final Author author;
 
-    private final String type;
-
-    public BookDetail(String title, String author, String type) {
-        this.title = title;
+    public BookDetail(Book book, Author author) {
+        this.book = book;
         this.author = author;
-        this.type = type;
     }
 
-    public BookDetail(Book book) {
-        this.title = book.getTitle().getValue();
-        this.author = book.getAuthor().toString();
-        this.type = book.getType().name();
+    public String getIdentifier() {
+        return book.getIdentifier().toString();
     }
 
     public String getTitle() {
-        return title;
+        return book.getTitle().getValue();
+    }
+
+    public String getAuthorIdentifier() {
+        return author.getIdentifier().toString();
     }
 
     public String getAuthor() {
-        return author;
+        return author.getFirstName().toString() + ' ' + author.getLastName().toString();
     }
 
     public String getType() {
-        return type;
+        return book.getType().name();
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        BookDetail that = (BookDetail) o;
-        return Objects.equals(title, that.title)
-                && Objects.equals(author, that.author)
-                && Objects.equals(type, that.type);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(title, author, type);
-    }
-
-    @Override
-    public String toString() {
-        return "BookSummary{" +
-                "title='" + title + '\'' +
-                ", author='" + author + '\'' +
-                ", type='" + type + '\'' +
-                '}';
-    }
 }

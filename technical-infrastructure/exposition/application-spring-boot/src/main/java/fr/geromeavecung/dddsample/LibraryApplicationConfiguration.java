@@ -3,6 +3,7 @@ package fr.geromeavecung.dddsample;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.authors.AddAnAuthor;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.authors.Authors;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.authors.ReadAuthors;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.authors.ReadOneAuthor;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.AddABook;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.ListAllBooks;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.Identifiers;
@@ -10,6 +11,7 @@ import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.Books;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.ListBookDetails;
 import fr.geromeavecung.dddsample.businessdomain.usecases.authorsusecases.ALibrarianAddsAnAuthor;
 import fr.geromeavecung.dddsample.businessdomain.usecases.authorsusecases.ALibrarianListsAllAuthors;
+import fr.geromeavecung.dddsample.businessdomain.usecases.authorsusecases.ALibrarianReadsOneAuthor;
 import fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases.ALibrarianAddsABook;
 import fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases.ALibrarianListsAllBooks;
 import fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases.ALibrarianDisplaysABookDetails;
@@ -24,8 +26,8 @@ import org.springframework.web.filter.CommonsRequestLoggingFilter;
 public class LibraryApplicationConfiguration {
 
     @Bean
-    public ALibrarianDisplaysABookDetails aLibrarianDisplaysABookDetails(Books books) {
-        return new ALibrarianDisplaysABookDetails(new ListBookDetails(books));
+    public ALibrarianDisplaysABookDetails aLibrarianDisplaysABookDetails(Books books, Authors authors) {
+        return new ALibrarianDisplaysABookDetails(new ListBookDetails(books), new ReadOneAuthor(authors));
     }
 
     @Bean
@@ -37,6 +39,11 @@ public class LibraryApplicationConfiguration {
     @Bean
     public ALibrarianAddsABook aLibrarianAddsABook(Books books, Identifiers identifiers) {
         return new ALibrarianAddsABook(new AddABook(books), identifiers);
+    }
+
+    @Bean
+    public ALibrarianReadsOneAuthor aLibrarianReadsOneAuthor(Authors authors) {
+        return new ALibrarianReadsOneAuthor(new ReadOneAuthor(authors));
     }
 
     @Bean

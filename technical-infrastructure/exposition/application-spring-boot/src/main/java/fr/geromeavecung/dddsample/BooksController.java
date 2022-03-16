@@ -6,7 +6,6 @@ import fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases.ALibrari
 import fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases.ALibrarianListsAllBooks;
 import fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases.BookCreationForm;
 import fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases.BooksActionForm;
-import fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases.ALibrarianDisplaysABookDetails;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -41,8 +39,6 @@ public class BooksController {
 
     private final SpringTemplateEngine templateEngine;
 
-    private final ALibrarianDisplaysABookDetails aLibrarianDisplaysABookDetails;
-
     private final ALibrarianListsAllBooks aLibrarianListsAllBooks;
 
     private final ALibrarianAddsABook aLibrarianAddsABook;
@@ -50,9 +46,8 @@ public class BooksController {
     private final LibraryApplicationPropertiesConfiguration libraryApplicationPropertiesConfiguration;
 
     @Autowired
-    public BooksController(SpringTemplateEngine templateEngine, ALibrarianDisplaysABookDetails aLibrarianDisplaysABookDetails, ALibrarianListsAllBooks aLibrarianListsAllBooks, ALibrarianAddsABook aLibrarianAddsABook, LibraryApplicationPropertiesConfiguration libraryApplicationPropertiesConfiguration) {
+    public BooksController(SpringTemplateEngine templateEngine, ALibrarianListsAllBooks aLibrarianListsAllBooks, ALibrarianAddsABook aLibrarianAddsABook, LibraryApplicationPropertiesConfiguration libraryApplicationPropertiesConfiguration) {
         this.templateEngine = templateEngine;
-        this.aLibrarianDisplaysABookDetails = aLibrarianDisplaysABookDetails;
         this.aLibrarianListsAllBooks = aLibrarianListsAllBooks;
         this.aLibrarianAddsABook = aLibrarianAddsABook;
         this.libraryApplicationPropertiesConfiguration = libraryApplicationPropertiesConfiguration;

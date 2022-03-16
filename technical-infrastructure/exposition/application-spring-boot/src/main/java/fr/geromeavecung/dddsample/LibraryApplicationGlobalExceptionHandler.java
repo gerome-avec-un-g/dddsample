@@ -1,6 +1,6 @@
 package fr.geromeavecung.dddsample;
 
-import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.NotFoundException;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.NotFound;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -18,10 +18,12 @@ class LibraryApplicationGlobalExceptionHandler {
         return new ModelAndView("server-error");
     }
 
-    @ExceptionHandler(NotFoundException.class)
-    public ModelAndView notFoundHandler(NotFoundException notFoundException) {
-        LOGGER.error("Resource not found: ", notFoundException);
-        return new ModelAndView("not-found");
+    @ExceptionHandler(NotFound.class)
+    public ModelAndView notFoundHandler(NotFound notFound) {
+        LOGGER.error("Resource not found: ", notFound);
+        ModelAndView modelAndView = new ModelAndView("not-found");
+        modelAndView.addObject("error", notFound);
+        return modelAndView;
     }
 
 }

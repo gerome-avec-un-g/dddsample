@@ -1,7 +1,7 @@
 package fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books;
 
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.Identifier;
-import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.NotFoundException;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.NotFound;
 
 import java.util.Optional;
 
@@ -19,7 +19,7 @@ public class ListBookDetails {
         if (expectedBook.isPresent()) {
             return expectedBook.get();
         }
-        throw new NotFoundException("book", identifier.toString());
+        throw new NotFound("book", identifier);
     }
 
 }

@@ -2,18 +2,12 @@
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout}">
 <head>
-    <title th:text="${bookDetails.title}"></title>
+    <title th:text="${author.firstNameAndLastName}"></title>
 </head>
 <body>
 <div class="mdc-card" layout:fragment="content">
     <div class="mdc-card__content">
-        <h2 class="mdc-typography mdc-typography--headline6" th:text="${bookDetails.title}"></h2>
-        <h3 class="mdc-typography mdc-typography--subtitle2">
-            <span th:text="#{by}"></span>
-            <a th:href="@{/author/{id}(id=${bookDetails.authorIdentifier})}"><span
-                    th:text="${bookDetails.author}"></span></a>
-        </h3>
-        <div class="mdc-typography mdc-typography--body2" th:text="#{${bookDetails.type}}"></div>
+        <h2 class="mdc-typography mdc-typography--headline6" th:text="${author.firstNameAndLastName}"></h2>
     </div>
     <div class="mdc-card__actions">
         <button class="mdc-button mdc-card__action mdc-card__action--button">

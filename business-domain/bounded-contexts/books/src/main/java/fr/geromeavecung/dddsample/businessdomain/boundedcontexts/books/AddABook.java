@@ -1,7 +1,5 @@
 package fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books;
 
-import java.util.Optional;
-
 public class AddABook {
 
     private final Books books;
