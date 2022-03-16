@@ -35,7 +35,7 @@ class BookJPA {
     }
 
     BookJPA(Book book) {
-        this.identifier = book.getIdentifier().display();
+        this.identifier = book.getIdentifier().toString();
         this.title = book.getTitle().getValue();
         this.author = book.getAuthor().getValue();
         this.type = book.getType().name();
