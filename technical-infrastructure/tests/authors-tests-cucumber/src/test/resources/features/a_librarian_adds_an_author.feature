@@ -8,13 +8,13 @@ Feature: a librarian adds an author
       When the connected user tries to add an author
         | first name | last name |
         |            | Asimov    |
-      Then the system raises the error "Field Is Required" with parameters "[first name]"
+      Then the system raises the error "Field Is Mandatory" with parameters "[first name]"
     Example: the author's first name can't be empty
       Given the connected user is a librarian
       When the connected user tries to add an author
         | first name | last name |
         | [empty]    | Asimov    |
-      Then the system raises the error "Field Does Not Match Regular Expression" with parameters "[first name, , [a-zA-Z \.-]{1,40}]"
+      Then the system raises the error "Field Is Not Properly Formatted" with parameters "[first name, , [a-zA-Z \.-]{1,40}]"
     Example: an author's first name with one character is valid
       Given the connected user is a librarian
       When the connected user tries to add an author
@@ -36,7 +36,7 @@ Feature: a librarian adds an author
       When the connected user tries to add an author
         | first name                                | last name |
         | IsaacIsaacIsaacIsaacIsaacIsaacIsaacIsaacI | Asimov    |
-      Then the system raises the error "Field Does Not Match Regular Expression" with parameters "[first name, IsaacIsaacIsaacIsaacIsaacIsaacIsaacIsaacI, [a-zA-Z \.-]{1,40}]"
+      Then the system raises the error "Field Is Not Properly Formatted" with parameters "[first name, IsaacIsaacIsaacIsaacIsaacIsaacIsaacIsaacI, [a-zA-Z \.-]{1,40}]"
     Example: hyphen is valid
       Given the connected user is a librarian
       When the connected user tries to add an author
@@ -68,8 +68,10 @@ Feature: a librarian adds an author
       When the connected user tries to add an author
         | first name | last name |
         | Isaac      |           |
-      Then the system raises the error "Field Is Required" with parameters "[last name]"
+      Then the system raises the error "Field Is Mandatory" with parameters "[last name]"
   # TODO all other rules same as first name
+
+  # TODO more complex naming conventions ? USA with middle letter, J.R.R. Tolkien, just 1 pseudo...
 
   Rule: two authors with the same first name and last name can't be added
     Example: two authors with the same first name and last name can't be added

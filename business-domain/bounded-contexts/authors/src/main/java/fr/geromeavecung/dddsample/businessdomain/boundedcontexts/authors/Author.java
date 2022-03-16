@@ -12,8 +12,6 @@ public class Author {
 
     private final LastName lastName;
 
-    // can we have more complex naming ? USA with middle letter, J.R.R. Tolkien, just 1 pseudo ?...
-
     public static Author create(Identifier identifier, FirstName firstName, LastName lastName) {
         return new Author(identifier, firstName, lastName);
     }

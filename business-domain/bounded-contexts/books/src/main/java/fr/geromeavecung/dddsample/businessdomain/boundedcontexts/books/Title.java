@@ -4,7 +4,7 @@ import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.validation
 
 import java.util.Objects;
 
-public class Title implements Comparable<Title> {
+public class Title {
 
     private final String value;
 
@@ -35,11 +35,6 @@ public class Title implements Comparable<Title> {
     @Override
     public int hashCode() {
         return Objects.hash(value);
-    }
-
-    @Override
-    public int compareTo(Title o) {
-        return value.compareTo(o.value);
     }
 
 }
