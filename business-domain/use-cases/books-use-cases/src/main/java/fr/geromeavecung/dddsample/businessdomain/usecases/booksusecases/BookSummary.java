@@ -11,7 +11,7 @@ public class BookSummary {
     }
 
     public String getIdentifier() {
-        return book.getIdentifier().display();
+        return book.getIdentifier().toString();
     }
 
     public String getTitle() {

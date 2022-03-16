@@ -1,6 +1,6 @@
 package fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core;
 
-import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.validation.FieldValidator;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.validation.ValidateThatFieldFollowsRegularExpression;
 
 import java.util.Objects;
 
@@ -13,11 +13,7 @@ public class FirstName {
     }
 
     private FirstName(String value) {
-        this.value = FieldValidator.required("first name", value);
-    }
-
-    public String display() {
-        return value.toString();
+        this.value = ValidateThatFieldFollowsRegularExpression.validate("first name", value, "[a-zA-Z-]{1,40}");
     }
 
     @Override
@@ -28,12 +24,17 @@ public class FirstName {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        FirstName that = (FirstName) o;
-        return value.equals(that.value);
+        FirstName firstName = (FirstName) o;
+        return value.equals(firstName.value);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(value);
+    }
+
+    @Override
+    public String toString() {
+        return value;
     }
 }

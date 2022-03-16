@@ -19,11 +19,8 @@ public class SharedSteps {
         this.sharedState = sharedState;
     }
 
-    /**
-     * Allows simulation of empty Strings in Cucumber tables
-     */
-    @DataTableType(replaceWithEmptyString = "[blank]")
-    public String stringType(String cell) {
+    @DataTableType(replaceWithEmptyString = "[empty]")
+    public String simulate_empty_string_in_cucumber_tables(String cell) {
         return cell;
     }
 
@@ -35,7 +32,7 @@ public class SharedSteps {
     @Then("the system raises the error {string} with parameters {string}")
     public void then_i_have_an_error_with_message(String errorKey, String errorParameters) {
         assertThat(sharedState.getActualException()).isInstanceOf(BusinessException.class);
-        assertThat(sharedState.getActualException().getClass().getSimpleName()).isEqualTo(errorKey);
+        assertThat(sharedState.getActualException().getClass().getSimpleName()).isEqualTo(errorKey.replaceAll(" ", ""));
         assertThat(sharedState.getActualException())
                 .isInstanceOf(BusinessException.class)
                 .hasMessage(errorParameters);

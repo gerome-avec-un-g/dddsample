@@ -19,10 +19,6 @@ public class Identifier {
         this.value = value;
     }
 
-    public String display() {
-        return value.toString();
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -38,5 +34,10 @@ public class Identifier {
     @Override
     public int hashCode() {
         return Objects.hash(value);
+    }
+
+    @Override
+    public String toString() {
+        return value.toString();
     }
 }
