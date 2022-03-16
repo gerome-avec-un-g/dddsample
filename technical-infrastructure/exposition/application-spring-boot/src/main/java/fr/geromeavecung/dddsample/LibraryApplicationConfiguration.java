@@ -3,11 +3,15 @@ package fr.geromeavecung.dddsample;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.authors.AddAnAuthor;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.authors.Authors;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.authors.ReadAuthors;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.AddABook;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.ListAllBooks;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.Identifiers;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.Books;
-import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.BooksService;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.ListBookDetails;
 import fr.geromeavecung.dddsample.businessdomain.usecases.authorsusecases.ALibrarianAddsAnAuthor;
 import fr.geromeavecung.dddsample.businessdomain.usecases.authorsusecases.ALibrarianListsAllAuthors;
+import fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases.ALibrarianAddsABook;
+import fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases.ALibrarianListsAllBooks;
 import fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases.BooksPresentationService;
 import fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases.BooksOrchestrationService;
 import nz.net.ultraq.thymeleaf.layoutdialect.LayoutDialect;
@@ -22,7 +26,18 @@ public class LibraryApplicationConfiguration {
 
     @Bean
     public BooksPresentationService booksPresentationService(Books books, Identifiers identifiers) {
-        return new BooksPresentationService(new BooksOrchestrationService(new BooksService(books)), identifiers);
+        return new BooksPresentationService(new BooksOrchestrationService(new ListBookDetails(books)), identifiers);
+    }
+
+    @Bean
+    public ALibrarianListsAllBooks aLibrarianListsAllBooks(Books books, Authors authors) {
+        // TODO bean of ReadAuthors ?
+        return new ALibrarianListsAllBooks(new ListAllBooks(books), new ReadAuthors(authors));
+    }
+
+    @Bean
+    public ALibrarianAddsABook aLibrarianAddsABook(Books books, Identifiers identifiers) {
+        return new ALibrarianAddsABook(new AddABook(books), identifiers);
     }
 
     @Bean

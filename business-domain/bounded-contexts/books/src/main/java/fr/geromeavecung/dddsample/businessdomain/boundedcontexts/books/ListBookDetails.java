@@ -3,27 +3,13 @@ package fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.NotFoundException;
 
 import java.util.Optional;
-import java.util.Set;
 
-public class BooksService {
+public class ListBookDetails {
 
     private final Books books;
 
-    public BooksService(Books books) {
+    public ListBookDetails(Books books) {
         this.books = books;
-    }
-
-    public void add(Book bookToBeAdded) {
-        if (books.readAll().stream()
-                .anyMatch(existingBook -> existingBook.getTitle().equals(bookToBeAdded.getTitle()) &&
-                        existingBook.getAuthor().equals(bookToBeAdded.getAuthor()))) {
-            throw new BookAlreadyExists(bookToBeAdded);
-        }
-        books.save(bookToBeAdded);
-    }
-
-    public Set<Book> displayBooks() {
-        return books.readAll();
     }
 
     public Book bookDetail(Title title) {
@@ -34,4 +20,5 @@ public class BooksService {
         }
         throw new NotFoundException("book", title.getValue());
     }
+
 }

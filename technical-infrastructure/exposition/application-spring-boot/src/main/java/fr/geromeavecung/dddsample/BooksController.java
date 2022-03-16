@@ -1,8 +1,9 @@
-package fr.geromeavecung.dddsample.books;
+package fr.geromeavecung.dddsample;
 
-import fr.geromeavecung.dddsample.LibraryApplicationPropertiesConfiguration;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.Book;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.BusinessException;
+import fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases.ALibrarianAddsABook;
+import fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases.ALibrarianListsAllBooks;
 import fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases.BookCreationForm;
 import fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases.BooksActionForm;
 import fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases.BooksPresentationService;
@@ -42,12 +43,18 @@ public class BooksController {
 
     private final BooksPresentationService booksPresentationService;
 
+    private final ALibrarianListsAllBooks aLibrarianListsAllBooks;
+
+    private final ALibrarianAddsABook aLibrarianAddsABook;
+
     private final LibraryApplicationPropertiesConfiguration libraryApplicationPropertiesConfiguration;
 
     @Autowired
-    public BooksController(SpringTemplateEngine templateEngine, BooksPresentationService booksPresentationService, LibraryApplicationPropertiesConfiguration libraryApplicationPropertiesConfiguration) {
+    public BooksController(SpringTemplateEngine templateEngine, BooksPresentationService booksPresentationService, ALibrarianListsAllBooks aLibrarianListsAllBooks, ALibrarianAddsABook aLibrarianAddsABook, LibraryApplicationPropertiesConfiguration libraryApplicationPropertiesConfiguration) {
         this.templateEngine = templateEngine;
         this.booksPresentationService = booksPresentationService;
+        this.aLibrarianListsAllBooks = aLibrarianListsAllBooks;
+        this.aLibrarianAddsABook = aLibrarianAddsABook;
         this.libraryApplicationPropertiesConfiguration = libraryApplicationPropertiesConfiguration;
     }
 
@@ -57,7 +64,7 @@ public class BooksController {
         LOGGER.info("Version: " + libraryApplicationPropertiesConfiguration.getVersion());
         ModelAndView modelAndView = new ModelAndView("books");
         //System.out.println(libraryApplicationPropertiesConfiguration.toString() + " " + userDetails);
-        modelAndView.addObject("bookSummaryTable", booksPresentationService.displayBooks());
+        modelAndView.addObject("bookSummaryTable", aLibrarianListsAllBooks.execute(null));
         modelAndView.addAllObjects(model.asMap());
         if (!modelAndView.getModelMap().containsAttribute("booksActionForm")) {
             modelAndView.addObject("booksActionForm", new BooksActionForm());
@@ -68,7 +75,7 @@ public class BooksController {
     @GetMapping("/print")
     public void print(@AuthenticationPrincipal UserDetails userDetails, HttpServletResponse response) throws IOException {
         Context context = new Context();
-        context.setVariable("bookSummaryTable", booksPresentationService.displayBooks());
+        context.setVariable("bookSummaryTable", aLibrarianListsAllBooks.execute(null));
         String html = templateEngine.process("books-print", context);
         ServletOutputStream outputStream = response.getOutputStream();
         try  {
@@ -112,7 +119,7 @@ public class BooksController {
     @PostMapping("/creation")
     public RedirectView bookCreationPost(@ModelAttribute BookCreationForm bookCreationForm, RedirectAttributes redirectAttributes) {
         try {
-            booksPresentationService.createBook(bookCreationForm);
+            aLibrarianAddsABook.execute(null, bookCreationForm);
             redirectAttributes.addFlashAttribute("success", "bookCreationSuccess");
         } catch (BusinessException businessException) {
             LOGGER.error("/books/creation", businessException);

@@ -50,7 +50,6 @@ public class SecurityConfigurationInMemory extends WebSecurityConfigurerAdapter 
                 // static resources should be permitted to all
                 // because successful login redirects to last restricted url
                 .antMatchers("/styles/**", "/images/**").permitAll()
-                .antMatchers("/resume/**").permitAll()
                 .antMatchers("/**").hasAuthority("ROLE_USER");
     }
 

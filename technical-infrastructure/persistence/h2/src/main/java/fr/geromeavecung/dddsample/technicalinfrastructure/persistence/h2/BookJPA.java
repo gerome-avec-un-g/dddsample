@@ -1,7 +1,6 @@
 package fr.geromeavecung.dddsample.technicalinfrastructure.persistence.h2;
 
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.Identifier;
-import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.Author;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.Book;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.Title;
 import org.slf4j.Logger;
@@ -37,7 +36,7 @@ class BookJPA {
     BookJPA(Book book) {
         this.identifier = book.getIdentifier().toString();
         this.title = book.getTitle().getValue();
-        this.author = book.getAuthor().getValue();
+        this.author = book.getAuthor().toString();
         this.type = book.getType().name();
     }
 
@@ -92,7 +91,7 @@ class BookJPA {
 
     Optional<Book> toDomain() {
         try {
-            return Optional.of(Book.create(Identifier.from(identifier), Title.create(title), Author.create(author), Book.Type.valueOf(type)));
+            return Optional.of(Book.create(Identifier.from(identifier), Title.create(title), Identifier.from(author), Book.Type.valueOf(type)));
         } catch (Exception exception) {
             LOGGER.warn("Error while mapping database to domain", exception);
             return Optional.empty();

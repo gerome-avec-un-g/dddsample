@@ -8,7 +8,7 @@ public class BookDetail {
 
     private final String title;
 
-    private final String author;
+    private final String author;// FIXME
 
     private final String type;
 
@@ -20,7 +20,7 @@ public class BookDetail {
 
     public BookDetail(Book book) {
         this.title = book.getTitle().getValue();
-        this.author = book.getAuthor().getValue();
+        this.author = book.getAuthor().toString();
         this.type = book.getType().name();
     }
 

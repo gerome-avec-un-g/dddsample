@@ -8,7 +8,12 @@ public class Identifier {
     private final UUID value;
 
     public static Identifier from(String uuidRepresentation) {
-        return new Identifier(UUID.fromString(uuidRepresentation));
+        try {
+            UUID uuid = UUID.fromString(uuidRepresentation);
+            return new Identifier(uuid);
+        } catch (Exception exception) {
+            throw new InvalidIdentifier(uuidRepresentation);
+        }
     }
 
     public static Identifier from(UUID uuid) {

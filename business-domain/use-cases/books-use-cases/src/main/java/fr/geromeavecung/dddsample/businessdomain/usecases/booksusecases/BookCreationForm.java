@@ -1,7 +1,6 @@
 package fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases;
 
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.Identifier;
-import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.Author;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.Book;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.Title;
 
@@ -39,7 +38,7 @@ public class BookCreationForm {
 
     public Book toDomain(Identifier identifier) {
         Title title = Title.create(this.title);
-        Author author = Author.create(this.author);
+        Identifier author = Identifier.from(this.author);
         return Book.create(identifier, title, author, type);
     }
 }

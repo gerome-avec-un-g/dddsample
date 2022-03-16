@@ -11,7 +11,7 @@ create table if not exists Authors (
 create table if not exists Books (
     identifier varchar(36) not null,
     title varchar(50) not null,
-    author varchar(50) not null,
+    author varchar(36) not null,
     type varchar(50) not null
 );
 

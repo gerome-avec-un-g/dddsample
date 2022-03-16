@@ -1,12 +1,15 @@
 package fr.geromeavecung.dddsample;
 
-import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.Identifier;
-import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.Author;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.authors.Author;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.Book;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.BookAlreadyExists;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.Title;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.BusinessException;
-import fr.geromeavecung.dddsample.books.BooksController;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.FirstName;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.Identifier;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.LastName;
+import fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases.ALibrarianAddsABook;
+import fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases.ALibrarianListsAllBooks;
 import fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases.BookCreationForm;
 import fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases.BookSummary;
 import fr.geromeavecung.dddsample.businessdomain.usecases.booksusecases.BookSummaryTable;
@@ -52,15 +55,23 @@ class BooksControllerTest {
     private BooksPresentationService booksPresentationService;
 
     @MockBean
+    private ALibrarianListsAllBooks aLibrarianListsAllBooks;
+
+    @MockBean
+    private ALibrarianAddsABook aLibrarianAddsABook;
+
+    @MockBean
     private LibraryApplicationPropertiesConfiguration libraryApplicationPropertiesConfiguration;
 
     @WithMockUser(value = "buzz")
     @Test
     void books() throws Exception {
         List<BookSummary> expectedBooks = new ArrayList<>();
-        expectedBooks.add(new BookSummary(new Book(Identifier.from("e0917866-bf12-4008-a710-c48ae05042cb"), Title.create("abc"), Author.create("def"), Book.Type.FICTION)));
+        Book book = new Book(Identifier.from("a473a317-2103-4150-92c6-dba8ebea3a0a"), Title.create("A Song of Ice and Fire"), Identifier.from("f28e0d3b-4050-4d7a-811c-e8996d975fee"), Book.Type.FICTION);
+        Author author = Author.read(Identifier.from("f28e0d3b-4050-4d7a-811c-e8996d975fee"), FirstName.from("George R. R."), LastName.from("Martin"));
+        expectedBooks.add(new BookSummary(book, author));
         BookSummaryTable bookSummaryTable = new BookSummaryTable(expectedBooks);
-        when(booksPresentationService.displayBooks()).thenReturn(bookSummaryTable);
+        when(aLibrarianListsAllBooks.execute(null)).thenReturn(bookSummaryTable);
 
         mockMvc.perform(get("/books"))
                 .andExpect(status().isOk())
@@ -100,12 +111,12 @@ class BooksControllerTest {
         bookCreationForm.setAuthor("abc");
         bookCreationForm.setTitle("def");
         bookCreationForm.setType(Book.Type.FICTION);
-        Book book = Book.create(Identifier.from("fb235778-36c0-49ed-aad3-16f617a51a9f"), Title.create("abc"), Author.create("def"), Book.Type.FICTION);
+        Book book = Book.create(Identifier.from("fb235778-36c0-49ed-aad3-16f617a51a9f"), Title.create("abc"), Identifier.from("6680fb7c-a861-45d4-bf8a-4935e9779e33"), Book.Type.FICTION);
         BusinessException businessException = new BookAlreadyExists(book);
 
         mockMvc.perform(get("/books/creation")
-                .flashAttr("bookCreationForm", bookCreationForm)
-                .flashAttr("businessError", businessException))
+                        .flashAttr("bookCreationForm", bookCreationForm)
+                        .flashAttr("businessError", businessException))
                 .andExpect(status().isOk())
                 .andExpect(view().name("book-creation"))
                 .andExpect(model().attribute("bookCreationForm", bookCreationForm))
@@ -129,7 +140,7 @@ class BooksControllerTest {
                 .andExpect(redirectedUrl("/books/creation"))
                 .andExpect(flash().attribute("success", "bookCreationSuccess"));
 
-        verify(booksPresentationService).createBook(bookCreationForm);
+        verify(aLibrarianAddsABook).execute(null, bookCreationForm);
     }
 
     @WithMockUser(value = "buzz")
@@ -140,9 +151,9 @@ class BooksControllerTest {
         bookCreationForm.setTitle("def");
         bookCreationForm.setType(Book.Type.FICTION);
 
-        Book book = Book.create(Identifier.from("fe35e912-0008-4f3b-bf23-3641f55ec1a2"), Title.create("abc"), Author.create("def"), Book.Type.FICTION);
+        Book book = Book.create(Identifier.from("fe35e912-0008-4f3b-bf23-3641f55ec1a2"), Title.create("abc"), Identifier.from("6680fb7c-a861-45d4-bf8a-4935e9779e33"), Book.Type.FICTION);
         BookAlreadyExists bookAlreadyExists = new BookAlreadyExists(book);
-        doThrow(bookAlreadyExists).when(booksPresentationService).createBook(bookCreationForm);
+        doThrow(bookAlreadyExists).when(aLibrarianAddsABook).execute(null, bookCreationForm);
 
         mockMvc.perform(post("/books/creation").flashAttr("bookCreationForm", bookCreationForm))
                 .andExpect(status().is3xxRedirection())

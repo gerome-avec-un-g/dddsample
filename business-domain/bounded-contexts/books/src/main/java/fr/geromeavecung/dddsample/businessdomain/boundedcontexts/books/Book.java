@@ -13,15 +13,15 @@ public class Book {
 
     private final Title title;
 
-    private final Author author;
+    private final Identifier author;
 
     private final Type type;
 
-    public static Book create(Identifier identifier, Title title, Author author, Type type) {
+    public static Book create(Identifier identifier, Title title, Identifier author, Type type) {
         return new Book(identifier, title, author, type);
     }
 
-    public Book(Identifier identifier, Title title, Author author, Type type) {
+    public Book(Identifier identifier, Title title, Identifier author, Type type) {
         this.identifier = FieldValidator.required("identifier", identifier);
         this.title = FieldValidator.required("title", title);
         this.author = FieldValidator.required("author", author);
@@ -36,7 +36,7 @@ public class Book {
         return title;
     }
 
-    public Author getAuthor() {
+    public Identifier getAuthor() {
         return author;
     }
 

@@ -1,6 +1,5 @@
 package fr.geromeavecung.dddsample;
 
-import fr.geromeavecung.dddsample.books.BooksController;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.BusinessException;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.Identifier;
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.users.User;

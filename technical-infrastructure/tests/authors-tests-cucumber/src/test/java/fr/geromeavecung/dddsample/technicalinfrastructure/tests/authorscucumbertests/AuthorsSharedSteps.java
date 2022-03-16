@@ -29,7 +29,7 @@ public class AuthorsSharedSteps {
     }
 
     @DataTableType(replaceWithEmptyString = "[empty]")
-    public String simulate_empty_string_in_cucumber_tables(String cell) {
+    public String simulates_empty_string_in_cucumber_tables(String cell) {
         return cell;
     }
 

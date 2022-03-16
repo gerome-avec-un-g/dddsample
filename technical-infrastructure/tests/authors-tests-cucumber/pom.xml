@@ -22,7 +22,7 @@
     <dependencies>
         <dependency>
             <groupId>fr.geromeavecung.dddsample</groupId>
-            <artifactId>authors-presentation</artifactId>
+            <artifactId>authors-use-cases</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
