@@ -29,7 +29,7 @@ public class ALibrarianListsAllBooks {
         Set<Book> books = listAllBooks.execute();
         Map<Identifier, Author> authorsByIdentifier = readAuthors.execute().stream().collect(Collectors.toMap(Author::getIdentifier, Function.identity()));
         List<BookSummary> bookSummaries = books.stream()
-                .map(book -> new BookSummary(book, authorsByIdentifier.get(book.getAuthor())))
+                .map(book -> new BookSummary(book, authorsByIdentifier.get(book.getAuthorIdentifier())))
                 .sorted(Comparator.comparing(BookSummary::getAuthorLastName).thenComparing(BookSummary::getAuthorFirstName).thenComparing(BookSummary::getTitle))
                 .collect(Collectors.toList());
         return new BookSummaryTable(bookSummaries);

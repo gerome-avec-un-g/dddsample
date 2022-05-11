@@ -68,7 +68,7 @@ class BooksControllerTest {
     void books() throws Exception {
         List<BookSummary> expectedBooks = new ArrayList<>();
         Book book = new Book(Identifier.from("a473a317-2103-4150-92c6-dba8ebea3a0a"),
-                Title.create("A Song of Ice and Fire"), Identifier.from("f28e0d3b-4050-4d7a-811c-e8996d975fee"), Book.Type.FICTION);
+                new Title("A Song of Ice and Fire"), Identifier.from("f28e0d3b-4050-4d7a-811c-e8996d975fee"), Book.Type.FICTION);
         Author author = Author.read(Identifier.from("f28e0d3b-4050-4d7a-811c-e8996d975fee"), new FirstName("George R. R."), new LastName("Martin"));
         expectedBooks.add(new BookSummary(book, author));
         BookSummaryTable bookSummaryTable = new BookSummaryTable(expectedBooks);
@@ -112,7 +112,7 @@ class BooksControllerTest {
         bookCreationForm.setAuthor("abc");
         bookCreationForm.setTitle("def");
         bookCreationForm.setType(Book.Type.FICTION);
-        Book book = Book.create(Identifier.from("fb235778-36c0-49ed-aad3-16f617a51a9f"), Title.create("abc"), Identifier.from("6680fb7c-a861-45d4-bf8a-4935e9779e33"), Book.Type.FICTION);
+        Book book = Book.create(Identifier.from("fb235778-36c0-49ed-aad3-16f617a51a9f"), new Title("abc"), Identifier.from("6680fb7c-a861-45d4-bf8a-4935e9779e33"), Book.Type.FICTION);
         BusinessException businessException = new BookAlreadyExists(book);
 
         mockMvc.perform(get("/books/creation")
@@ -152,7 +152,7 @@ class BooksControllerTest {
         bookCreationForm.setTitle("def");
         bookCreationForm.setType(Book.Type.FICTION);
 
-        Book book = Book.create(Identifier.from("fe35e912-0008-4f3b-bf23-3641f55ec1a2"), Title.create("abc"), Identifier.from("6680fb7c-a861-45d4-bf8a-4935e9779e33"), Book.Type.FICTION);
+        Book book = Book.create(Identifier.from("fe35e912-0008-4f3b-bf23-3641f55ec1a2"), new Title("abc"), Identifier.from("6680fb7c-a861-45d4-bf8a-4935e9779e33"), Book.Type.FICTION);
         BookAlreadyExists bookAlreadyExists = new BookAlreadyExists(book);
         doThrow(bookAlreadyExists).when(aLibrarianAddsABook).execute(null, bookCreationForm);
 

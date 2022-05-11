@@ -19,7 +19,7 @@ public class BookDetail {
     }
 
     public String getTitle() {
-        return book.getTitle().getValue();
+        return book.getTitle().value();
     }
 
     public String getAuthorIdentifier() {

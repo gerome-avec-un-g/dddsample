@@ -18,7 +18,7 @@ public class TimestampsInMemory implements Timestamps {
 
     @Override
     public Timestamp now() {
-        return Timestamp.generate(zonedDateTime);
+        return new Timestamp(zonedDateTime);
     }
 
     public void setTime(int hour, int minute, int second) {

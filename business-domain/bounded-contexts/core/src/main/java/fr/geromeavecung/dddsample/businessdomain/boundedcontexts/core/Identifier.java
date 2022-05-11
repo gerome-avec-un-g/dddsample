@@ -1,11 +1,10 @@
 package fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core;
 
-import java.util.Objects;
+import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.validation.MandatoryValidator;
+
 import java.util.UUID;
 
-public class Identifier {
-
-    private final UUID value;
+public record Identifier(UUID value) {
 
     public static Identifier from(String uuidRepresentation) {
         try {
@@ -16,33 +15,8 @@ public class Identifier {
         }
     }
 
-    public static Identifier from(UUID uuid) {
-        return new Identifier(uuid);
+    public Identifier(UUID value) {
+        this.value = MandatoryValidator.validate("identifier", value);
     }
 
-    private Identifier(UUID value) {
-        this.value = value;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Identifier that = (Identifier) o;
-        return value.equals(that.value);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(value);
-    }
-
-    @Override
-    public String toString() {
-        return value.toString();
-    }
 }

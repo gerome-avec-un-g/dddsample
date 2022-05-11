@@ -36,7 +36,7 @@ public class Book {
         return title;
     }
 
-    public Identifier getAuthor() {
+    public Identifier getAuthorIdentifier() {
         return author;
     }
 

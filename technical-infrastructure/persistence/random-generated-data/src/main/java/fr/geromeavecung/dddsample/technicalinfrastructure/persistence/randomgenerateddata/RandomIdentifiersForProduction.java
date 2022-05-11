@@ -11,7 +11,7 @@ public class RandomIdentifiersForProduction implements Identifiers {
 
     @Override
     public Identifier generateNewIdentifier() {
-        return Identifier.from(UUID.randomUUID());
+        return new Identifier(UUID.randomUUID());
     }
 
 }

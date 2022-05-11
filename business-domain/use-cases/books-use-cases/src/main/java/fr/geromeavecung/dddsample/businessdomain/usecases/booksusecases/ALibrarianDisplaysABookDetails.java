@@ -20,7 +20,7 @@ public class ALibrarianDisplaysABookDetails {
 
     public BookDetail execute(User connectedUser, String uuidRepresentation) {
         Book book = listBookDetails.execute(Identifier.from(uuidRepresentation));
-        Author author = readOneAuthor.execute(book.getAuthor());
+        Author author = readOneAuthor.execute(book.getAuthorIdentifier());
         return new BookDetail(book, author);
     }
 

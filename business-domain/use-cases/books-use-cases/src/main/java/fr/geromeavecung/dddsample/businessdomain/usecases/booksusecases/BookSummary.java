@@ -15,11 +15,11 @@ public class BookSummary {
     }
 
     public String getIdentifier() {
-        return book.getIdentifier().toString();
+        return book.getIdentifier().value().toString();
     }
 
     public String getTitle() {
-        return book.getTitle().getValue();
+        return book.getTitle().value();
     }
 
     public String getAuthorFirstName() {

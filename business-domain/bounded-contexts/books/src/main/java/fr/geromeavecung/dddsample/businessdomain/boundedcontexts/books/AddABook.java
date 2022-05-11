@@ -11,7 +11,7 @@ public class AddABook {
     public void execute(Book bookToBeAdded) {
         if (books.readAll().stream()
                 .anyMatch(existingBook -> existingBook.getTitle().equals(bookToBeAdded.getTitle()) &&
-                        existingBook.getAuthor().equals(bookToBeAdded.getAuthor()))) {
+                        existingBook.getAuthorIdentifier().equals(bookToBeAdded.getAuthorIdentifier()))) {
             throw new BookAlreadyExists(bookToBeAdded);
         }
         books.save(bookToBeAdded);

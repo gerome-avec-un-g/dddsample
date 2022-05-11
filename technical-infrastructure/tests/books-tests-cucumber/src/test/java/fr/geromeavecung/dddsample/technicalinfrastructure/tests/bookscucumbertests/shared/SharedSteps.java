@@ -77,7 +77,7 @@ public class SharedSteps {
     public void aLibraryWithBooks(DataTable dataTable) {
         try {
             for (Map<String, String> columns : dataTable.asMaps(String.class, String.class)) {
-                Book book = new Book(Identifier.from(columns.get("identifier")), Title.create(columns.get("title")), Identifier.from(columns.get("author identifier")), Book.Type.valueOf(columns.get("type")));
+                Book book = new Book(Identifier.from(columns.get("identifier")), new Title(columns.get("title")), Identifier.from(columns.get("author identifier")), Book.Type.valueOf(columns.get("type")));
                 booksForCucumber.save(book);
             }
         } catch (Exception exception) {

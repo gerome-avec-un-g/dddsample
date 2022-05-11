@@ -2,39 +2,10 @@ package fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books;
 
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.validation.LengthValidator;
 
-import java.util.Objects;
-
-public class Title {
-
-    private final String value;
-
-    public static Title create(String value) {
-        return new Title(value);
-    }
+public record Title(String value) {
 
     public Title(String value) {
         this.value = LengthValidator.validate("title", value, 1, 40);
-    }
-
-    public String getValue() {
-        return value;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Title title = (Title) o;
-        return Objects.equals(value, title.value);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(value);
     }
 
 }

@@ -37,7 +37,7 @@ public class BookCreationForm {
     }
 
     public Book toDomain(Identifier identifier) {
-        Title title = Title.create(this.title);
+        Title title = new Title(this.title);
         Identifier author = Identifier.from(this.author);
         return Book.create(identifier, title, author, type);
     }

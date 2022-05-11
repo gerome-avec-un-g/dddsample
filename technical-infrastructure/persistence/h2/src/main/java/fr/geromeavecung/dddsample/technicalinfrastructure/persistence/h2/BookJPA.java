@@ -35,8 +35,8 @@ class BookJPA {
 
     BookJPA(Book book) {
         this.identifier = book.getIdentifier().toString();
-        this.title = book.getTitle().getValue();
-        this.author = book.getAuthor().toString();
+        this.title = book.getTitle().value();
+        this.author = book.getAuthorIdentifier().toString();
         this.type = book.getType().name();
     }
 
@@ -91,7 +91,7 @@ class BookJPA {
 
     Optional<Book> toDomain() {
         try {
-            return Optional.of(Book.create(Identifier.from(identifier), Title.create(title), Identifier.from(author), Book.Type.valueOf(type)));
+            return Optional.of(Book.create(Identifier.from(identifier), new Title(title), Identifier.from(author), Book.Type.valueOf(type)));
         } catch (Exception exception) {
             LOGGER.warn("Error while mapping database to domain", exception);
             return Optional.empty();

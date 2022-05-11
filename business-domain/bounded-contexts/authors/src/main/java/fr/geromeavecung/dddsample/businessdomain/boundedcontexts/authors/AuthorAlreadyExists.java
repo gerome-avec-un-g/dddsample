@@ -5,7 +5,7 @@ import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.BusinessEx
 public class AuthorAlreadyExists extends BusinessException {
 
     public AuthorAlreadyExists(Author existingAuthor) {
-        super(existingAuthor.getIdentifier().toString(), existingAuthor.getFirstName().value(), existingAuthor.getLastName().value());
+        super(existingAuthor.getIdentifier().value().toString(), existingAuthor.getFirstName().value(), existingAuthor.getLastName().value());
     }
 
 }

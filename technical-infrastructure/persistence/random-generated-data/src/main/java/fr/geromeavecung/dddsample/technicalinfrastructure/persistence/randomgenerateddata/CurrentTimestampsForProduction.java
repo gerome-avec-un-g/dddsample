@@ -11,7 +11,7 @@ public class CurrentTimestampsForProduction implements Timestamps {
 
     @Override
     public Timestamp now() {
-        return Timestamp.generate(ZonedDateTime.now());
+        return new Timestamp(ZonedDateTime.now());
     }
 
 }

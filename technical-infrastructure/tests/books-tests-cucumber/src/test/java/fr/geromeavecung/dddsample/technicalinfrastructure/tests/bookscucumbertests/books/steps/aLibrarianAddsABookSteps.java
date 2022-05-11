@@ -59,7 +59,7 @@ public class aLibrarianAddsABookSteps {
                 // FIXME .get()
                 Optional<Book> optionalBook = booksForCucumber.read(identifier);
                 assertThat(optionalBook).isPresent();
-                assertThat(optionalBook.get()).usingRecursiveComparison().isEqualTo(Book.create(identifier, Title.create(columns.get("title")), Identifier.from(columns.get("author identifier")), Book.Type.valueOf(columns.get("type"))));
+                assertThat(optionalBook.get()).usingRecursiveComparison().isEqualTo(Book.create(identifier, new Title(columns.get("title")), Identifier.from(columns.get("author identifier")), Book.Type.valueOf(columns.get("type"))));
             }
         } catch (Exception exception) {
             sharedState.setActualException(exception);

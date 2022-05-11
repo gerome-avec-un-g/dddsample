@@ -4,20 +4,10 @@ import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.validation
 
 import java.time.ZonedDateTime;
 
-public class Timestamp {
+public record Timestamp(ZonedDateTime value) {
 
-    private final ZonedDateTime value;
-
-    public static Timestamp generate(ZonedDateTime localDateTime) {
-        return new Timestamp(localDateTime);
+    public Timestamp(ZonedDateTime value) {
+        this.value = MandatoryValidator.validate("timestamp", value);
     }
 
-    private Timestamp(ZonedDateTime localDateTime) {
-        this.value = MandatoryValidator.validate("timestamp", localDateTime);
-    }
-
-    @Override
-    public String toString() {
-        return value.toString();
-    }
 }
