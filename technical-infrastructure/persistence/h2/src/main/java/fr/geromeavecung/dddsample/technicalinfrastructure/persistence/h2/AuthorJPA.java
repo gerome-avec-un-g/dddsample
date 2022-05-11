@@ -79,7 +79,7 @@ class AuthorJPA {
 
     Optional<Author> toDomain() {
         try {
-            return Optional.of(Author.read(Identifier.from(identifier), FirstName.from(firstName), LastName.from(lastName)));
+            return Optional.of(Author.read(Identifier.from(identifier), new FirstName(firstName), new LastName(lastName)));
         } catch (Exception exception) {
             LOGGER.warn("Error while mapping database to domain", exception);
             return Optional.empty();

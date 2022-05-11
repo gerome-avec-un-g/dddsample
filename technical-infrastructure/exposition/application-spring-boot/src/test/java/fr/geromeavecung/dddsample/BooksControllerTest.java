@@ -67,8 +67,9 @@ class BooksControllerTest {
     @Test
     void books() throws Exception {
         List<BookSummary> expectedBooks = new ArrayList<>();
-        Book book = new Book(Identifier.from("a473a317-2103-4150-92c6-dba8ebea3a0a"), Title.create("A Song of Ice and Fire"), Identifier.from("f28e0d3b-4050-4d7a-811c-e8996d975fee"), Book.Type.FICTION);
-        Author author = Author.read(Identifier.from("f28e0d3b-4050-4d7a-811c-e8996d975fee"), FirstName.from("George R. R."), LastName.from("Martin"));
+        Book book = new Book(Identifier.from("a473a317-2103-4150-92c6-dba8ebea3a0a"),
+                Title.create("A Song of Ice and Fire"), Identifier.from("f28e0d3b-4050-4d7a-811c-e8996d975fee"), Book.Type.FICTION);
+        Author author = Author.read(Identifier.from("f28e0d3b-4050-4d7a-811c-e8996d975fee"), new FirstName("George R. R."), new LastName("Martin"));
         expectedBooks.add(new BookSummary(book, author));
         BookSummaryTable bookSummaryTable = new BookSummaryTable(expectedBooks);
         when(aLibrarianListsAllBooks.execute(null)).thenReturn(bookSummaryTable);

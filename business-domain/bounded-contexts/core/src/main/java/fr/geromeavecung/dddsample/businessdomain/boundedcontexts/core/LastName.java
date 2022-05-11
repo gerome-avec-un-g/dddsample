@@ -2,39 +2,10 @@ package fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core;
 
 import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.core.validation.MandatoryValidator;
 
-import java.util.Objects;
+public record LastName(String value) {
 
-public class LastName {
-
-    private final String value;
-
-    public static LastName from(String value) {
-        return new LastName(value);
-    }
-
-    private LastName(String value) {
+    public LastName(String value) {
         this.value = MandatoryValidator.validate("last name", value);
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        LastName lastName = (LastName) o;
-        return value.equals(lastName.value);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(value);
-    }
-
-    @Override
-    public String toString() {
-        return value;
-    }
 }

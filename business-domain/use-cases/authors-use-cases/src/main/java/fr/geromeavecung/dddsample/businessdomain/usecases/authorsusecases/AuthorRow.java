@@ -11,11 +11,11 @@ public class AuthorRow {
     }
 
     public String getFirstName() {
-        return author.getFirstName().toString();
+        return author.getFirstName().value();
     }
 
     public String getLastName() {
-        return author.getLastName().toString();
+        return author.getLastName().value();
     }
 
 }

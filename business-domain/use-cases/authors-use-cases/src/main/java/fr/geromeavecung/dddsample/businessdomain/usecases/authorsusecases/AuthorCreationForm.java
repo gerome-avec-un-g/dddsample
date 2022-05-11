@@ -28,6 +28,6 @@ public class AuthorCreationForm {
     }
 
     public Author toDomain(Identifier identifier) {
-        return Author.create(identifier, FirstName.from(firstName), LastName.from(lastName));
+        return Author.create(identifier, new FirstName(firstName), new LastName(lastName));
     }
 }

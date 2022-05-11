@@ -23,11 +23,11 @@ public class BookSummary {
     }
 
     public String getAuthorFirstName() {
-        return author.getFirstName().toString();
+        return author.getFirstName().value();
     }
 
     public String getAuthorLastName() {
-        return author.getLastName().toString();
+        return author.getLastName().value();
     }
 
     public String getType() {

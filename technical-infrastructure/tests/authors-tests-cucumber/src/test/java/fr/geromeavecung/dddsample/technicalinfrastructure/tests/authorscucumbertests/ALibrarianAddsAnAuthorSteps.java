@@ -54,7 +54,7 @@ public class ALibrarianAddsAnAuthorSteps {
             Identifier identifier = Identifier.from(columns.get("identifier"));
             Optional<Author> optionalAuthor = authorsForCucumber.read(identifier);
             assertThat(optionalAuthor).isPresent();
-            optionalAuthor.ifPresent(author -> assertThat(author).usingRecursiveComparison().isEqualTo(Author.read(identifier, FirstName.from(columns.get("first name")), LastName.from(columns.get("last name")))));
+            optionalAuthor.ifPresent(author -> assertThat(author).usingRecursiveComparison().isEqualTo(Author.read(identifier, new FirstName(columns.get("first name")), new LastName(columns.get("last name")))));
         }
     }
 

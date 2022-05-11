@@ -42,7 +42,7 @@ public class AuthorsSharedSteps {
     public void the_existing_authors_are(DataTable dataTable) {
         for (Map<String, String> columns : dataTable.asMaps(String.class, String.class)) {
             Identifier identifier = Identifier.from(columns.get("identifier"));
-            authorsForCucumber.save(Author.read(identifier, FirstName.from(columns.get("first name")), LastName.from(columns.get("last name"))));
+            authorsForCucumber.save(Author.read(identifier, new FirstName(columns.get("first name")), new LastName(columns.get("last name"))));
         }
     }
 

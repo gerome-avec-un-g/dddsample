@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class LibraryApplication {
 
-    /**
+    /*
      * If issues when launching, check if IntelliJ run configuration is using bundled java
      *
      * If issues when debugging launch by right-click on this class, not by maven. Check the end of

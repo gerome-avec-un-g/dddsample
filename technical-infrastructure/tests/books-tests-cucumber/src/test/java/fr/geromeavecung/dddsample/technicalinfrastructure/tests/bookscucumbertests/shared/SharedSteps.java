@@ -89,7 +89,7 @@ public class SharedSteps {
     public void a_library_with_authors(DataTable dataTable) {
         try {
             for (Map<String, String> columns : dataTable.asMaps(String.class, String.class)) {
-                authorsForCucumber.save(Author.read(Identifier.from(columns.get("identifier")), FirstName.from(columns.get("first name")), LastName.from(columns.get("last name"))));
+                authorsForCucumber.save(Author.read(Identifier.from(columns.get("identifier")), new FirstName(columns.get("first name")), new LastName(columns.get("last name"))));
             }
         } catch (Exception exception) {
             sharedState.setActualException(exception);
