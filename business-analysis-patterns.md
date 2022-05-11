@@ -1,5 +1,5 @@
 #Generic
-* it is really detailled, all questions should be asked for each individual data.
+* it is really detailed, all questions should be asked for each individual data.
 * Can the concept be split ? (type of overpaid hours which contained both if it is paid/recovered and some business name tied to time percentage)
 * It is raw data (state) or can it be computed (status) ? Error : needing a batch to update raw data to reflect the fact that now if after some date
 (batch to update state to closed when now if after closing date instead of just computing it)
@@ -20,7 +20,7 @@
 #Dates
 
 #Date range
-Periode (2 dates) : faire les tests avec debut/fin != et debut/fin =
+Période (2 dates) : faire les tests avec debut/fin != et debut/fin =
 
 #Strings
 
@@ -40,19 +40,21 @@ Clause in : non vide, pas plus de 1000
 Tests réels des frameworks bizarres peu maîtrisés (batch dans des technos peu connues…)
 
 
-Egalement toujours bien séparer les frameworks techniques et les foncions métier ! pour rendre moins dépendant de la techno non maîtrisée !
+Egalement toujours bien séparer les frameworks techniques et les foncions métier ! Pour rendre moins dépendant de la techno non maîtrisée !
 
 
 workflow » d’une fonctionnalité/feature :
 
-Vérification des données en entrées (« format ») : la donnée est valable dans l’absolu
+Vérification des données saisies (format, valeurs...) : les données sont valables dans l’absolu, voire, entre-elles -> règles dans l'objet contenant les champs ou dans l'agrégat.
 
-Vérification des données entrées (autorisations, périmètre, ) : les données est valable dans le relatifs, c’est-à-dire compatible avec l’état actuel du système
+Vérification des données par rapport au "bounded context" (existence en base de données, doublons... ) : les données sont compatibles avec l’état actuel du système -> dans un service
 
-Cas passants et leur conséquences
+Vérification des données par rapport à d'autres "bounded context" (autorisations, périmètre... ) : les données sont compatibles avec l’état actuel du système -> dans un service d'orchestration ? Sauf si le contrôle peut être réduit à un modèle trivial auquel cas on peut repasser la donnée au domaine initial ?
+
+Cas passants et leurs conséquences
 
 
-Workflow d’une fonctionalité « web »
+Workflow d’une fonctionnalité « web »
 
 
 
@@ -60,13 +62,13 @@ login
 
 menus
 
-afficher l’écran de saisie du formulaire (note : le formulaire peut être des cases à cocher sur un écran récapitulatif)
+Afficher l’écran de saisie du formulaire (note : le formulaire peut être des cases à cocher sur un écran récapitulatif)
 
-envoyer le formulaire
+Envoyer le formulaire
 
-afficher le résultat de l’action
+Afficher le résultat de l’action
 
-Erreur classiques sur les chaînes de caractères : la casse
+Erreur classique sur les chaînes de caractères : la casse
 
 
 
