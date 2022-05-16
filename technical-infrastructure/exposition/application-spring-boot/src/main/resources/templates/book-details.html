@@ -10,8 +10,9 @@
         <h2 class="mdc-typography mdc-typography--headline6" th:text="${bookDetails.title}"></h2>
         <h3 class="mdc-typography mdc-typography--subtitle2">
             <span th:text="#{by}"></span>
-            <a th:href="@{/author/{id}(id=${bookDetails.authorIdentifier})}"><span
-                    th:text="${bookDetails.author}"></span></a>
+            <a th:href="@{/author/{id}(id=${bookDetails.authorIdentifier})}">
+                <span th:text="${bookDetails.author}"></span>
+            </a>
         </h3>
         <div class="mdc-typography mdc-typography--body2" th:text="#{${bookDetails.type}}"></div>
     </div>

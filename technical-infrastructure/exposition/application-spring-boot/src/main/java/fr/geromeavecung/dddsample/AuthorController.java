@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.UUID;
+
 @Controller
 @RequestMapping("/author")
 public class AuthorController {
@@ -28,7 +30,7 @@ public class AuthorController {
     @GetMapping("/{id}")
     public ModelAndView author(@PathVariable("id") String uuidRepresentation, @AuthenticationPrincipal UserDetails userDetails) {
         ModelAndView modelAndView = new ModelAndView("author");
-        User connectedUser = new User(Identifier.from("893b586d-7f89-46e7-9f1b-a8f351ccf5a7"));
+        User connectedUser = new User(new Identifier(UUID.fromString("893b586d-7f89-46e7-9f1b-a8f351ccf5a7")));
         modelAndView.addObject("author", aLibrarianReadsOneAuthor.execute(connectedUser, uuidRepresentation));
         return modelAndView;
     }

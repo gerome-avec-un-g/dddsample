@@ -20,6 +20,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.util.UUID;
+
 @Controller
 @RequestMapping("/authors")
 public class AuthorsController {
@@ -38,7 +40,7 @@ public class AuthorsController {
     @GetMapping
     public ModelAndView authors(Model model, @AuthenticationPrincipal UserDetails userDetails) {
         ModelAndView modelAndView = new ModelAndView("authors");
-        User connectedUser = new User(Identifier.from("893b586d-7f89-46e7-9f1b-a8f351ccf5a7"));
+        User connectedUser = new User(new Identifier(UUID.fromString("893b586d-7f89-46e7-9f1b-a8f351ccf5a7")));
         modelAndView.addObject("authorsListPage", aLibrarianListsAllAuthors.execute(connectedUser));
         modelAndView.addAllObjects(model.asMap());
         if (!modelAndView.getModelMap().containsAttribute("authorCreationForm")) {
@@ -50,7 +52,7 @@ public class AuthorsController {
     @PostMapping
     public RedirectView authorCreationFormPost(@ModelAttribute AuthorCreationForm authorCreationForm, RedirectAttributes redirectAttributes) {
         try {
-            User connectedUser = new User(Identifier.from("893b586d-7f89-46e7-9f1b-a8f351ccf5a7"));
+            User connectedUser = new User(new Identifier(UUID.fromString("893b586d-7f89-46e7-9f1b-a8f351ccf5a7")));
             aLibrarianAddsAnAuthor.execute(connectedUser, authorCreationForm);
             //redirectAttributes.addFlashAttribute("success", "bookCreationSuccess");
         } catch (BusinessException businessException) {

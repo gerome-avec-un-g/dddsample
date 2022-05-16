@@ -16,7 +16,7 @@
     <version>1.0-SNAPSHOT</version>
     <!-- TODO   <version>${revision}</version>-->
     <!-- jar for cloud deployment, war for server deployment -->
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <dependencies>
         <dependency>

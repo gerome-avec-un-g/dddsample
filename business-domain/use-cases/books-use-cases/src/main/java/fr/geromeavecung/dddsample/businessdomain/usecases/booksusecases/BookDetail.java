@@ -15,7 +15,7 @@ public class BookDetail {
     }
 
     public String getIdentifier() {
-        return book.getIdentifier().toString();
+        return book.getIdentifier().value().toString();
     }
 
     public String getTitle() {
@@ -23,11 +23,11 @@ public class BookDetail {
     }
 
     public String getAuthorIdentifier() {
-        return author.getIdentifier().toString();
+        return author.getIdentifier().value().toString();
     }
 
     public String getAuthor() {
-        return author.getFirstName().toString() + ' ' + author.getLastName().toString();
+        return author.getFirstName().value() + ' ' + author.getLastName().value();
     }
 
     public String getType() {
