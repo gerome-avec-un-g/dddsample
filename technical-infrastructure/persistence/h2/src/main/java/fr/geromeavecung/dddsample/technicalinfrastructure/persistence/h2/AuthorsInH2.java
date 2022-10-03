@@ -20,6 +20,8 @@ public class AuthorsInH2 implements Authors {
 
     private final AuthorsJpaRepository authorsJpaRepository;
 
+    //FIXME test dto projection
+
     @Autowired
     public AuthorsInH2(AuthorsJpaRepository authorsJpaRepository) {
         this.authorsJpaRepository = authorsJpaRepository;
