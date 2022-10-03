@@ -8,4 +8,8 @@ public record LastName(String value) {
         this.value = MandatoryValidator.validate("last name", value);
     }
 
+    @Override
+    public String toString() {
+        return value;
+    }
 }

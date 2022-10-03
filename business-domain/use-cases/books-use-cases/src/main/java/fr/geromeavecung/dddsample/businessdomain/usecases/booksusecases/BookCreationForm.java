@@ -6,6 +6,7 @@ import fr.geromeavecung.dddsample.businessdomain.boundedcontexts.books.Title;
 
 public class BookCreationForm {
 
+    // FIXME replace DTO by records
     private String title;
 
     private String author;

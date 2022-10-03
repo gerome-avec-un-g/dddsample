@@ -8,4 +8,8 @@ public record FirstName(String value) {
         this.value = FormatValidator.validate("first name", value, "[a-zA-Z \\.-]{1,40}");
     }
 
+    @Override
+    public String toString() {
+        return value;
+    }
 }

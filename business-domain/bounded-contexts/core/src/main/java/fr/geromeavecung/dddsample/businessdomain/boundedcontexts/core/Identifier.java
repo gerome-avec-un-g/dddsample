@@ -19,4 +19,8 @@ public record Identifier(UUID value) {
         this.value = MandatoryValidator.validate("identifier", value);
     }
 
+    @Override
+    public String toString() {
+        return value.toString();
+    }
 }
